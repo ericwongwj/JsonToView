@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="white">#ffffff</color> <!-- 白色 -->
+    <color name="ivory">#fffff0</color> <!-- 象牙色 -->
+    <color name="lightyellow">#ffffe0</color> <!-- 亮黄色 -->
+    <color name="yellow">#ffff00</color> <!-- 黄色 -->
+    <color name="snow">#fffafa</color> <!-- 雪白色 -->
+    <color name="floralwhite">#fffaf0</color> <!-- 花白色 -->
+    <color name="lemonchiffon">#fffacd</color> <!-- 柠檬绸色 -->
+    <color name="cornsilk">#fff8dc</color> <!-- 米绸色 -->
+    <color name="seaShell">#fff5ee</color> <!-- 海贝色 -->
+    <color name="lavenderblush">#fff0f5</color> <!-- 淡紫红 -->
+    <color name="papayawhip">#ffefd5</color> <!-- 番木色 -->
+    <color name="blanchedalmond">#ffebcd</color> <!-- 白杏色 -->
+    <color name="mistyrose">#ffe4e1</color> <!-- 浅玫瑰色 -->
+    <color name="bisque">#ffe4c4</color> <!-- 桔黄色 -->
+    <color name="moccasin">#ffe4b5</color> <!-- 鹿皮色 -->
+    <color name="navajowhite">#ffdead</color> <!-- 纳瓦白 -->
+    <color name="peachpuff">#ffdab9</color> <!-- 桃色 -->
+    <color name="gold">#ffd700</color> <!-- 金色 -->
+    <color name="pink">#ffc0cb</color> <!-- 粉红色 -->
+    <color name="lightpink">#ffb6c1</color> <!-- 亮粉红色 -->
+    <color name="orange">#ffa500</color> <!-- 橙色 -->
+    <color name="lightsalmon">#ffa07a</color> <!-- 亮肉色 -->
+    <color name="darkorange">#ff8c00</color> <!-- 暗桔黄色 -->
+    <color name="coral">#ff7f50</color> <!-- 珊瑚色 -->
+</resources>

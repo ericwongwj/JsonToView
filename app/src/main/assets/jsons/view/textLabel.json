@@ -1,0 +1,44 @@
+{
+  "tag": "0",
+  "nodeName": "contactName",
+  "nodeType": 1,
+  "layout": {
+    "strategy": "0",
+    "absolutePosition": {
+      "x": {
+        "offset": 70,
+        "persentage": 0,
+        "baseOption": 0
+      },
+      "y": {
+        "offset": 12,
+        "persentage": 0,
+        "baseOption": 1
+      }
+    },
+    "absoluteSize": {
+      "width": {
+        "offset": -70,
+        "persentage": 0,
+        "baseOption": 0
+      },
+      "height": {
+        "offset": 31,
+        "persentage": 0,
+        "baseOption": 1
+      }
+    }
+  },
+  "styles": {
+    "text": {
+      "dataType": 0,
+      "data": "群组"
+    },
+    "textColor": "#051b28",
+    "textFontSize": 17,
+    "numberOfLines": 1,
+    "strickHeight": 1,
+    "strickWidth": 1,
+    "isHide":"{{var setHidden=function(e){return 0}}}"
+  }
+}

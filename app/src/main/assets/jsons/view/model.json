@@ -1,0 +1,43 @@
+//顶级节点
+{
+  "SDKVersion": "",
+  //string 用于sdk升级 0.0.0
+  "ModuleVersion": "",
+  //string 用于页面更新 0.0.0
+  "containerType": "",
+  //int
+  "containerHeight": "",
+  //String
+  "registerProperty": "{{}}",
+  //js code
+  "rootNode": {
+    //node
+  },
+  "headerInfo": {
+    "hasBackButton": "",
+    //int: 0,1
+    "headTitle": "",
+    //string
+    "extensionButtons": [
+      {
+        "text": "",
+        //string
+        "action": "",
+        //string
+        "imageSource": ""
+        //string
+      },
+      {
+      }
+    ],
+  },
+  "requestInfo": {
+    "baseUrl": "",
+    //string
+    "path": "",
+    //string
+    "parameters": {
+      //dic
+    }
+  }
+}

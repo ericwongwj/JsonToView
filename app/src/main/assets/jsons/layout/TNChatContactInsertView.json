@@ -1,0 +1,76 @@
+{
+    "SDKVersion": "0.0.0",
+    "ModuleVersion": "0.0.0",
+    "containerType": 0,
+    "containerHeight": "400",
+    "registerProperty": "{{var $page=1;}}",
+    "rootNode": {
+        "tag": "0",
+        "nodeName": "view",
+        "nodeType": 9,
+        "layout": {
+            "strategy": 0,
+            "absolutePosition": {
+                "x": {
+                    "offset": 10,
+                    "persentage": 0,
+                    "baseOption": 0
+                },
+                "y": {
+                    "offset": 10,
+                    "persentage": 0,
+                    "baseOption": 1
+                }
+            },
+            "absoluteSize": {
+                "width": {
+                    "offset": -20,
+                    "persentage": 1,
+                    "baseOption": 0
+                },
+                "height": {
+                    "offset": -20,
+                    "persentage": 1,
+                    "baseOption": 1
+                }
+            }
+        },
+        "styles": {
+            "backgroundColor": "#ffffff",
+            "collectionStyle": {
+                "cellTemplateName": "TNChatContactDestination",
+                "scrollDirection": 1,
+                "dataPath": ["rows"],
+                "enablePullDownToRefresh": 1,
+                "enablePullUpToLoadMore": 1,
+                "pullDownAction": "{{$page=1;}}",
+                "pullUpAction": "{{$page++;}}",
+                "itemSize": {
+                    "width": {
+                        "offset": 0,
+                        "persentage": 0.3,
+                        "baseOption": 0
+                    },
+                    "height": {
+                        "offset": 0,
+                        "persentage": 0.3,
+                        "baseOption": 1
+                    }
+                },
+                "minimumInteritemSpacing": 10,
+                "minimumLineSpacing": 10
+            }
+        }
+
+
+    },
+    "requestInfo": {
+        "baseUrl": "https://m.tuniu.com/api/",
+        "path": "guide/guideHome/audioList",
+        "parameters": {
+            "poiId": "{{var getSessionId=function(){return 37555};}}",
+            "page": "{{var getPage=function(e){return $page};}}",
+            "limit": "{{var getCount=function(e){return 20};}}"
+        }
+    }
+}

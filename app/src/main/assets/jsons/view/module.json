@@ -1,0 +1,18 @@
+{
+  "SDKVersion": "0.0.0",
+  "ModuleVersion": "0.0.0",
+  "containerType": 0,
+  "rootNode":{
+    "tag": "0",
+    "nodeName": "view",
+    "nodeType": 4,
+    "layout":{
+
+    },
+    "styles":{
+
+    },
+    "subNode":[]
+
+  }
+}

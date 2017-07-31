@@ -1,0 +1,32 @@
+{
+  "tag": "0",
+  "nodeName": "indicatorView",
+  "nodeType": 5,
+  "layout": {
+    "strategy": "0",
+    "absolutePosition": {
+      "x": {
+        "offset": 0,
+        "persentage": 0.25,
+        "baseOption": 0
+      },
+      "y": {
+        "offset": -15,
+        "persentage": 0.5,
+        "baseOption": 1
+      }
+    },
+    "absoluteSize": {
+      "width": {
+        "offset": 30,
+        "persentage": 0,
+        "baseOption": 0
+      },
+      "height": {
+        "offset": 30,
+        "persentage": 0,
+        "baseOption": 1
+      }
+    }
+  }
+}

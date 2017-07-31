@@ -1,0 +1,122 @@
+{
+    "SDKVersion": "0.0.0",
+    "ModuleVersion": "0.0.0",
+    "containerType": 0,
+    "rootNode": {
+        "tag": "0",
+        "nodeName": "cardContentView",
+        "nodeType": 4,
+        "layout": {
+            "strategy": 0,
+            "absolutePosition": {
+                "x": {
+                    "offset": 0,
+                    "persentage": 0,
+                    "baseOption": 0
+                },
+                "y": {
+                    "offset": 0,
+                    "persentage": 0,
+                    "baseOption": 1
+                }
+            },
+            "absoluteSize": {
+                "width": {
+                    "offset": 0,
+                    "persentage": 1,
+                    "baseOption": 0
+                },
+                "height": {
+                    "offset": 0,
+                    "persentage": 1,
+                    "baseOption": 1
+                }
+            }
+        },
+        "styles": {
+            "backgroundColor": "#ffabcdef"
+        },
+        "subNode": [{
+            "tag": "0",
+            "nodeName": "customer_service_load_failed",
+            "nodeType": 2,
+            "layout": {
+                "strategy": "0",
+                "absolutePosition": {
+                    "x": {
+                        "offset": 0,
+                        "persentage": 0.25,
+                        "baseOption": 0
+                    },
+                    "y": {
+                        "offset": -15,
+                        "persentage": 0.5,
+                        "baseOption": 1
+                    }
+                },
+                "absoluteSize": {
+                    "width": {
+                        "offset": 30,
+                        "persentage": 0,
+                        "baseOption": 0
+                    },
+                    "height": {
+                        "offset": 30,
+                        "persentage": 0,
+                        "baseOption": 1
+                    }
+                }
+            },
+            "styles": {
+                "imageSource": {
+                    "dataType": 0,
+                    "data": "customer_service_load_failed"
+                }
+            }
+
+        }, {
+            "tag": "0",
+            "nodeName": "loadingLabel",
+            "nodeType": 1,
+            "layout": {
+                "strategy": "0",
+                "absolutePosition": {
+                    "x": {
+                        "offset": 40,
+                        "persentage": 0.25,
+                        "baseOption": 0
+                    },
+                    "y": {
+                        "offset": 0,
+                        "persentage": 0,
+                        "baseOption": 1
+                    }
+                },
+                "absoluteSize": {
+                    "width": {
+                        "offset": 0,
+                        "persentage": 0.5,
+                        "baseOption": 0
+                    },
+                    "height": {
+                        "offset": 0,
+                        "persentage": 1,
+                        "baseOption": 1
+                    }
+                }
+            },
+            "styles": {
+                "text": {
+                    "dataType": 0,
+                    "data": "加载失败"
+                },
+                "textColor": "#999999ff",
+                "textFontSize": 14,
+                "numberOfLines": 1,
+                "strickHeight": 1
+            },
+            "subNode": []
+
+        }]
+    }
+}

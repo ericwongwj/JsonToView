@@ -1,0 +1,54 @@
+{
+  "tag": "0",
+  "nodeName": "content",
+  "nodeType": 6,
+  "layout": {
+    "strategy": "0",
+    "absolutePosition": {
+      "x": {
+        "offset": 15,
+        "persentage": 0,
+        "baseOption": 0
+      },
+      "y": {
+        "offset": 44,
+        "persentage": 0,
+        "baseOption": 1
+      }
+    },
+    "absoluteSize": {
+      "width": {
+        "offset": -30,
+        "persentage": 1,
+        "baseOption": 0
+      },
+      "height": {
+        "offset": 44,
+        "persentage": 0,
+        "baseOption": 1
+      }
+    }
+  },
+  "styles": {
+    "text": {
+      "dataType": 1,
+      "data": ["message"]
+    },
+    "textColor": "#666666ff",
+    "textFontSize": 16,
+    "numberOfLines": 0,
+    "strickHeight": 0,
+    "strickWidth": 1,
+    "textHightLightRE": ["\\d{10}",
+      "\\d{3}-\\d{8}|\\d{4}-\\d{7}|\\d{4}-\\d{3}-\\d{3}",
+      "[a-zA-z]+://[\\w]+",
+      "t.cn/[\\w]+"
+    ],
+    "textHightLightColor": "#4e89d5ff",
+    "textHightAction": ["tuniuapp://event?iosHandleClass=TTNAutoUIEventOpenUrl&iosMethodName=handleOrderNumClickFromRichText:",
+      "tuniuapp://event?iosHandleClass=TTNAutoUIEventOpenUrl&iosMethodName=callTelNumFromRichTextClick:",
+      "tuniuapp://event?iosHandleClass=TTNAutoUIEventOpenUrl&iosMethodName=handleWebUrlClickFromRichText:",
+      "tuniuapp://event?iosHandleClass=TTNAutoUIEventOpenUrl&iosMethodName=handleWebUrlClickFromRichText:"
+    ]
+  }
+}

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context="com.example.tn_ma_l30000048.myjsontest.activity.MainActivity">
+
+    <LinearLayout
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/btn_test_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Test View" />
+
+        <Button
+            android:id="@+id/btn_test_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Test Layout" />
+
+        <Button
+            android:id="@+id/btn_test_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Test List" />
+
+        <Button
+            android:id="@+id/btn_show_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Layout" />
+
+        <Button
+            android:id="@+id/btn_show_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="view" />
+    </LinearLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/main_lv"></ListView>
+
+</LinearLayout>

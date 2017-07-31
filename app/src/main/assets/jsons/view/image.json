@@ -1,0 +1,41 @@
+{
+  "tag": "0",
+  "nodeName": "avatar",
+  "nodeType": 2,
+  "layout": {
+    "strategy": "0",
+    "absolutePosition": {
+      "x": {
+        "offset": 15,
+        "persentage": 0,
+        "baseOption": 0
+      },
+      "y": {
+        "offset": 7.5,
+        "persentage": 0,
+        "baseOption": 1
+      }
+    },
+    "absoluteSize": {
+      "width": {
+        "offset": 40,
+        "persentage": 0,
+        "baseOption": 0
+      },
+      "height": {
+        "offset": 40,
+        "persentage": 0,
+        "baseOption": 1
+      }
+    }
+  },
+  "styles": {
+    "imageSource": {
+      "dataType": 0,
+      "data": "chat_contact_group"
+    },
+    "cornerRadius": 20,
+    "contentMode": 1
+  }
+
+}

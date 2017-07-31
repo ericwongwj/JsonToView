@@ -1,0 +1,50 @@
+{
+  "tag": "0",
+  "nodeName": "ContactList",
+  "nodeType": 7,
+  "layout": {
+    "strategy": 0,
+    "absolutePosition": {
+      "x": {
+        "offset": 0,
+        "persentage": 0,
+        "baseOption": 0
+      },
+      "y": {
+        "offset": 64,
+        "persentage": 0,
+        "baseOption": 1
+      }
+    },
+    "absoluteSize": {
+      "width": {
+        "offset": 0,
+        "persentage": 1,
+        "baseOption": 0
+      },
+      "height": {
+        "offset": -64,
+        "persentage": 1,
+        "baseOption": 1
+      }
+    }
+  },
+  "styles": {
+    "backgroundColor": "#ffffff",
+    "tableStyle": {
+      "dataPath": ["recentContactList"],
+      "cellTemplateName": "{{var getCellTemplateName=function(t){return 25===t.age?'TNChatContactCell':'TNChatContactCell2'};}}",
+      "enablePullUpToLoadMore": 1,
+      "enablePullDownToRefresh": 1,
+      "pullDownAction": "{{$page=1;}}",
+      "pullUpAction": "{{$page++;}}",
+      "headView": "TNChatContactHead",
+      "footView": "TNChatContactFoot",
+      "insertViews": [{
+        "templateName": "TNChatContactInsertView",
+        "row": 2
+      }],
+      "scrollDisabled":0
+    }
+  }
+}

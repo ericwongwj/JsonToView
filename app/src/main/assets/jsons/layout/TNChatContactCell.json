@@ -1,0 +1,130 @@
+{
+    "SDKVersion": "0.0.0",
+    "ModuleVersion": "0.0.0",
+    "containerType": 0,
+    "containerHeight": "55",
+    "rootNode": {
+        "tag": "0",
+        "nodeName": "view",
+        "nodeType": 4,
+        "action": {
+            "dataType": 0,
+            "data": "{{var generateOpenUrl=function(e){var r={rctModuleParams:{userId:e.userId},rctModuleName:'homepage'},a=JSON.stringify(r);return'tuniuapp://page?pageName=TNReactNativeViewController&parameters='+encodeURI(a)};}}"
+        },
+        "layout": {
+            "strategy": 0,
+            "absolutePosition": {
+                "x": {
+                    "offset": 0,
+                    "persentage": 0,
+                    "baseOption": 0
+                },
+                "y": {
+                    "offset": 0,
+                    "persentage": 0,
+                    "baseOption": 1
+                }
+            },
+            "absoluteSize": {
+                "width": {
+                    "offset": 0,
+                    "persentage": 1,
+                    "baseOption": 0
+                },
+                "height": {
+                    "offset": 0,
+                    "persentage": 1,
+                    "baseOption": 1
+                }
+            }
+
+        },
+        "styles": {
+            "backgroundColor": "#ffffff00"
+        },
+        "subNode": [{
+            "tag": "0",
+            "nodeName": "avatar",
+            "nodeType": 2,
+            "layout": {
+                "strategy": "0",
+                "absolutePosition": {
+                    "x": {
+                        "offset": 15,
+                        "persentage": 0,
+                        "baseOption": 0
+                    },
+                    "y": {
+                        "offset": 7.5,
+                        "persentage": 0,
+                        "baseOption": 1
+                    }
+                },
+                "absoluteSize": {
+                    "width": {
+                        "offset": 40,
+                        "persentage": 0,
+                        "baseOption": 0
+                    },
+                    "height": {
+                        "offset": 40,
+                        "persentage": 0,
+                        "baseOption": 1
+                    }
+                }
+            },
+            "styles": {
+                "imageSource": {
+                    "dataType": 1,
+                    "data": "avatar"//[]
+                },
+                "cornerRadius": 20,
+                "contentMode": 1
+            }
+
+        }, {
+            "tag": "0",
+            "nodeName": "contactName",
+            "nodeType": 1,
+            "layout": {
+                "strategy": "0",
+                "absolutePosition": {
+                    "x": {
+                        "offset": 70,
+                        "persentage": 0,
+                        "baseOption": 0
+                    },
+                    "y": {
+                        "offset": 12,
+                        "persentage": 0,
+                        "baseOption": 1
+                    }
+                },
+                "absoluteSize": {
+                    "width": {
+                        "offset": -70,
+                        "persentage": 1,
+                        "baseOption": 0
+                    },
+                    "height": {
+                        "offset": 31,
+                        "persentage": 0,
+                        "baseOption": 1
+                    }
+                }
+            },
+            "styles": {
+                "text": {
+                    "dataType": 1,
+                    "data": "nickName"//[]
+                },
+                "textColor": "#051b28",
+                "textFontSize": 17,
+                "numberOfLines": 1,
+                "strickHeight": 1,
+                "strickWidth": 1
+            }
+        }]
+
+    }
+}

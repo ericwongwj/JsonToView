@@ -1,0 +1,35 @@
+{
+  "tag": "0",
+  "nodeName": "divideLine",
+  "nodeType": 4,
+  "layout": {
+    "strategy": "0",
+    "absolutePosition": {
+      "x": {
+        "offset": 0,
+        "persentage": 0,
+        "baseOption": 0
+      },
+      "y": {
+        "offset": 0,
+        "persentage": 0,
+        "baseOption": 1
+      }
+    },
+    "absoluteSize": {
+      "width": {
+        "offset": 0,
+        "persentage": 1,
+        "baseOption": 0
+      },
+      "height": {
+        "offset": 0.5,
+        "persentage": 0,
+        "baseOption": 1
+      }
+    }
+  },
+  "styles": {
+    "backgroundColor": "#e4e4e4ff"
+  }
+}
