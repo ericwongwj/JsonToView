@@ -70,9 +70,12 @@
             "styles": {
                 "imageSource": {
                     "dataType": 1,
-                    "data": "pictureImage"//[]
+                  "data": [
+                    "pictureImage"
+                  ]
                 }
             }
+
         }, {
             "tag": "0",
             "nodeName": "productName",
@@ -107,7 +110,9 @@
             "styles": {
                 "text": {
                     "dataType": 1,
-                    "data": "typeName"//[]
+                  "data": [
+                    "typeName"
+                  ]
                 },
                 "textColor": "#a5a5a5ff",
                 "textFontSize": 14,
@@ -148,7 +153,9 @@
             "styles": {
                 "text": {
                     "dataType": 1,
-                    "data": "number"//[]
+                  "data": [
+                    "number"
+                  ]
                 },
                 "textColor": "#051b28ff",
                 "textFontSize": 15,
@@ -224,7 +231,9 @@
             "styles": {
                 "text": {
                     "dataType": 1,
-                    "data": "desc"//[]
+                  "data": [
+                    "desc 这原来是一个description"
+                  ]
                 },
                 "textColor": "#a5a5a5ff",
                 "textFontSize": 14,

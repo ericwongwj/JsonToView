@@ -33,156 +33,159 @@
                     "baseOption": 1
                 }
             }
-
         },
         "styles": {
             "backgroundColor": "#ffffff00"
         },
-        "subNode": [{
-            "tag": "0",
-            "nodeName": "登录页面",
-            "nodeType": 1,
-            "action": {
-                "dataType": 0,
-                "data": "tuniuapp://page?iosPageName=TTNAutoUINormalViewController&parameters=%7B%22templateName%22%3A%22TNChatCSCLoginIndicateViewController%22%7D"
-            },
-            "layout": {
-                "strategy": 0,
-                "absolutePosition": {
-                    "x": {
-                        "offset": 0,
-                        "persentage": 0,
-                        "baseOption": 0
+      "subNode": [
+        {
+          "tag": "0",
+          "nodeName": "登录页面",
+          "nodeType": 1,
+          "action": {
+            "dataType": 0,
+            "data": "tuniuapp://page?iosPageName=TTNAutoUINormalViewController¶meters=%7B%22templateName%22%3A%22TNChatCSCLoginIndicateViewController%22%7D"
+          },
+          "layout": {
+            "strategy": 0,
+            "absolutePosition": {
+              "x": {
+                "offset": 0,
+                "persentage": 0,
+                "baseOption": 0
+              },
+              "y": {
+                "offset": 0,
+                "persentage": 0,
+                "baseOption": 1
+              }
                     },
-                    "y": {
-                        "offset": 0,
-                        "persentage": 0,
-                        "baseOption": 1
+            "absoluteSize": {
+              "width": {
+                "offset": 0,
+                "persentage": 1,
+                "baseOption": 0
+              },
+              "height": {
+                "offset": 30,
+                "persentage": 0,
+                "baseOption": 1
+              }
                     }
                 },
-                "absoluteSize": {
-                    "width": {
-                        "offset": 0,
-                        "persentage": 1,
-                        "baseOption": 0
+          "styles": {
+            "backgroundColor": "#ffffff",
+            "text": {
+              "dataType": 0,
+              "data": "登录页面"
                     },
-                    "height": {
-                        "offset": 30,
-                        "persentage": 0,
-                        "baseOption": 1
-                    }
+            "textColor": "#051b28",
+            "textFontSize": 14,
+            "numberOfLines": 1,
+            "strickHeight": 1,
+            "strickWidth": 1,
+            "textAlignment": 1
                 }
             },
-            "styles": {
-                "backgroundColor": "#ffffff",
-                "text": {
+        {
+          "tag": "0",
+          "nodeName": "联系人列表",
+          "nodeType": 1,
+          "action": {
                     "dataType": 0,
-                    "data": "登录页面"
+            "data": "tuniuapp://page?iosPageName=TTNAutoUINormalViewController¶meters=%7B%22templateName%22%3A%22TNChatContactList%22%7D"
                 },
-                "textColor": "#051b28",
-                "textFontSize": 14,
-                "numberOfLines": 1,
-                "strickHeight": 1,
-                "strickWidth": 1,
-                "textAlignment": 1
-            }
-        },{
-            "tag": "0",
-            "nodeName": "联系人列表",
-            "nodeType": 1,
-            "action": {
-                "dataType": 0,
-                "data": "tuniuapp://page?iosPageName=TTNAutoUINormalViewController&parameters=%7B%22templateName%22%3A%22TNChatContactList%22%7D"
-            },
-            "layout": {
-                "strategy": 0,
-                "absolutePosition": {
-                    "x": {
-                        "offset": 0,
-                        "persentage": 0,
-                        "baseOption": 0
+          "layout": {
+            "strategy": 0,
+            "absolutePosition": {
+              "x": {
+                "offset": 0,
+                "persentage": 0,
+                "baseOption": 0
+              },
+              "y": {
+                "offset": 30,
+                "persentage": 0,
+                "baseOption": 1
+              }
                     },
-                    "y": {
-                        "offset": 30,
-                        "persentage": 0,
-                        "baseOption": 1
+            "absoluteSize": {
+              "width": {
+                "offset": 0,
+                "persentage": 1,
+                "baseOption": 0
+              },
+              "height": {
+                "offset": 30,
+                "persentage": 0,
+                "baseOption": 1
+              }
                     }
                 },
-                "absoluteSize": {
-                    "width": {
-                        "offset": 0,
-                        "persentage": 1,
-                        "baseOption": 0
+          "styles": {
+            "backgroundColor": "#ffffff",
+            "text": {
+              "dataType": 0,
+              "data": "联系人列表"
                     },
-                    "height": {
-                        "offset": 30,
-                        "persentage": 0,
-                        "baseOption": 1
-                    }
+            "textColor": "#051b28",
+            "textFontSize": 14,
+            "numberOfLines": 1,
+            "strickHeight": 1,
+            "strickWidth": 1,
+            "textAlignment": 1
                 }
             },
-            "styles": {
-                "backgroundColor": "#ffffff",
-                "text": {
+        {
+          "tag": "0",
+          "nodeName": "自定义View嵌套",
+          "nodeType": 1,
+          "action": {
                     "dataType": 0,
-                    "data": "联系人列表"
+            "data": "tuniuapp://page?iosPageName=TTNAutoUINormalViewController¶meters=%7B%22templateName%22%3A%22TNAutoSelfDefineDemo%22%7D"
                 },
-                "textColor": "#051b28",
-                "textFontSize": 14,
-                "numberOfLines": 1,
-                "strickHeight": 1,
-                "strickWidth": 1,
-                "textAlignment": 1
-            }
-        },{
-            "tag": "0",
-            "nodeName": "自定义View嵌套",
-            "nodeType": 1,
-            "action": {
-                "dataType": 0,
-                "data": "tuniuapp://page?iosPageName=TTNAutoUINormalViewController&parameters=%7B%22templateName%22%3A%22TNAutoSelfDefineDemo%22%7D"
-            },
-            "layout": {
-                "strategy": 0,
-                "absolutePosition": {
-                    "x": {
-                        "offset": 0,
-                        "persentage": 0,
-                        "baseOption": 0
+          "layout": {
+            "strategy": 0,
+            "absolutePosition": {
+              "x": {
+                "offset": 0,
+                "persentage": 0,
+                "baseOption": 0
+              },
+              "y": {
+                "offset": 60,
+                "persentage": 0,
+                "baseOption": 1
+              }
                     },
-                    "y": {
-                        "offset": 60,
-                        "persentage": 0,
-                        "baseOption": 1
+            "absoluteSize": {
+              "width": {
+                "offset": 0,
+                "persentage": 1,
+                "baseOption": 0
+              },
+              "height": {
+                "offset": 30,
+                "persentage": 0,
+                "baseOption": 1
+              }
                     }
                 },
-                "absoluteSize": {
-                    "width": {
-                        "offset": 0,
-                        "persentage": 1,
-                        "baseOption": 0
+          "styles": {
+            "backgroundColor": "#ffffff",
+            "text": {
+              "dataType": 0,
+              "data": "自定义View嵌套"
                     },
-                    "height": {
-                        "offset": 30,
-                        "persentage": 0,
-                        "baseOption": 1
-                    }
+            "textColor": "#051b28",
+            "textFontSize": 14,
+            "numberOfLines": 1,
+            "strickHeight": 1,
+            "strickWidth": 1,
+            "textAlignment": 1
                 }
-            },
-            "styles": {
-                "backgroundColor": "#ffffff",
-                "text": {
-                    "dataType": 0,
-                    "data": "自定义View嵌套"
-                },
-                "textColor": "#051b28",
-                "textFontSize": 14,
-                "numberOfLines": 1,
-                "strickHeight": 1,
-                "strickWidth": 1,
-                "textAlignment": 1
             }
-        }]
+      ]
     },
     "headerInfo": {
         "hasBackButton": 1,

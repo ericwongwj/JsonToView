@@ -34,7 +34,7 @@
             }
         },
         "styles": {
-            "backgroundColor": "#ffabcdef"
+          "backgroundColor": "#ffffff00"
         },
         "subNode": [{
             "tag": "0",

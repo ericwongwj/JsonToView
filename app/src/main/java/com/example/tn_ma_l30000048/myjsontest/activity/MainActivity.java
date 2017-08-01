@@ -2,15 +2,14 @@ package com.example.tn_ma_l30000048.myjsontest.activity;
 
 import android.content.Intent;
 import android.content.res.AssetManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.tn_ma_l30000048.myjsontest.JasonHelper;
-import com.example.tn_ma_l30000048.myjsontest.JsonUtils;
 import com.example.tn_ma_l30000048.myjsontest.R;
 import com.example.tn_ma_l30000048.myjsontest.model.CollectionView;
 import com.example.tn_ma_l30000048.myjsontest.model.Divider;
@@ -21,6 +20,7 @@ import com.example.tn_ma_l30000048.myjsontest.model.Module;
 import com.example.tn_ma_l30000048.myjsontest.model.RichText;
 import com.example.tn_ma_l30000048.myjsontest.model.TableView;
 import com.example.tn_ma_l30000048.myjsontest.model.TextLabel;
+import com.example.tn_ma_l30000048.myjsontest.utils.JsonUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btn_test_layout).setOnClickListener(this);
         findViewById(R.id.btn_test_view).setOnClickListener(this);
         findViewById(R.id.btn_test_list).setOnClickListener(this);
+        findViewById(R.id.btn_test_new_list).setOnClickListener(this);
         findViewById(R.id.btn_show_layout).setOnClickListener(this);
         findViewById(R.id.btn_show_view).setOnClickListener(this);
         lv=(ListView)findViewById(R.id.main_lv);
@@ -100,6 +101,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_test_list:
                 startActivity(new Intent(MainActivity.this,TestListActivity.class));
+                break;
+            case R.id.btn_test_new_list:
+                Intent intent = new Intent(MainActivity.this, TestListActivity.class);
+                intent.putExtra("version", "new");
+                startActivity(intent);
                 break;
             case R.id.btn_show_view:
                 adapter.notifyDataSetChanged();
@@ -214,19 +220,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    static class MyTest1{
-        String name1;
-        String name2;
-        String name3;
-        JoIn recursive;
-
-        static class JoIn{
-            String inJo1;
-            String injo2;
-        }
-    }
-
-
     void gsonRelated(String strJson){
         JsonParser parser = new JsonParser();
         JsonElement el = parser.parse(strJson);
@@ -251,5 +244,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //jbDemo= gson.fromJson(e, JavaBeanDemo.class);
         }
 
+    }
+
+    static class MyTest1 {
+        String name1;
+        String name2;
+        String name3;
+        JoIn recursive;
+
+        static class JoIn {
+            String inJo1;
+            String injo2;
+        }
     }
 }

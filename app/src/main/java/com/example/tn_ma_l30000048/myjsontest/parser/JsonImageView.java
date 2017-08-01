@@ -6,6 +6,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.util.Log;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.example.tn_ma_l30000048.myjsontest.R;
 
 import org.json.JSONArray;
@@ -23,11 +24,12 @@ public class JsonImageView {
 
     public static ImageView build(JSONObject body, Context context, int parentWidth, int parentHeight){
         ImageView imageView=new ImageView(context);
+        System.out.println("----build ImageView----");
         JsonBasicWidget.setAbsoluteLayoutParams(JsonHelper.getLayout(body),imageView,parentWidth,parentHeight);
         setImageStyle(JsonHelper.getStyles(body),imageView);
-        System.out.println("build textView");
         return imageView;
     }
+
 
     static void setImageStyle(JSONObject json, ImageView iv){
         Iterator<String> keys=json.keys();
@@ -46,22 +48,23 @@ public class JsonImageView {
                     int contentMode = json.getInt(key);
                     setImageScaleType(iv,contentMode);
                 }else if(key.equalsIgnoreCase("imageSource")){
-                    JSONObject text=json.getJSONObject(key);
-                    if(text.getInt("dataType")==0){
-                        String src=text.getString("data");
-                        iv.setImageResource(R.mipmap.ic_launcher);
-                    }else if(text.getInt("dataType")==1){
-                        JSONArray jsonArray=text.getJSONArray("data");
+                    JSONObject imageRes = json.getJSONObject(key);
+                    if (imageRes.getInt("dataType") == 0) {
+                        String src = imageRes.getString("data");//TODO
+                        Glide.with(iv.getContext()).load(R.drawable.placeholder).asBitmap().into(iv);
+                    } else if (imageRes.getInt("dataType") == 1) {
+                        JSONArray jsonArray = imageRes.getJSONArray("data");
                         List<String> srcs=new ArrayList<>();
                         for(int i=0;!jsonArray.isNull(i);i++){
                             srcs.add(jsonArray.getString(i));
                         }
-                        iv.setImageResource(R.drawable.icon);
+                        Glide.with(iv.getContext()).load(R.drawable.icon).asBitmap().into(iv);
                     }
                 }
             }
         }catch (Exception e){
             Log.e(e.getClass().getSimpleName(),e.getMessage());
+            e.printStackTrace();
         }
     }
 

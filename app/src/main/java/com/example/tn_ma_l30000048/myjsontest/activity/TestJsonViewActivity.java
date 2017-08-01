@@ -1,9 +1,10 @@
 package com.example.tn_ma_l30000048.myjsontest.activity;
 
 import android.graphics.Color;
+import android.os.Build;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import com.example.tn_ma_l30000048.myjsontest.JasonHelper;
 import com.example.tn_ma_l30000048.myjsontest.MyRoot;
 import com.example.tn_ma_l30000048.myjsontest.R;
+import com.example.tn_ma_l30000048.myjsontest.utils.ViewUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -120,7 +122,12 @@ public class TestJsonViewActivity extends AppCompatActivity {
         layoutParams.topMargin=15;
         layoutParams.leftMargin=15;
         iv.setLayoutParams(layoutParams);
-        iv.setId(1);
+//        iv.setId(View.generateViewId());
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            iv.setId(ViewUtils.generateViewId());
+        } else {
+            iv.setId(View.generateViewId());
+        }
 
         TextView tv=new TextView(this);
         tv.setText("联系人");

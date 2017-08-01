@@ -26,7 +26,7 @@ public class MyRoot {
             SDKVersion=jsonObject.getString("SDKVersion");
             ModuleVersion=jsonObject.getString("ModuleVersion");
             JSONObject rootNode=jsonObject.getJSONObject("rootNode");
-            System.out.println("my root");
+            System.out.println("my root " + parentWith + " " + parentHeight);
             if(rootNode.getInt("nodeType")==4)
                 myJsonView= ViewGroupFactory.build(rootNode,context,parentWith, parentHeight);
             else

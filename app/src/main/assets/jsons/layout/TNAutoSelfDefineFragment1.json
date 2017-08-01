@@ -38,189 +38,189 @@
             "strickHeight": 1,
             "strickWidth": 1
         },
-        "subNode": [{
-            "tag": "0",
-            "nodeName": "loginImg",
-            "nodeType": 2,
-            "layout": {
-                "strategy": "0",
-                "absolutePosition": {
-                    "x": {
-                        "offset": -80,
-                        "persentage": 0.5,
-                        "baseOption": 0
+      "subNode": [
+        {
+          "tag": "0",
+          "nodeName": "loginImg",
+          "nodeType": 2,
+          "layout": {
+            "strategy": "0",
+            "absolutePosition": {
+              "x": {
+                "offset": -80,
+                "persentage": 0.5,
+                "baseOption": 0
+              },
+              "y": {
+                "offset": 0,
+                "persentage": 0.12,
+                "baseOption": 1
+              }
                     },
-                    "y": {
-                        "offset": 0,
-                        "persentage": 0.12,
-                        "baseOption": 1
+            "absoluteSize": {
+              "width": {
+                "offset": 160,
+                "persentage": 0,
+                "baseOption": 0
+              },
+              "height": {
+                "offset": 174,
+                "persentage": 0,
+                "baseOption": 1
+              }
                     }
                 },
-                "absoluteSize": {
-                    "width": {
-                        "offset": 160,
-                        "persentage": 0,
-                        "baseOption": 0
+          "styles": {
+            "strickHeight": 1,
+            "strickWidth": 1,
+            "imageSource": {
+              "dataType": 0,
+              "data": "http://m.tuniucdn.com/fb2/t1/G2/M00/B2/EC/Cii-TFgEOwaITllaAAFRE_gXB2cAADdEgP2Rz8AAVEr447.png"
                     },
-                    "height": {
-                        "offset": 174,
-                        "persentage": 0,
-                        "baseOption": 1
-                    }
-                }
+            "contentMode": 1
+                },
+          "subNode": []
             },
-            "styles": {
-                "strickHeight": 1,
-                "strickWidth": 1,
-                "imageSource": {
+        {
+          "tag": "0",
+          "nodeName": "loginTitle",
+          "nodeType": 1,
+          "layout": {
+            "strategy": "0",
+            "absolutePosition": {
+              "x": {
+                "offset": 0,
+                "persentage": 0,
+                "baseOption": 0
+              },
+              "y": {
+                "offset": 191,
+                "persentage": 0.12,
+                "baseOption": 1
+              }
+                    },
+            "absoluteSize": {
+              "width": {
+                "offset": 0,
+                "persentage": 1,
+                "baseOption": 0
+              },
+              "height": {
+                "offset": 28,
+                "persentage": 0,
+                "baseOption": 1
+              }
+                    }
+                },
+          "styles": {
+            "text": {
+              "dataType": 0,
+              "data": "未登录"
+                    },
+            "textColor": "#051b28ff",
+            "textFontSize": 20,
+            "numberOfLines": 1,
+            "strickHeight": 1,
+            "strickWidth": 1,
+            "textAlignment": 1
+                },
+          "subNode": []
+            },
+        {
+          "tag": "0",
+          "nodeName": "loginSubTitle",
+          "nodeType": 1,
+          "layout": {
+            "strategy": "0",
+            "absolutePosition": {
+              "x": {
+                "offset": 0,
+                "persentage": 0,
+                "baseOption": 0
+              },
+              "y": {
+                "offset": 220,
+                "persentage": 0.12,
+                "baseOption": 1
+              }
+                    },
+            "absoluteSize": {
+              "width": {
+                "offset": 0,
+                "persentage": 1,
+                "baseOption": 0
+              },
+              "height": {
+                "offset": 20,
+                "persentage": 0,
+                "baseOption": 1
+              }
+                    }
+                },
+          "styles": {
+            "text": {
+              "dataType": 0,
+              "data": "查看订单需要先登录哦～"
+                    },
+            "textColor": "#a5a5a5ff",
+            "textFontSize": 14,
+            "numberOfLines": 1,
+            "strickHeight": 1,
+            "strickWidth": 1,
+            "textAlignment": 1
+          },
+          "subNode": []
+            },
+        {
+          "tag": "0",
+          "nodeName": "loginButtonLabel",
+          "nodeType": 3,
+          "action": {
                     "dataType": 0,
-                    "data": "http://m.tuniucdn.com/fb2/t1/G2/M00/B2/EC/Cii-TFgEOwaITllaAAFRE_gXB2cAADdEgP2Rz8AAVEr447.png"
+            "data": "tuniuapp://event?iosHandleClass=TTNAutoUIEventOpenUrl&iosMethodName=loginAction:"
                 },
-                "contentMode":1
-            },
-            "subNode": []
-
-        }, {
-            "tag": "0",
-            "nodeName": "loginTitle",
-            "nodeType": 1,
-            "layout": {
-                "strategy": "0",
-                "absolutePosition": {
-                    "x": {
-                        "offset": 0,
-                        "persentage": 0,
-                        "baseOption": 0
+          "layout": {
+            "strategy": "0",
+            "absolutePosition": {
+              "x": {
+                "offset": -70,
+                "persentage": 0.5,
+                "baseOption": 0
+              },
+              "y": {
+                "offset": 247,
+                "persentage": 0.12,
+                "baseOption": 1
+              }
                     },
-                    "y": {
-                        "offset": 191,
-                        "persentage": 0.12,
-                        "baseOption": 1
+            "absoluteSize": {
+              "width": {
+                "offset": 140,
+                "persentage": 0,
+                "baseOption": 0
+              },
+              "height": {
+                "offset": 40,
+                "persentage": 0,
+                "baseOption": 1
+              }
                     }
                 },
-                "absoluteSize": {
-                    "width": {
-                        "offset": 0,
-                        "persentage": 1,
-                        "baseOption": 0
+          "styles": {
+            "text": {
+              "dataType": 0,
+              "data": "去登录"
                     },
-                    "height": {
-                        "offset": 28,
-                        "persentage": 0,
-                        "baseOption": 1
-                    }
-                }
-            },
-            "styles": {
-                "text": {
-                    "dataType": 0,
-                    "data": "未登录"
+            "textColor": "#ffffffff",
+            "textFontSize": 14,
+            "backgroundColor": "#ff8800ff",
+            "cornerRadius": 5,
+            "strickHeight": 1,
+            "strickWidth": 1,
+            "textAlignment": 1
                 },
-                "textColor": "#051b28ff",
-                "textFontSize": 20,
-                "numberOfLines": 1,
-                "strickHeight": 1,
-                "strickWidth": 1,
-                "textAlignment": 1
-            },
-            "subNode": []
-
-        }, {
-            "tag": "0",
-            "nodeName": "loginSubTitle",
-            "nodeType": 1,
-            "layout": {
-                "strategy": "0",
-                "absolutePosition": {
-                    "x": {
-                        "offset": 0,
-                        "persentage": 0,
-                        "baseOption": 0
-                    },
-                    "y": {
-                        "offset": 220,
-                        "persentage": 0.12,
-                        "baseOption": 1
-                    }
-                },
-                "absoluteSize": {
-                    "width": {
-                        "offset": 0,
-                        "persentage": 1,
-                        "baseOption": 0
-                    },
-                    "height": {
-                        "offset": 20,
-                        "persentage": 0,
-                        "baseOption": 1
-                    }
-                }
-            },
-            "styles": {
-                "text": {
-                    "dataType": 0,
-                    "data": "查看订单需要先登录哦～"
-                },
-                "textColor": "#a5a5a5ff",
-                "textFontSize": 14,
-                "numberOfLines": 1,
-                "strickHeight": 1,
-                "strickWidth": 1,
-                "textAlignment": 1
-            },
-            "subNode": []
-
-        }, {
-            "tag": "0",
-            "nodeName": "loginButtonLabel",
-            "nodeType": 3,
-            "action": {
-                "dataType": 0,
-                "data": "tuniuapp://event?iosHandleClass=TTNAutoUIEventOpenUrl&iosMethodName=loginAction:"
-            },
-            "layout": {
-                "strategy": "0",
-                "absolutePosition": {
-                    "x": {
-                        "offset": -70,
-                        "persentage": 0.5,
-                        "baseOption": 0
-                    },
-                    "y": {
-                        "offset": 247,
-                        "persentage": 0.12,
-                        "baseOption": 1
-                    }
-                },
-                "absoluteSize": {
-                    "width": {
-                        "offset": 140,
-                        "persentage": 0,
-                        "baseOption": 0
-                    },
-                    "height": {
-                        "offset": 40,
-                        "persentage": 0,
-                        "baseOption": 1
-                    }
-                }
-            },
-            "styles": {
-                "text": {
-                    "dataType": 0,
-                    "data": "去登录"
-                },
-                "textColor": "#ffffffff",
-                "textFontSize": 14,
-                "backgroundColor": "#ff8800ff",
-                "cornerRadius": 5,
-                "strickHeight": 1,
-                "strickWidth": 1,
-                "textAlignment": 1
-            },
-            "subNode": []
-
-        }]
-
+          "subNode": []
+        }
+      ]
     }
 }

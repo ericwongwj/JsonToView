@@ -74,7 +74,9 @@
             "styles": {
                 "imageSource": {
                     "dataType": 1,
-                    "data": "img" //[]
+                  "data": [
+                    "img"
+                  ]
                 },
                 "contentMode": 1
             }
@@ -113,7 +115,9 @@
             "styles": {
                 "text": {
                     "dataType": 1,
-                    "data": "name"//[]
+                  "data": [
+                    "name"
+                  ]
                 },
                 "textColor": "#ffffff",
                 "backgroundColor": "#000000",

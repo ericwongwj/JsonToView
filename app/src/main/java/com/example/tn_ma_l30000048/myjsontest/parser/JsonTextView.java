@@ -20,14 +20,34 @@ import java.util.List;
 
 public class JsonTextView {
 
+    static final String TAG = "JsonTextView";
+
     //暂时先不判断json是否有效
     public static TextView build(JSONObject body, Context context, int parentWidth, int parentHeight){
         TextView textView=new TextView(context);
-
+        System.out.println("----build textView----");
+        setBasic(body, textView);
         JsonBasicWidget.setAbsoluteLayoutParams(JsonHelper.getLayout(body),textView,parentWidth,parentHeight);
         setTextStyle(JsonHelper.getStyles(body),textView);
-        System.out.println("build textView");
         return textView;
+    }
+
+    static void setBasic(JSONObject json, TextView tv) {
+        Iterator<String> keys = json.keys();
+        try {
+            while (keys.hasNext()) {
+                String key = keys.next();
+                if (key.equalsIgnoreCase("tag")) {
+                    String tag = json.getString(key);
+
+                } else if (key.equalsIgnoreCase("nodeName")) {
+                    String name = json.getString(key);
+                    tv.setTag(name);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     static void setTextStyle(JSONObject json,TextView tv){
@@ -37,10 +57,10 @@ public class JsonTextView {
                 String key=keys.next();
                 if(key.equalsIgnoreCase("textColor")){
                     String color=json.getString(key);
-                    tv.setTextColor(JasonHelper.parse_color(color));
+                    tv.setTextColor(JasonHelper.parseColor(color));
                 }else if(key.equalsIgnoreCase("backgroundColor")){
                     String color=json.getString(key);
-                    tv.setBackgroundColor(JasonHelper.parse_color(color));
+                    tv.setBackgroundColor(JasonHelper.parseColor(color));
                 }else if(key.equalsIgnoreCase("textFontSize")){
                     int fontSize=json.getInt(key);
                     tv.setTextSize(fontSize);
@@ -82,6 +102,4 @@ public class JsonTextView {
         }
 
     }
-
-    static final String TAG="JsonTextView";
 }

@@ -1,12 +1,12 @@
 /**
  * Copyright (C) 2006-2014 Tuniu All rights reserved
  */
-package com.example.tn_ma_l30000048.myjsontest;
-
-import java.lang.reflect.Type;
+package com.example.tn_ma_l30000048.myjsontest.utils;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
+
+import java.lang.reflect.Type;
 
 /**
  * JSON字符换和对象间转换的工具类

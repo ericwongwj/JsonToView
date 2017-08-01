@@ -4,6 +4,8 @@ import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
+import com.example.tn_ma_l30000048.myjsontest.JasonHelper;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -22,14 +24,15 @@ public class JsonListView {
         return recyclerView;
     }
 
+
     static void setListStyle(JSONObject json, RecyclerView rv){
         Iterator<String> keys=json.keys();
         try{
             while(keys.hasNext()){
                 String key=keys.next();
                 if(key.equalsIgnoreCase("backgroundColor")){
-                    int bgColor=json.getInt(key);
-                    rv.setBackgroundColor(bgColor);
+                    String bgColor = json.getString(key);
+                    rv.setBackgroundColor(JasonHelper.parseColor(bgColor));
                 }else if(key.equalsIgnoreCase("scrollDisabled")) {
                     int scrollDisabled = json.getInt(key);
                     rv.setNestedScrollingEnabled(scrollDisabled==0);

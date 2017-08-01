@@ -1,8 +1,8 @@
 package com.example.tn_ma_l30000048.myjsontest.activity;
 
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -12,10 +12,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.tn_ma_l30000048.myjsontest.JasonHelper;
-import com.example.tn_ma_l30000048.myjsontest.JsonUtils;
 import com.example.tn_ma_l30000048.myjsontest.R;
 import com.example.tn_ma_l30000048.myjsontest.model.Model;
 import com.example.tn_ma_l30000048.myjsontest.utils.DensityUtils;
+import com.example.tn_ma_l30000048.myjsontest.utils.JsonUtils;
 import com.example.tn_ma_l30000048.myjsontest.utils.ScreenUtils;
 
 public class TestLayoutActivity extends AppCompatActivity {

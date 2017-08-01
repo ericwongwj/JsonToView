@@ -1,16 +1,15 @@
 package com.example.tn_ma_l30000048.myjsontest.parser;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
-import com.example.tn_ma_l30000048.myjsontest.JsonUtils;
+import com.example.tn_ma_l30000048.myjsontest.JasonHelper;
 import com.example.tn_ma_l30000048.myjsontest.model.Layout;
+import com.example.tn_ma_l30000048.myjsontest.utils.JsonUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,9 +38,8 @@ public class ViewGroupFactory {
     static FrameLayout buildFrameLayout(JSONObject body, Context context, int parentWidth, int parentHeight){
         System.out.println("build FrameLayout");
         FrameLayout frameLayout=new FrameLayout(context);
-//        JsonBasicWidget.setAbsoluteLayoutParams(JsonHelper.getLayout(body),frameLayout,parentWidth,parentHeight);
-        //暂时先设为适配父容器
-        System.out.println("p="+parentWidth+"   "+parentHeight);
+        //暂时先统统设为适配父容器
+        System.out.println("parent w=" + parentWidth + "   h=" + parentHeight);
         ViewGroup.LayoutParams layoutParams=new FrameLayout.LayoutParams(parentWidth,parentHeight);
         frameLayout.setLayoutParams(layoutParams);
         setStyle(JsonHelper.getStyles(body),frameLayout);
@@ -65,9 +63,7 @@ public class ViewGroupFactory {
             while(keys.hasNext()){
                 String key=keys.next();
                 if(key.equalsIgnoreCase("backgroundColor")){
-                    System.out.println(json.getString(key));
-                    int color=Color.parseColor(json.getString(key));
-                    System.out.println(color);
+                    int color = JasonHelper.parseColor(json.getString(key));
                     vg.setBackgroundColor(color);
                 }
                 //TODO more attributes to add
@@ -80,10 +76,12 @@ public class ViewGroupFactory {
     static void setSubNode(JSONArray nodes, ViewGroup viewGroup){
         if(!nodes.isNull(0)){
             int index=0;
+            System.out.println("sub node " + index);
             try {
                 while(!nodes.isNull(index)){
                     JSONObject nodeBody=nodes.getJSONObject(index);
                     View subView=ViewFactory.build(nodeBody,viewGroup.getContext(),viewGroup.getLayoutParams().width,viewGroup.getLayoutParams().height);
+                    //TODO 容易出空指针
                     viewGroup.addView(subView);
                     index++;
                 }

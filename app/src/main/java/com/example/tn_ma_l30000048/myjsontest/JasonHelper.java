@@ -216,6 +216,18 @@ public class JasonHelper {
         }
     }
 
+    public static int parseColor(String colorString) {
+        if (colorString.length() == 7)
+            return Color.parseColor(colorString);
+        else if (colorString.length() == 9) {
+            String a = colorString.substring(colorString.length() - 2, colorString.length());
+            String argb = "#" + a + colorString.substring(1, colorString.length() - 2);
+            System.out.println(argb);
+            return Color.parseColor(argb);
+        }
+        return 0;
+    }
+
     public static Typeface get_font(String font, Context context) {
         Typeface font_type = Typeface.createFromAsset(context.getAssets(), "fonts/" + font + ".ttf");
         return font_type;

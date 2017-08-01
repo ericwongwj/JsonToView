@@ -33,55 +33,58 @@
                     "baseOption": 1
                 }
             }
-
         },
         "styles": {
             "backgroundColor": "#ffffff00"
         },
-        "subNode": [{
-            "tag": "0",
-            "nodeName": "ContactList",
-            "nodeType": 7,
-            "layout": {
-                "strategy": 0,
-                "absolutePosition": {
-                    "x": {
-                        "offset": 0,
-                        "persentage": 0,
-                        "baseOption": 0
+      "subNode": [
+        {
+          "tag": "0",
+          "nodeName": "ContactList",
+          "nodeType": 7,
+          "layout": {
+            "strategy": 0,
+            "absolutePosition": {
+              "x": {
+                "offset": 0,
+                "persentage": 0,
+                "baseOption": 0
+              },
+              "y": {
+                "offset": 0,
+                "persentage": 0,
+                "baseOption": 1
+              }
                     },
-                    "y": {
-                        "offset": 0,
-                        "persentage": 0,
-                        "baseOption": 1
+            "absoluteSize": {
+              "width": {
+                "offset": 0,
+                "persentage": 1,
+                "baseOption": 0
+              },
+              "height": {
+                "offset": 0,
+                "persentage": 1,
+                "baseOption": 1
+              }
                     }
                 },
-                "absoluteSize": {
-                    "width": {
-                        "offset": 0,
-                        "persentage": 1,
-                        "baseOption": 0
-                    },
-                    "height": {
-                        "offset": 0,
-                        "persentage": 1,
-                        "baseOption": 1
+          "styles": {
+            "backgroundColor": "#ffffff",
+            "tableStyle": {
+              "dataPath": [
+                "recentContactList"
+              ],
+              "cellTemplateName": "TNChatContactCell",
+              "enablePullUpToLoadMore": 1,
+              "enablePullDownToRefresh": 1,
+              "pullDownAction": "{{$page=1;}}",
+              "pullUpAction": "{{$page++;}}",
+              "headView": "TNChatContactHead"
                     }
                 }
-            },
-            "styles": {
-                "backgroundColor": "#ffffff",
-                "tableStyle": {
-                    "dataPath": ["recentContactList"],
-                    "cellTemplateName": "TNChatContactCell",
-                    "enablePullUpToLoadMore": 1,
-                    "enablePullDownToRefresh": 1,
-                    "pullDownAction": "{{$page=1;}}",
-                    "pullUpAction": "{{$page++;}}",
-                    "headView": "TNChatContactHead"
-                }
             }
-        }]
+      ]
     },
     "requestInfo": {
         "baseUrl": "https://chat.tuniu.com/api/",
