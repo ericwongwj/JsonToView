@@ -1,6 +1,5 @@
 package com.example.tn_ma_l30000048.myjsontest.parser;
 
-import android.content.Context;
 import android.graphics.Color;
 
 import org.json.JSONArray;

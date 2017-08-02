@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
-import com.example.tn_ma_l30000048.myjsontest.JasonHelper;
 import com.example.tn_ma_l30000048.myjsontest.model.Layout;
+import com.example.tn_ma_l30000048.myjsontest.utils.JasonHelper;
 import com.example.tn_ma_l30000048.myjsontest.utils.JsonUtils;
 
 import org.json.JSONArray;
@@ -38,10 +38,13 @@ public class ViewGroupFactory {
     static FrameLayout buildFrameLayout(JSONObject body, Context context, int parentWidth, int parentHeight){
         System.out.println("build FrameLayout");
         FrameLayout frameLayout=new FrameLayout(context);
+        JsonBasicWidget.setBasic(body, frameLayout);
+
         //暂时先统统设为适配父容器
         System.out.println("parent w=" + parentWidth + "   h=" + parentHeight);
-        ViewGroup.LayoutParams layoutParams=new FrameLayout.LayoutParams(parentWidth,parentHeight);
-        frameLayout.setLayoutParams(layoutParams);
+//        ViewGroup.LayoutParams layoutParams=new FrameLayout.LayoutParams(parentWidth,parentHeight);
+        JsonBasicWidget.setAbsoluteLayoutParams(JsonHelper.getLayout(body), frameLayout, parentWidth, parentHeight);
+//        frameLayout.setLayoutParams(layoutParams);
         setStyle(JsonHelper.getStyles(body),frameLayout);
         setSubNode(JsonHelper.getSubNodes(body),frameLayout);
         return frameLayout;
@@ -49,10 +52,10 @@ public class ViewGroupFactory {
 
     static RelativeLayout buildRelativeLayout(JSONObject body, Context context, int parentWidth, int parentHeight){
         RelativeLayout relativeLayout=new RelativeLayout(context);
-        RelativeLayout.LayoutParams layoutParams=new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        JsonBasicWidget.setBasic(body, relativeLayout);
+        JsonBasicWidget.setAbsoluteLayoutParams(JsonHelper.getLayout(body), relativeLayout, parentWidth, parentHeight);
         setStyle(JsonHelper.getStyles(body),relativeLayout);
         setSubNode(JsonHelper.getSubNodes(body),relativeLayout);
-        relativeLayout.setLayoutParams(layoutParams);
         return relativeLayout;
     }
 
@@ -76,9 +79,9 @@ public class ViewGroupFactory {
     static void setSubNode(JSONArray nodes, ViewGroup viewGroup){
         if(!nodes.isNull(0)){
             int index=0;
-            System.out.println("sub node " + index);
             try {
                 while(!nodes.isNull(index)){
+                    System.out.println("sub node " + index);
                     JSONObject nodeBody=nodes.getJSONObject(index);
                     View subView=ViewFactory.build(nodeBody,viewGroup.getContext(),viewGroup.getLayoutParams().width,viewGroup.getLayoutParams().height);
                     //TODO 容易出空指针

@@ -10,6 +10,7 @@
         android:layout_width="80dp"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <Button
             android:id="@+id/btn_test_view"
             android:layout_width="wrap_content"
@@ -35,16 +36,16 @@
             android:text="Testnew List" />
 
         <Button
+            android:id="@+id/btn_my_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="my list" />
+
+        <Button
             android:id="@+id/btn_show_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Layout" />
-
-        <Button
-            android:id="@+id/btn_show_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="view" />
     </LinearLayout>
 
     <ListView

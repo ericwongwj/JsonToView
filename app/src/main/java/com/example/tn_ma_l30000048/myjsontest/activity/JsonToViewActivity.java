@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
-import com.example.tn_ma_l30000048.myjsontest.MyRoot;
 import com.example.tn_ma_l30000048.myjsontest.R;
+import com.example.tn_ma_l30000048.myjsontest.parser.JsonViewRoot;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -45,7 +45,7 @@ public class JsonToViewActivity extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onClick(View v) {
-        MyRoot myRoot=new MyRoot(jsonObject, JsonToViewActivity.this, root.getWidth(),root.getHeight());
+        JsonViewRoot myRoot = new JsonViewRoot(jsonObject, JsonToViewActivity.this, root.getWidth(), root.getHeight());
         if (myRoot.getJsonView() != null) {
             root.addView(myRoot.getJsonView());
             btn.setVisibility(View.GONE);

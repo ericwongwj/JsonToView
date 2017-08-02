@@ -5,7 +5,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.tn_ma_l30000048.myjsontest.JasonHelper;
+import com.example.tn_ma_l30000048.myjsontest.utils.JasonHelper;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -26,29 +26,12 @@ public class JsonTextView {
     public static TextView build(JSONObject body, Context context, int parentWidth, int parentHeight){
         TextView textView=new TextView(context);
         System.out.println("----build textView----");
-        setBasic(body, textView);
+        JsonBasicWidget.setBasic(body, textView);
         JsonBasicWidget.setAbsoluteLayoutParams(JsonHelper.getLayout(body),textView,parentWidth,parentHeight);
         setTextStyle(JsonHelper.getStyles(body),textView);
         return textView;
     }
 
-    static void setBasic(JSONObject json, TextView tv) {
-        Iterator<String> keys = json.keys();
-        try {
-            while (keys.hasNext()) {
-                String key = keys.next();
-                if (key.equalsIgnoreCase("tag")) {
-                    String tag = json.getString(key);
-
-                } else if (key.equalsIgnoreCase("nodeName")) {
-                    String name = json.getString(key);
-                    tv.setTag(name);
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     static void setTextStyle(JSONObject json,TextView tv){
         Iterator<String> keys=json.keys();

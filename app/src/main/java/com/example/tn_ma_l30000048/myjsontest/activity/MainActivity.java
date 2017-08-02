@@ -9,7 +9,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.example.tn_ma_l30000048.myjsontest.JasonHelper;
 import com.example.tn_ma_l30000048.myjsontest.R;
 import com.example.tn_ma_l30000048.myjsontest.model.CollectionView;
 import com.example.tn_ma_l30000048.myjsontest.model.Divider;
@@ -20,6 +19,7 @@ import com.example.tn_ma_l30000048.myjsontest.model.Module;
 import com.example.tn_ma_l30000048.myjsontest.model.RichText;
 import com.example.tn_ma_l30000048.myjsontest.model.TableView;
 import com.example.tn_ma_l30000048.myjsontest.model.TextLabel;
+import com.example.tn_ma_l30000048.myjsontest.utils.JasonHelper;
 import com.example.tn_ma_l30000048.myjsontest.utils.JsonUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btn_test_list).setOnClickListener(this);
         findViewById(R.id.btn_test_new_list).setOnClickListener(this);
         findViewById(R.id.btn_show_layout).setOnClickListener(this);
-        findViewById(R.id.btn_show_view).setOnClickListener(this);
+        findViewById(R.id.btn_my_list).setOnClickListener(this);
         lv=(ListView)findViewById(R.id.main_lv);
         lv.setOnItemClickListener(this);
         lv.setOnItemLongClickListener(this);
@@ -107,8 +107,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 intent.putExtra("version", "new");
                 startActivity(intent);
                 break;
-            case R.id.btn_show_view:
-                adapter.notifyDataSetChanged();
+            case R.id.btn_my_list:
+                startActivity(new Intent(MainActivity.this, TestMyListActivity.class));
+//                adapter.notifyDataSetChanged();
                 break;
             case R.id.btn_show_layout:
                 adapter.notifyDataSetChanged();

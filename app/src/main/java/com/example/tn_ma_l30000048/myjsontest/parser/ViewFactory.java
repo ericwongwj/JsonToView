@@ -3,7 +3,7 @@ package com.example.tn_ma_l30000048.myjsontest.parser;
 import android.content.Context;
 import android.view.View;
 
-import com.example.tn_ma_l30000048.myjsontest.JasonHelper;
+import com.example.tn_ma_l30000048.myjsontest.utils.JasonHelper;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,8 +43,13 @@ public class ViewFactory {
     }
 
     public static View buildView(JSONObject body, Context context, int parentWidth, int parentHeight){
-        View view=new View(context);
+        System.out.println("----build view-----");
 
+        //如果是一个layout
+        if (body.has("subNode"))
+            return ViewGroupFactory.build(body, context, parentWidth, parentHeight);
+
+        View view = new View(context);
         JsonBasicWidget.setAbsoluteLayoutParams(JsonHelper.getLayout(body),view,parentWidth,parentHeight);
         JSONObject style=JsonHelper.getStyles(body);
         String color= null;
@@ -53,7 +58,8 @@ public class ViewFactory {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        view.setBackgroundColor(JasonHelper.parse_color(color));
+        view.setBackgroundColor(JasonHelper.parseColor(color));
+
         return view;
     }
 

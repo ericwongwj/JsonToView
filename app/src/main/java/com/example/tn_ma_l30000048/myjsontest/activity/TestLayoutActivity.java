@@ -11,10 +11,10 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.tn_ma_l30000048.myjsontest.JasonHelper;
 import com.example.tn_ma_l30000048.myjsontest.R;
 import com.example.tn_ma_l30000048.myjsontest.model.Model;
 import com.example.tn_ma_l30000048.myjsontest.utils.DensityUtils;
+import com.example.tn_ma_l30000048.myjsontest.utils.JasonHelper;
 import com.example.tn_ma_l30000048.myjsontest.utils.JsonUtils;
 import com.example.tn_ma_l30000048.myjsontest.utils.ScreenUtils;
 

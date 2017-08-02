@@ -12,9 +12,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.tn_ma_l30000048.myjsontest.JasonHelper;
-import com.example.tn_ma_l30000048.myjsontest.MyRoot;
 import com.example.tn_ma_l30000048.myjsontest.R;
+import com.example.tn_ma_l30000048.myjsontest.parser.JsonViewRoot;
+import com.example.tn_ma_l30000048.myjsontest.utils.JasonHelper;
 import com.example.tn_ma_l30000048.myjsontest.utils.ViewUtils;
 
 import org.json.JSONException;
@@ -50,7 +50,7 @@ public class TestJsonViewActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable(){
             public void run() {
                 System.out.println("w="+container.getWidth()+"h="+container.getHeight());
-                MyRoot myRoot=new MyRoot(loadFailCard, TestJsonViewActivity.this, container.getWidth(),container.getHeight());
+                JsonViewRoot myRoot = new JsonViewRoot(loadFailCard, TestJsonViewActivity.this, container.getWidth(), container.getHeight());
                 container.addView(myRoot.getJsonView());
 
             }

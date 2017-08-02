@@ -11,6 +11,8 @@ import com.example.tn_ma_l30000048.myjsontest.utils.JsonUtils;
 
 import org.json.JSONObject;
 
+import java.util.Iterator;
+
 /**
  * Created by tn-ma-l30000048 on 17/7/31.
  */
@@ -18,7 +20,7 @@ import org.json.JSONObject;
 public class JsonBasicWidget {
     static final String TAG="JsonBasicWidget";
 
-    static void setAbsoluteLayoutParams(JSONObject json, View view, int parentWidth, int parentHeight){
+    public static void setAbsoluteLayoutParams(JSONObject json, View view, int parentWidth, int parentHeight) {
         Layout layout= JsonUtils.decode(json.toString(), Layout.class);
         AbsolutePosition position=layout.absolutePosition;
         AbsoluteSize size=layout.absoluteSize;
@@ -64,7 +66,7 @@ public class JsonBasicWidget {
         view.setLayoutParams(layoutParams);
     }
 
-    static void setRelativeLayoutParams(JSONObject json, View view, int parentWidth, int parentHeight){
+    public static void setRelativeLayoutParams(JSONObject json, View view, int parentWidth, int parentHeight) {
         Layout layout= JsonUtils.decode(json.toString(), Layout.class);
         AbsolutePosition position=layout.absolutePosition;
         AbsoluteSize size=layout.absoluteSize;
@@ -100,6 +102,23 @@ public class JsonBasicWidget {
         System.out.println(TAG+" (pixel) x:"+x+" y:"+y+" w:"+w+" h"+h);
 
         view.setLayoutParams(layoutParams);
+    }
+
+    public static void setBasic(JSONObject json, View v) {
+        Iterator<String> keys = json.keys();
+        try {
+            while (keys.hasNext()) {
+                String key = keys.next();
+                if (key.equalsIgnoreCase("tag")) {
+                    String tag = json.getString(key);
+                } else if (key.equalsIgnoreCase("nodeName")) {
+                    String name = json.getString(key);
+                    v.setTag(name);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     static void setAction(){

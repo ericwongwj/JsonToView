@@ -15,14 +15,12 @@ import com.example.tn_ma_l30000048.myjsontest.R;
 
 import java.util.ArrayList;
 
-import cn.lemon.view.RefreshRecyclerView;
 
 public class TestListActivity extends AppCompatActivity implements View.OnClickListener{
 
     MyDynamicAdapter mDynamicAdapter;
 
     private RecyclerView mRecyclerView;
-    private RefreshRecyclerView mRefreshRecyclerView;
 
     private MyAdapter mAdapter;
 
@@ -36,10 +34,8 @@ public class TestListActivity extends AppCompatActivity implements View.OnClickL
         findViewById(R.id.tv_add).setOnClickListener(this);
         findViewById(R.id.tv_delete).setOnClickListener(this);
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_test);
-        mRefreshRecyclerView = (RefreshRecyclerView) findViewById(R.id.refresh_recycler_view);
         if (getIntent().getStringExtra("version") != null) {
             mRecyclerView.setVisibility(View.GONE);
-            mRefreshRecyclerView.setVisibility(View.VISIBLE);
         } else {
             initDynamic();
         }

@@ -118,7 +118,7 @@
                 }
             },
         {
-                "tag": "0",
+          "tag": "0",
           "nodeName": "contactName",
                 "nodeType": 1,
                 "layout": {

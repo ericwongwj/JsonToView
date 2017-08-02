@@ -6,7 +6,6 @@ import android.graphics.drawable.GradientDrawable;
 import android.util.Log;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.example.tn_ma_l30000048.myjsontest.R;
 
 import org.json.JSONArray;
@@ -22,17 +21,21 @@ import java.util.List;
 
 public class JsonImageView {
 
+
     public static ImageView build(JSONObject body, Context context, int parentWidth, int parentHeight){
         ImageView imageView=new ImageView(context);
         System.out.println("----build ImageView----");
+        JsonBasicWidget.setBasic(body, imageView);
         JsonBasicWidget.setAbsoluteLayoutParams(JsonHelper.getLayout(body),imageView,parentWidth,parentHeight);
-        setImageStyle(JsonHelper.getStyles(body),imageView);
+        int picid = setImageStyle(JsonHelper.getStyles(body), imageView);
+        imageView.setImageResource(picid);
         return imageView;
     }
 
-
-    static void setImageStyle(JSONObject json, ImageView iv){
+    //这个之后要修改
+    static int setImageStyle(JSONObject json, ImageView iv) {
         Iterator<String> keys=json.keys();
+        int picId = -1;
         try{
             while(keys.hasNext()){
                 String key=keys.next();
@@ -51,14 +54,16 @@ public class JsonImageView {
                     JSONObject imageRes = json.getJSONObject(key);
                     if (imageRes.getInt("dataType") == 0) {
                         String src = imageRes.getString("data");//TODO
-                        Glide.with(iv.getContext()).load(R.drawable.placeholder).asBitmap().into(iv);
+                        picId = R.drawable.placeholder;
+//                        Glide.with(iv.getContext()).load(R.drawable.placeholder).asBitmap().into(iv);
                     } else if (imageRes.getInt("dataType") == 1) {
                         JSONArray jsonArray = imageRes.getJSONArray("data");
                         List<String> srcs=new ArrayList<>();
                         for(int i=0;!jsonArray.isNull(i);i++){
                             srcs.add(jsonArray.getString(i));
                         }
-                        Glide.with(iv.getContext()).load(R.drawable.icon).asBitmap().into(iv);
+                        picId = R.drawable.icon;
+//                        Glide.with(iv.getContext()).load(R.drawable.icon).asBitmap().into(iv);
                     }
                 }
             }
@@ -66,6 +71,7 @@ public class JsonImageView {
             Log.e(e.getClass().getSimpleName(),e.getMessage());
             e.printStackTrace();
         }
+        return picId;
     }
 
     //    0:  UIViewContentModeScaleToFill, //fitXY
