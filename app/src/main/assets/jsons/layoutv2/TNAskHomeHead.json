@@ -1,0 +1,303 @@
+{
+  "SDKVersion": "0.0.0",
+  "ModuleVersion": "0.0.0",
+  "containerType": 0,
+  "containerHeight": "160",
+  "rootNode": {
+    "tag": "0",
+    "nodeName": "headTitle",
+    "nodeType": 4,
+    "layout": {
+      "strategy": "0",
+      "absolutePosition": {
+        "x": {
+          "offset": 0,
+          "persentage": 0,
+          "baseOption": 0,
+        },
+        "y": {
+          "offset": 0,
+          "persentage": 0,
+          "baseOption": 1,
+        }
+      },
+      "absoluteSize": {
+        "width": {
+          "offset": 0,
+          "persentage": 1,
+          "baseOption": 0,
+        },
+        "height": {
+          "offset": 0,
+          "persentage": 1,
+          "baseOption": 1,
+        }
+      },
+    },
+    "styles": {
+      "backgroundColor": "#ffffff"
+    },
+    "subNode": [
+      {
+        "tag": 110,
+        "nodeName": "headImg",
+        "nodeType": 2,
+        "layout": {
+          "strategy": 1,
+          "relativePosition": {
+            "top": {
+              "item": 0,
+              "attribute": 0,
+              "relationship": 0,
+              "multiplier": 1,
+              "offset": 0
+            },
+            "leading": {
+              "item": 0,
+              "attribute": 1,
+              "relationship": 0,
+              "multiplier": 1,
+              "offset": 0
+            },
+            "bottom": {
+              "item": 0,
+              "attribute": 2,
+              "relationship": 0,
+              "multiplier": 1,
+              "offset": 0
+            },
+            "trailing": {
+              "item": 0,
+              "attribute": 3,
+              "relationship": 0,
+              "multiplier": 1,
+              "offset": 0
+            }
+          },
+        },
+        "styles": {
+          "imageSource": {
+            "dataType": 0,
+            "data": "http://m.tuniucdn.com/fb2/t1/G1/M00/49/8C/Cii9EFh8mw2IB53kAGQChEu30v4AAG_2ADCHVAAZAKc487_w800_h0_c0_t0.jpg",
+          },
+          "contentMode": 0
+        },
+      },
+      {
+        "tag": 111,
+        "nodeName": "headImgMask",
+        "nodeType": 4,
+        "layout": {
+          "strategy": 1,
+          "relativePosition": {
+            "top": {
+              "item": 0,
+              "attribute": 0,
+              "relationship": 0,
+              "multiplier": 1,
+              "offset": 0
+            },
+            "leading": {
+              "item": 0,
+              "attribute": 1,
+              "relationship": 0,
+              "multiplier": 1,
+              "offset": 0
+            },
+            "bottom": {
+              "item": 0,
+              "attribute": 2,
+              "relationship": 0,
+              "multiplier": 1,
+              "offset": 0
+            },
+            "trailing": {
+              "item": 0,
+              "attribute": 3,
+              "relationship": 0,
+              "multiplier": 1,
+              "offset": 0
+            }
+          },
+        },
+        "styles": {
+          "backgroundColor": "#00000033"
+        },
+      },
+      {
+        "tag": 112,
+        "nodeName": "searchView",
+        "nodeType": 4,
+        "layout": {
+          "strategy": 1,
+          "relativePosition": {
+            "top": {
+              "item": 0,
+              "attribute": 0,
+              "relationship": 0,
+              "multiplier": 1,
+              "offset": 20
+            },
+            "leading": {
+              "item": 0,
+              "attribute": 1,
+              "relationship": 0,
+              "multiplier": 1,
+              "offset": 12
+            },
+            "trailing": {
+              "item": 0,
+              "attribute": 3,
+              "relationship": 0,
+              "multiplier": 1,
+              "offset": 50
+            }
+          },
+          "relativeSize": {
+            "height": {
+              "item": 0,
+              "relationship": 0,
+              "multiplier": 1,
+              "offset": 30
+            }
+          },
+        },
+        "styles": {
+          "backgroundColor": "#ffffff44",
+          "cornerRadius": 15
+        },
+        "subNode": [
+          {
+            "tag": 110,
+            "nodeName": "searchText",
+            "nodeType": 1,
+            "layout": {
+              "strategy": 1,
+              "relativePosition": {
+                "centerX": {
+                  "item": 0,
+                  "attribute": 4,
+                  "relationship": 0,
+                  "multiplier": 1,
+                  "offset": 0
+                },
+                "centerY": {
+                  "item": 0,
+                  "attribute": 5,
+                  "relationship": 0,
+                  "multiplier": 1,
+                  "offset": 0
+                },
+              },
+            },
+            "styles": {
+              "text": {
+                "dataType": 0,
+                "data": "查找北京相关的问题",
+              },
+              "textColor": "#000000",
+              "textFontSize": 12,
+              "numberOfLines": 1,
+              "textAlignment": 1
+            }
+          },
+          {
+            "tag": 111,
+            "nodeName": "searchIcon",
+            "nodeType": 2,
+            "layout": {
+              "strategy": 1,
+              "relativePosition": {
+                "centerY": {
+                  "item": 0,
+                  "attribute": 5,
+                  "relationship": 0,
+                  "multiplier": 1,
+                  "offset": 0
+                },
+                "trailing": {
+                  "item": 110,
+                  "attribute": 1,
+                  "relationship": 0,
+                  "multiplier": 1,
+                  "offset": -10
+                },
+              },
+            },
+            "styles": {
+              "imageSource": {
+                "dataType": 0,
+                "data": "group_phrase_earch",
+              },
+              "contentMode": 1
+            }
+          }
+        ]
+      },
+      {
+        "tag": 113,
+        "nodeName": "userIcon",
+        "nodeType": 2,
+        "layout": {
+          "strategy": 1,
+          "relativePosition": {
+            "leading": {
+              "item": 112,
+              "attribute": 3,
+              "relationship": 0,
+              "multiplier": 1,
+              "offset": 12
+            },
+            "centerY": {
+              "item": 112,
+              "attribute": 5,
+              "relationship": 0,
+              "multiplier": 1,
+              "offset": 0
+            },
+          },
+        },
+        "styles": {
+          "imageSource": {
+            "dataType": 0,
+            "data": "lianxiren",
+          },
+          "contentMode": 0
+        },
+      },
+      {
+        "nodeName": "poiName",
+        "nodeType": 1,
+        "layout": {
+          "strategy": 1,
+          "relativePosition": {
+            "centerX": {
+              "item": 0,
+              "attribute": 4,
+              "relationship": 0,
+              "multiplier": 1,
+              "offset": 0
+            },
+            "top": {
+              "item": 112,
+              "attribute": 2,
+              "relationship": 0,
+              "multiplier": 1,
+              "offset": 20
+            },
+          },
+        },
+        "styles": {
+          "text": {
+            "dataType": 0,
+            "data": "北京",
+          },
+          "textColor": "#ffffff",
+          "textFontSize": 20,
+          "numberOfLines": 1,
+          "textAlignment": 1
+        }
+      }
+    ]
+  }
+}

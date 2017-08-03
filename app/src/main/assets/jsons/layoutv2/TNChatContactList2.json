@@ -1,0 +1,118 @@
+{
+  "SDKVersion": "0.0.0",
+  "ModuleVersion": "0.0.0",
+  "containerType": 0,
+  "registerProperty": "{{var $page=1;}}",
+  "rootNode": {
+    "tag": "0",
+    "nodeName": "view",
+    "nodeType": 4,
+    "layout": {
+      "strategy": 0,
+      "absolutePosition": {
+        "x": {
+          "offset": 0,
+          "persentage": 0,
+          "baseOption": 0,
+        },
+        "y": {
+          "offset": 64,
+          "persentage": 0,
+          "baseOption": 1,
+        }
+      },
+      "absoluteSize": {
+        "width": {
+          "offset": 0,
+          "persentage": 1,
+          "baseOption": 0,
+        },
+        "height": {
+          "offset": 0,
+          "persentage": 1,
+          "baseOption": 1,
+        }
+      }
+    },
+    "styles": {
+      "backgroundColor": "#ffffff00",
+    },
+    "subNode": [
+      {
+        "tag": "0",
+        "nodeName": "ContactList",
+        "nodeType": 7,
+        "layout": {
+          "strategy": 1,
+          "relativePosition": {
+            "top": {
+              "item": 0,
+              "attribute": 0,
+              "relationship": 0,
+              "multiplier": 1,
+              "offset": 0
+            },
+            "leading": {
+              "item": 0,
+              "attribute": 1,
+              "relationship": 0,
+              "multiplier": 1,
+              "offset": 0
+            },
+            "trailing": {
+              "item": 0,
+              "attribute": 3,
+              "relationship": 0,
+              "multiplier": 1,
+              "offset": 0
+            },
+            "bottom": {
+              "item": 0,
+              "attribute": 2,
+              "relationship": 0,
+              "multiplier": 1,
+              "offset": 0
+            },
+          }
+        },
+        "styles": {
+          "backgroundColor": "#ffffff",
+          "tableStyle": {
+            "dataPath": [
+              "recentContactList"
+            ],
+            "cellTemplateName": "TNChatContactCell",
+            "enablePullUpToLoadMore": 1,
+            "enablePullDownToRefresh": 1,
+            "pullDownAction": "{{$page=1;}}",
+            "pullUpAction": "{{$page++;}}",
+            "headView": "TNChatContactHead",
+            "footView": "TNChatContactFoot",
+            "insertViews": [
+              {
+                "templateName": "TNChatContactInsertView",
+                "row": 2,
+              }
+            ],
+            "scrollDisabled": 0,
+          }
+        },
+      }
+    ]
+  },
+  "headerInfo": {
+    "hasBackButton": 1,
+    "headTitle": "联系人"
+  },
+  "requestInfo": [
+    {
+      "baseUrl": "https://chat.tuniu.com/api/",
+      "path": "chat/recentcontact/list",
+      "parameters": {
+        "sessionId": "{{var getSessionId=function(){return getNativeSessionId()};}}",
+        "page": "{{var getPage=function(e){return $page};}}",
+        "count": "{{var getCount=function(e){return 10};}}"
+      }
+    }
+  ]
+}

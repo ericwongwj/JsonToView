@@ -1,0 +1,365 @@
+{
+  "SDKVersion": "0.0.0",
+  "ModuleVersion": "0.0.0",
+  "containerType": 0,
+  "containerHeight": "303.5",
+  "rootNode": {
+    "tag": "0",
+    "nodeName": "view",
+    "nodeType": 4,
+    "action": {
+      "dataType": 1,
+      "data": [
+        "jumpUrl"
+      ],
+    },
+    "layout": {
+      "strategy": 0,
+      "absolutePosition": {
+        "x": {
+          "offset": 0,
+          "persentage": 0,
+          "baseOption": 0,
+        },
+        "y": {
+          "offset": 0,
+          "persentage": 0,
+          "baseOption": 1,
+        }
+      },
+      "absoluteSize": {
+        "width": {
+          "offset": 0,
+          "persentage": 1,
+          "baseOption": 0,
+        },
+        "height": {
+          "offset": 0,
+          "persentage": 1,
+          "baseOption": 1,
+        }
+      }
+    },
+    "styles": {
+      "backgroundColor": "#ffffff"
+    },
+    "subNode": [
+      {
+        "nodeType": 1,
+        "layout": {
+          "strategy": "0",
+          "absolutePosition": {
+            "x": {
+              "offset": 15,
+              "persentage": 0,
+              "baseOption": 0,
+            },
+            "y": {
+              "offset": 20,
+              "persentage": 0,
+              "baseOption": 1,
+            }
+          },
+          "absoluteSize": {
+            "width": {
+              "offset": -15,
+              "persentage": 1,
+              "baseOption": 0,
+            },
+            "height": {
+              "offset": 25,
+              "persentage": 0,
+              "baseOption": 1,
+            }
+          },
+        },
+        "styles": {
+          "text": {
+            "dataType": 1,
+            "data": [
+              "title"
+            ],
+          },
+          "textColor": "#051b28",
+          "textFontSize": 17,
+          "numberOfLines": 1,
+          "strickHeight": 1,
+          "strickWidth": 1,
+        }
+      },
+      {
+        "tag": "0",
+        "nodeName": "tagView",
+        "nodeType": 9,
+        "layout": {
+          "strategy": 0,
+          "absolutePosition": {
+            "x": {
+              "offset": 15,
+              "persentage": 0,
+              "baseOption": 0,
+            },
+            "y": {
+              "offset": 43,
+              "persentage": 0,
+              "baseOption": 1,
+            }
+          },
+          "absoluteSize": {
+            "width": {
+              "offset": -30,
+              "persentage": 1,
+              "baseOption": 0,
+            },
+            "height": {
+              "offset": 38,
+              "persentage": 0,
+              "baseOption": 1,
+            }
+          }
+        },
+        "styles": {
+          "backgroundColor": "#ffffff",
+          "collectionStyle": {
+            "cellTemplateName": "TNChatRecommendTagCell",
+            "scrollDirection": 1,
+            "dataPath": [
+              "tags"
+            ],
+            "itemSize": {
+              "width": {
+                "offset": 26.5,
+                "persentage": 0,
+                "baseOption": 0,
+              },
+              "height": {
+                "offset": 38,
+                "persentage": 0,
+                "baseOption": 1,
+              }
+            },
+            "minimumInteritemSpacing": 5
+          }
+        },
+      },
+      {
+        "tag": "0",
+        "nodeName": "relativeLayotTest",
+        "nodeType": 4,
+        "layout": {
+          "strategy": 0,
+          "absolutePosition": {
+            "x": {
+              "offset": 0,
+              "persentage": 0,
+              "baseOption": 0,
+            },
+            "y": {
+              "offset": 43,
+              "persentage": 0,
+              "baseOption": 1,
+            }
+          },
+          "absoluteSize": {
+            "width": {
+              "offset": 0,
+              "persentage": 1,
+              "baseOption": 0,
+            },
+            "height": {
+              "offset": 38,
+              "persentage": 0,
+              "baseOption": 1,
+            }
+          }
+        },
+        "styles": {
+          "backgroundColor": "#00000000",
+        },
+        "subNode": [
+          {
+            "tag": 111,
+            "nodeName": "fire",
+            "nodeType": 1,
+            "layout": {
+              "strategy": 1,
+              "relativePosition": {
+                "trailing": {
+                  "item": 0,
+                  "attribute": 3,
+                  "relationship": 0,
+                  "multiplier": 1,
+                  "offset": 15
+                },
+                "centerY": {
+                  "item": 0,
+                  "attribute": 5,
+                  "relationship": 0,
+                  "multiplier": 1,
+                  "offset": 0
+                }
+              }
+            },
+            "styles": {
+              "text": {
+                "dataType": 1,
+                "data": [
+                  "followNum"
+                ],
+              },
+              "textColor": "#a5a5a5",
+              "textFontSize": 12,
+              "numberOfLines": 1,
+            }
+          },
+          {
+            "tag": 112,
+            "nodeName": "fireImg",
+            "nodeType": 2,
+            "layout": {
+              "strategy": 1,
+              "relativePosition": {
+                "trailing": {
+                  "item": 111,
+                  "attribute": 1,
+                  "relationship": 0,
+                  "multiplier": 1,
+                  "offset": -5
+                },
+                "centerY": {
+                  "item": 0,
+                  "attribute": 5,
+                  "relationship": 0,
+                  "multiplier": 1,
+                  "offset": 0
+                }
+              }
+            },
+            "styles": {
+              "imageSource": {
+                "dataType": 0,
+                "data": "tnchat_recommend_fire",
+              },
+              "contentMode": 1
+            },
+          }
+        ]
+      },
+      {
+        "nodeType": 2,
+        "layout": {
+          "strategy": "0",
+          "absolutePosition": {
+            "x": {
+              "offset": 15,
+              "persentage": 0,
+              "baseOption": 0,
+            },
+            "y": {
+              "offset": 85,
+              "persentage": 0,
+              "baseOption": 1,
+            }
+          },
+          "absoluteSize": {
+            "width": {
+              "offset": -30,
+              "persentage": 1,
+              "baseOption": 0,
+            },
+            "height": {
+              "offset": 0,
+              "persentage": 0.478,
+              "baseOption": 2,
+            }
+          },
+        },
+        "styles": {
+          "imageSource": {
+            "dataType": 1,
+            "data": [
+              "picUrl"
+            ],
+          },
+          "contentMode": 2
+        },
+      },
+      {
+        "nodeType": 1,
+        "layout": {
+          "strategy": "0",
+          "absolutePosition": {
+            "x": {
+              "offset": 15,
+              "persentage": 0,
+              "baseOption": 0,
+            },
+            "y": {
+              "offset": 265,
+              "persentage": 0,
+              "baseOption": 1,
+            }
+          },
+          "absoluteSize": {
+            "width": {
+              "offset": -30,
+              "persentage": 1,
+              "baseOption": 0,
+            },
+            "height": {
+              "offset": 17,
+              "persentage": 0,
+              "baseOption": 1,
+            }
+          },
+        },
+        "styles": {
+          "text": {
+            "dataType": 1,
+            "data": [
+              "highlight"
+            ],
+          },
+          "textColor": "#A5A5A5",
+          "textFontSize": 13,
+          "numberOfLines": 1,
+          "strickHeight": 1,
+          "strickWidth": 1,
+        }
+      },
+      {
+        "nodeType": 4,
+        "layout": {
+          "strategy": "0",
+          "absolutePosition": {
+            "x": {
+              "offset": 0,
+              "persentage": 0,
+              "baseOption": 0,
+            },
+            "y": {
+              "offset": -9,
+              "persentage": 1,
+              "baseOption": 1,
+            }
+          },
+          "absoluteSize": {
+            "width": {
+              "offset": 0,
+              "persentage": 1,
+              "baseOption": 0,
+            },
+            "height": {
+              "offset": 9,
+              "persentage": 0,
+              "baseOption": 1,
+            }
+          }
+        },
+        "styles": {
+          "backgroundColor": "#edf0f5"
+        }
+      }
+    ]
+  }
+}

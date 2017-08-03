@@ -1,0 +1,135 @@
+{
+  "SDKVersion": "0.0.0",
+  "ModuleVersion": "0.0.0",
+  "containerType": 0,
+  "registerProperty": "{{var $page=1;}}",
+  "rootNode": {
+    "tag": "0",
+    "nodeName": "view",
+    "nodeType": 8,
+    "layout": {
+      "strategy": 0,
+      "absolutePosition": {
+        "x": {
+          "offset": 0,
+          "persentage": 0,
+          "baseOption": 0,
+        },
+        "y": {
+          "offset": 64,
+          "persentage": 0,
+          "baseOption": 1,
+        }
+      },
+      "absoluteSize": {
+        "width": {
+          "offset": 0,
+          "persentage": 1,
+          "baseOption": 0,
+        },
+        "height": {
+          "offset": 0,
+          "persentage": 1,
+          "baseOption": 1,
+        }
+      },
+      "contentSize": {
+        "width": {
+          "offset": 0,
+          "persentage": 1,
+          "baseOption": 0,
+        },
+        "height": {
+          "offset": 0,
+          "persentage": 3,
+          "baseOption": 1,
+        }
+      }
+    },
+    "styles": {
+      "backgroundColor": "#ffffff00",
+    },
+    "subNode": [
+      {
+        "tag": "0",
+        "nodeName": "登录页面",
+        "nodeType": 1,
+        "action": {
+          "dataType": 0,
+          "data": "tuniuapp://page?iosPageName=TTNAutoUINormalViewController&parameters=%7B%22templateName%22%3A%22TNChatCSCLoginIndicateViewController%22%7D",
+        },
+        "layout": {
+          "strategy": 0,
+          "absolutePosition": {
+            "x": {
+              "offset": 0,
+              "persentage": 0,
+              "baseOption": 0,
+            },
+            "y": {
+              "offset": 0,
+              "persentage": 0,
+              "baseOption": 1,
+            }
+          },
+          "absoluteSize": {
+            "width": {
+              "offset": 0,
+              "persentage": 1,
+              "baseOption": 0,
+            },
+            "height": {
+              "offset": 30,
+              "persentage": 0,
+              "baseOption": 1,
+            }
+          }
+        },
+        "styles": {
+          "backgroundColor": "#ffffff",
+          "text": {
+            "dataType": 0,
+            "data": "登录页面333",
+          },
+          "textColor": "#051b28",
+          "textFontSize": 14,
+          "numberOfLines": 1,
+          "strickHeight": 1,
+          "strickWidth": 1,
+          "textAlignment": 1
+        },
+      },
+      {
+        "tag": "0",
+        "nodeName": "login",
+        "nodeType": 10,
+        "styles": {
+          "templateName": "TNAutoSelfDefineFragment1"
+        },
+      },
+      {
+        "tag": "0",
+        "nodeName": "ContactList",
+        "nodeType": 10,
+        "styles": {
+          "templateName": "TNAutoSelfDefineFragment2"
+        },
+      }
+    ]
+  },
+  "headerInfo": {
+    "hasBackButton": 1,
+    "headTitle": "Self Define Demo"
+  },
+  "requestInfo": [
+    {
+      "baseUrl": "https://chat.tuniu.com/api/",
+      "path": "chat/recentcontact/list",
+      "parameters": {
+        "sessionId": "{{var getSessionId=function(){return getNativeSessionId()};}}",
+        "page": "{{var getPage=function(e){return $page};}}",
+        "count": "{{var getCount=function(e){return 10};}}"
+      }
+    }
+  ]
+}

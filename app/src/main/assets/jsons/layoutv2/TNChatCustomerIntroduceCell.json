@@ -1,0 +1,238 @@
+{
+  "SDKVersion": "0.0.0",
+  "ModuleVersion": "0.0.0",
+  "containerType": 0,
+  "rootNode": {
+    "tag": "0",
+    "nodeName": "cellContent",
+    "nodeType": 4,
+    "action": {
+      "dataType": 1,
+      "data": [
+        "content"
+      ],
+    },
+    "layout": {
+      "strategy": 0,
+      "absolutePosition": {
+        "x": {
+          "offset": 10,
+          "persentage": 0,
+          "baseOption": 0,
+        },
+        "y": {
+          "offset": 10,
+          "persentage": 0,
+          "baseOption": 1,
+        }
+      },
+      "absoluteSize": {
+        "width": {
+          "offset": -20,
+          "persentage": 1,
+          "baseOption": 0,
+        },
+        "height": {
+          "offset": -10,
+          "persentage": 0.5,
+          "baseOption": 2,
+        }
+      },
+      "margin": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "padding": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+    },
+    "styles": {
+      "backgroundColor": "#ffffffff",
+      "cornerRadius": 4,
+      "shadowColor": "#0000000088",
+      "shadowOpacity": 0.5,
+      "shadowOffset": {
+        "width": {
+          "offset": 2,
+          "persentage": 0,
+          "baseOption": 0
+        },
+        "height": {
+          "offset": 2,
+          "persentage": 0,
+          "baseOption": 0,
+        },
+      },
+      "shadowRadius": 2
+    },
+    "subNode": [
+      {
+        "tag": "0",
+        "nodeName": "topImageView",
+        "nodeType": 2,
+        "layout": {
+          "strategy": "0",
+          "absolutePosition": {
+            "x": {
+              "offset": 10,
+              "persentage": 0,
+              "baseOption": 0,
+            },
+            "y": {
+              "offset": 10,
+              "persentage": 0,
+              "baseOption": 1,
+            }
+          },
+          "absoluteSize": {
+            "width": {
+              "offset": -20,
+              "persentage": 1,
+              "baseOption": 0,
+            },
+            "height": {
+              "offset": 0,
+              "persentage": 0.37,
+              "baseOption": 2,
+            }
+          },
+          "margin": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "padding": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+        },
+        "styles": {
+          "imageSource": {
+            "dataType": 0,
+            "data": "group_chat_customer_introduce",
+          },
+        },
+        "subNode": []
+      },
+      {
+        "tag": "0",
+        "nodeName": "welcomeLabel",
+        "nodeType": 1,
+        "layout": {
+          "strategy": "0",
+          "absolutePosition": {
+            "x": {
+              "offset": 10,
+              "persentage": 0,
+              "baseOption": 0,
+            },
+            "y": {
+              "offset": 0,
+              "persentage": 0.85,
+              "baseOption": 1,
+            }
+          },
+          "absoluteSize": {
+            "width": {
+              "offset": 0,
+              "persentage": 0.5,
+              "baseOption": 0,
+            },
+            "height": {
+              "offset": 17,
+              "persentage": 0,
+              "baseOption": 1,
+            }
+          },
+          "margin": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "padding": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+        },
+        "styles": {
+          "text": {
+            "dataType": 0,
+            "data": "欢迎使用在线客服",
+          },
+          "textColor": "#666666ff",
+          "textFontSize": 14,
+          "numberOfLines": 1,
+          "strickHeight": 0,
+        },
+        "subNode": []
+      },
+      {
+        "tag": "0",
+        "nodeName": "functionHintLabel",
+        "nodeType": 1,
+        "layout": {
+          "strategy": "0",
+          "absolutePosition": {
+            "x": {
+              "offset": 0,
+              "persentage": 0.5,
+              "baseOption": 0,
+            },
+            "y": {
+              "offset": 0,
+              "persentage": 0.85,
+              "baseOption": 1,
+            }
+          },
+          "absoluteSize": {
+            "width": {
+              "offset": -10,
+              "persentage": 0.5,
+              "baseOption": 0,
+            },
+            "height": {
+              "offset": 17,
+              "persentage": 0,
+              "baseOption": 1,
+            }
+          },
+          "margin": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "padding": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+        },
+        "styles": {
+          "text": {
+            "dataType": 0,
+            "data": "功能说明 >",
+          },
+          "textColor": "#666666ff",
+          "textFontSize": 14,
+          "numberOfLines": 1,
+          "strickWidth": 1,
+          "textAlignment": 2
+        },
+        "subNode": []
+      }
+    ]
+  }
+}

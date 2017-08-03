@@ -1,0 +1,54 @@
+{
+  "SDKVersion": "0.0.0",
+  "ModuleVersion": "0.0.0",
+  "containerType": 0,
+  "rootNode": {
+    "tag": "0",
+    "nodeName": "contactName",
+    "nodeType": 1,
+    "layout": {
+      "strategy": "0",
+      "absolutePosition": {
+        "x": {
+          "offset": 0,
+          "persentage": 0,
+          "baseOption": 0,
+        },
+        "y": {
+          "offset": 11,
+          "persentage": 0,
+          "baseOption": 1,
+        }
+      },
+      "absoluteSize": {
+        "width": {
+          "offset": 0,
+          "persentage": 1,
+          "baseOption": 0,
+        },
+        "height": {
+          "offset": 16,
+          "persentage": 0,
+          "baseOption": 1,
+        }
+      },
+    },
+    "styles": {
+      "text": {
+        "dataType": 1,
+        "data": [
+          "name"
+        ],
+      },
+      "textColor": "#a5a5a5",
+      "textFontSize": 9,
+      "numberOfLines": 1,
+      "strickHeight": 1,
+      "strickWidth": 1,
+      "cornerRadius": 2,
+      "borderWidth": 1,
+      "borderColor": "#a5a5a5",
+      "textAlignment": 1
+    }
+  }
+}

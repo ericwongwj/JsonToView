@@ -1,0 +1,113 @@
+{
+  "SDKVersion": "0.0.0",
+  "ModuleVersion": "0.0.0",
+  "containerType": 0,
+  "registerProperty": "{{var $page=1;}}",
+  "rootNode": {
+    "tag": "0",
+    "nodeName": "view",
+    "nodeType": 4,
+    "layout": {
+      "strategy": 0,
+      "absolutePosition": {
+        "x": {
+          "offset": 0,
+          "persentage": 0,
+          "baseOption": 0,
+        },
+        "y": {
+          "offset": 64,
+          "persentage": 0,
+          "baseOption": 1,
+        }
+      },
+      "absoluteSize": {
+        "width": {
+          "offset": 0,
+          "persentage": 1,
+          "baseOption": 0,
+        },
+        "height": {
+          "offset": 0,
+          "persentage": 1,
+          "baseOption": 1,
+        }
+      }
+    },
+    "styles": {
+      "backgroundColor": "#ffffff00",
+    },
+    "subNode": [
+      {
+        "tag": 0,
+        "nodeName": "askHome",
+        "nodeType": 7,
+        "layout": {
+          "strategy": 0,
+          "absolutePosition": {
+            "x": {
+              "offset": 0,
+              "persentage": 0,
+              "baseOption": 0,
+            },
+            "y": {
+              "offset": 0,
+              "persentage": 0,
+              "baseOption": 1,
+            }
+          },
+          "absoluteSize": {
+            "width": {
+              "offset": 0,
+              "persentage": 1,
+              "baseOption": 0,
+            },
+            "height": {
+              "offset": 0,
+              "persentage": 1,
+              "baseOption": 1,
+            }
+          }
+        },
+        "styles": {
+          "backgroundColor": "#ffffff",
+          "tableStyle": {
+            "dataPath": [
+              "list"
+            ],
+            "cellTemplateName": "TNAskHomeCell",
+            "enablePullUpToLoadMore": 1,
+            "enablePullDownToRefresh": 1,
+            "pullDownAction": "{{$page=1;}}",
+            "pullUpAction": "{{$page++;}}",
+            "headView": "TNAskHomeHead"
+          }
+        },
+      }
+    ]
+  },
+  "headerInfo": {
+    "hasBackButton": 1,
+    "headTitle": "问大家"
+  },
+  "requestInfo": [
+    {
+      "baseUrl": "https://api.tuniu.com/askq/api/",
+      "path": "getHomeQAFromEs",
+      "parameters": {
+        "sessionId": "{{var getSessionId=function(){return getNativeSessionId()};}}",
+        "pageNumber": "{{var getPage=function(e){return $page};}}",
+        "pageSize": "{{var getCount=function(e){return 10};}}",
+        "cityCode": "200"
+      }
+    },
+    {
+      "baseUrl": "https://api.tuniu.com/askq/api/",
+      "path": "getPoiDefaultImgs",
+      "parameters": {
+        "sessionId": "{{var getSessionId=function(){return getNativeSessionId()};}}",
+        "cityCode": "200"
+      }
+    }
+  ]
+}

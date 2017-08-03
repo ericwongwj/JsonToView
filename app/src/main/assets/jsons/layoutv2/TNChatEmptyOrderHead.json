@@ -1,0 +1,459 @@
+{
+  "SDKVersion": "0.0.0",
+  "ModuleVersion": "0.0.0",
+  "containerType": 0,
+  "containerHeight": "297",
+  "rootNode": {
+    "tag": "0",
+    "nodeName": "headTitle",
+    "nodeType": 4,
+    "layout": {
+      "strategy": "0",
+      "absolutePosition": {
+        "x": {
+          "offset": 0,
+          "persentage": 0,
+          "baseOption": 0,
+        },
+        "y": {
+          "offset": 0,
+          "persentage": 0,
+          "baseOption": 1,
+        }
+      },
+      "absoluteSize": {
+        "width": {
+          "offset": 0,
+          "persentage": 1,
+          "baseOption": 0,
+        },
+        "height": {
+          "offset": 0,
+          "persentage": 1,
+          "baseOption": 1,
+        }
+      },
+    },
+    "styles": {
+      "backgroundColor": "#ffffff"
+    },
+    "subNode": [
+      {
+        "tag": "0",
+        "nodeName": "headImage",
+        "nodeType": 2,
+        "layout": {
+          "strategy": "0",
+          "absolutePosition": {
+            "x": {
+              "offset": -40.5,
+              "persentage": 0.5,
+              "baseOption": 0,
+            },
+            "y": {
+              "offset": 22,
+              "persentage": 0,
+              "baseOption": 1,
+            }
+          },
+          "absoluteSize": {
+            "width": {
+              "offset": 81,
+              "persentage": 0,
+              "baseOption": 0,
+            },
+            "height": {
+              "offset": 85,
+              "persentage": 0,
+              "baseOption": 1,
+            }
+          },
+        },
+        "styles": {
+          "imageSource": {
+            "dataType": 0,
+            "data": "no_message",
+          },
+          "contentMode": 1
+        }
+      },
+      {
+        "tag": "0",
+        "nodeName": "title",
+        "nodeType": 1,
+        "layout": {
+          "strategy": "0",
+          "absolutePosition": {
+            "x": {
+              "offset": 0,
+              "persentage": 0,
+              "baseOption": 0,
+            },
+            "y": {
+              "offset": 121,
+              "persentage": 0,
+              "baseOption": 1,
+            }
+          },
+          "absoluteSize": {
+            "width": {
+              "offset": 0,
+              "persentage": 1,
+              "baseOption": 0,
+            },
+            "height": {
+              "offset": 28,
+              "persentage": 0,
+              "baseOption": 1,
+            }
+          },
+        },
+        "styles": {
+          "text": {
+            "dataType": 0,
+            "data": "暂无订单",
+          },
+          "textColor": "#051b28",
+          "textFontSize": 20,
+          "numberOfLines": 1,
+          "strickHeight": 1,
+          "strickWidth": 1,
+          "textAlignment": 1
+        }
+      },
+      {
+        "tag": "0",
+        "nodeName": "subTitle",
+        "nodeType": 1,
+        "layout": {
+          "strategy": "0",
+          "absolutePosition": {
+            "x": {
+              "offset": 0,
+              "persentage": 0,
+              "baseOption": 0,
+            },
+            "y": {
+              "offset": 150,
+              "persentage": 0,
+              "baseOption": 1,
+            }
+          },
+          "absoluteSize": {
+            "width": {
+              "offset": 0,
+              "persentage": 1,
+              "baseOption": 0,
+            },
+            "height": {
+              "offset": 21,
+              "persentage": 0,
+              "baseOption": 1,
+            }
+          },
+        },
+        "styles": {
+          "text": {
+            "dataType": 0,
+            "data": "没想好去哪儿玩？到【问大家】问问哪里好玩吧",
+          },
+          "textColor": "#A5A5A5",
+          "textFontSize": 14,
+          "numberOfLines": 1,
+          "strickHeight": 1,
+          "strickWidth": 1,
+          "textAlignment": 1
+        }
+      },
+      {
+        "tag": "0",
+        "nodeName": "askbtn",
+        "nodeType": 1,
+        "layout": {
+          "strategy": "0",
+          "absolutePosition": {
+            "x": {
+              "offset": -150,
+              "persentage": 0.5,
+              "baseOption": 0,
+            },
+            "y": {
+              "offset": 191,
+              "persentage": 0,
+              "baseOption": 1,
+            }
+          },
+          "absoluteSize": {
+            "width": {
+              "offset": 140,
+              "persentage": 0,
+              "baseOption": 0,
+            },
+            "height": {
+              "offset": 40,
+              "persentage": 0,
+              "baseOption": 1,
+            }
+          },
+        },
+        "styles": {
+          "text": {
+            "dataType": 0,
+            "data": "问大家",
+          },
+          "textColor": "#ffffff",
+          "textFontSize": 14,
+          "numberOfLines": 1,
+          "strickHeight": 1,
+          "strickWidth": 1,
+          "cornerRadius": 4,
+          "backgroundColor": "#f97432",
+          "borderColor": "#f97432",
+          "borderWidth": 1,
+          "textAlignment": 1
+        }
+      },
+      {
+        "tag": "0",
+        "nodeName": "moreOrder",
+        "nodeType": 1,
+        "layout": {
+          "strategy": "0",
+          "absolutePosition": {
+            "x": {
+              "offset": 10,
+              "persentage": 0.5,
+              "baseOption": 0,
+            },
+            "y": {
+              "offset": 191,
+              "persentage": 0,
+              "baseOption": 1,
+            }
+          },
+          "absoluteSize": {
+            "width": {
+              "offset": 140,
+              "persentage": 0,
+              "baseOption": 0,
+            },
+            "height": {
+              "offset": 40,
+              "persentage": 0,
+              "baseOption": 1,
+            }
+          },
+        },
+        "styles": {
+          "text": {
+            "dataType": 0,
+            "data": "查看更多历史订单",
+          },
+          "textColor": "#051b28",
+          "textFontSize": 14,
+          "numberOfLines": 1,
+          "strickHeight": 1,
+          "strickWidth": 1,
+          "cornerRadius": 4,
+          "backgroundColor": "#ffffff",
+          "borderColor": "#dddddd",
+          "borderWidth": 1,
+          "textAlignment": 1
+        }
+      },
+      {
+        "tag": "0",
+        "nodeName": "divideView",
+        "nodeType": 4,
+        "layout": {
+          "strategy": "0",
+          "absolutePosition": {
+            "x": {
+              "offset": 0,
+              "persentage": 0,
+              "baseOption": 0,
+            },
+            "y": {
+              "offset": 257,
+              "persentage": 0,
+              "baseOption": 1,
+            }
+          },
+          "absoluteSize": {
+            "width": {
+              "offset": 0,
+              "persentage": 1,
+              "baseOption": 0,
+            },
+            "height": {
+              "offset": 40,
+              "persentage": 0,
+              "baseOption": 1,
+            }
+          }
+        },
+        "styles": {
+          "backgroundColor": "#EDF0F5"
+        },
+        "subNode": [
+          {
+            "tag": "0",
+            "nodeType": 2,
+            "layout": {
+              "strategy": "0",
+              "absolutePosition": {
+                "x": {
+                  "offset": 105.5,
+                  "persentage": 0,
+                  "baseOption": 0,
+                },
+                "y": {
+                  "offset": 16,
+                  "persentage": 0,
+                  "baseOption": 1,
+                }
+              },
+              "absoluteSize": {
+                "width": {
+                  "offset": 11,
+                  "persentage": 0,
+                  "baseOption": 0,
+                },
+                "height": {
+                  "offset": 8,
+                  "persentage": 0,
+                  "baseOption": 1,
+                }
+              },
+            },
+            "styles": {
+              "imageSource": {
+                "dataType": 0,
+                "data": "tnchat_recommend_slash",
+              },
+              "contentMode": 1
+            }
+          },
+          {
+            "tag": "0",
+            "nodeType": 2,
+            "layout": {
+              "strategy": "0",
+              "absolutePosition": {
+                "x": {
+                  "offset": 123.5,
+                  "persentage": 0,
+                  "baseOption": 0,
+                },
+                "y": {
+                  "offset": 13.5,
+                  "persentage": 0,
+                  "baseOption": 1,
+                }
+              },
+              "absoluteSize": {
+                "width": {
+                  "offset": 14,
+                  "persentage": 0,
+                  "baseOption": 0,
+                },
+                "height": {
+                  "offset": 13,
+                  "persentage": 0,
+                  "baseOption": 1,
+                }
+              },
+            },
+            "styles": {
+              "imageSource": {
+                "dataType": 0,
+                "data": "tnchat_recommend_carema",
+              },
+              "contentMode": 1
+            },
+          },
+          {
+            "nodeType": 1,
+            "layout": {
+              "strategy": "0",
+              "absolutePosition": {
+                "x": {
+                  "offset": 141.5,
+                  "persentage": 0,
+                  "baseOption": 0,
+                },
+                "y": {
+                  "offset": 0,
+                  "persentage": 0,
+                  "baseOption": 1,
+                }
+              },
+              "absoluteSize": {
+                "width": {
+                  "offset": 0,
+                  "persentage": 1,
+                  "baseOption": 0,
+                },
+                "height": {
+                  "offset": 0,
+                  "persentage": 1,
+                  "baseOption": 1,
+                }
+              },
+            },
+            "styles": {
+              "text": {
+                "dataType": 0,
+                "data": "您可能感兴趣的玩法",
+              },
+              "textColor": "#A5A5A5",
+              "textFontSize": 12,
+              "numberOfLines": 1,
+              "strickHeight": 1,
+              "strickWidth": 0,
+              "contentMode": 1
+            }
+          },
+          {
+            "tag": "0",
+            "nodeType": 2,
+            "layout": {
+              "strategy": "0",
+              "absolutePosition": {
+                "x": {
+                  "offset": 256,
+                  "persentage": 0,
+                  "baseOption": 0,
+                },
+                "y": {
+                  "offset": 16,
+                  "persentage": 0,
+                  "baseOption": 1,
+                }
+              },
+              "absoluteSize": {
+                "width": {
+                  "offset": 11,
+                  "persentage": 0,
+                  "baseOption": 0,
+                },
+                "height": {
+                  "offset": 8,
+                  "persentage": 0,
+                  "baseOption": 1,
+                }
+              },
+            },
+            "styles": {
+              "imageSource": {
+                "dataType": 0,
+                "data": "tnchat_recommend_slash",
+              },
+              "contentMode": 1
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

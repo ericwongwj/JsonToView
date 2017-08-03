@@ -1,0 +1,343 @@
+{
+  "SDKVersion": "0.0.0",
+  "ModuleVersion": "0.0.0",
+  "containerType": 0,
+  "rootNode": {
+    "tag": "0",
+    "nodeName": "cardContentView",
+    "nodeType": 4,
+    "layout": {
+      "strategy": 0,
+      "absolutePosition": {
+        "x": {
+          "offset": 0,
+          "persentage": 0,
+          "baseOption": 0,
+        },
+        "y": {
+          "offset": 0,
+          "persentage": 0,
+          "baseOption": 1,
+        }
+      },
+      "absoluteSize": {
+        "width": {
+          "offset": 0,
+          "persentage": 1,
+          "baseOption": 0,
+        },
+        "height": {
+          "offset": 0,
+          "persentage": 1,
+          "baseOption": 1,
+        }
+      }
+    },
+    "styles": {
+      "backgroundColor": "#ffffff00"
+    },
+    "subNode": [
+      {
+        "tag": "0",
+        "nodeName": "productIcon",
+        "nodeType": 2,
+        "layout": {
+          "strategy": "0",
+          "absolutePosition": {
+            "x": {
+              "offset": 15,
+              "persentage": 0,
+              "baseOption": 0,
+            },
+            "y": {
+              "offset": 15,
+              "persentage": 0,
+              "baseOption": 1,
+            }
+          },
+          "absoluteSize": {
+            "width": {
+              "offset": 20,
+              "persentage": 0,
+              "baseOption": 0,
+            },
+            "height": {
+              "offset": 20,
+              "persentage": 0,
+              "baseOption": 1,
+            }
+          },
+        },
+        "styles": {
+          "imageSource": {
+            "dataType": 1,
+            "data": [
+              "pictureImage"
+            ],
+          },
+          "contentMode": 1
+        },
+      },
+      {
+        "tag": "0",
+        "nodeName": "productName",
+        "nodeType": 1,
+        "layout": {
+          "strategy": "0",
+          "absolutePosition": {
+            "x": {
+              "offset": 45,
+              "persentage": 0,
+              "baseOption": 0,
+            },
+            "y": {
+              "offset": 15,
+              "persentage": 0,
+              "baseOption": 1,
+            }
+          },
+          "absoluteSize": {
+            "width": {
+              "offset": -45,
+              "persentage": 1,
+              "baseOption": 0,
+            },
+            "height": {
+              "offset": 20,
+              "persentage": 0,
+              "baseOption": 1,
+            }
+          },
+        },
+        "styles": {
+          "text": {
+            "dataType": 1,
+            "data": [
+              "typeName"
+            ],
+          },
+          "textColor": "#a5a5a5ff",
+          "textFontSize": 14,
+          "numberOfLines": 1,
+          "strickHeight": 1,
+        }
+      },
+      {
+        "tag": "0",
+        "nodeName": "productDesc",
+        "nodeType": 1,
+        "layout": {
+          "strategy": "0",
+          "absolutePosition": {
+            "x": {
+              "offset": 15,
+              "persentage": 0,
+              "baseOption": 0,
+            },
+            "y": {
+              "offset": 44,
+              "persentage": 0,
+              "baseOption": 1,
+            }
+          },
+          "absoluteSize": {
+            "width": {
+              "offset": -30,
+              "persentage": 1,
+              "baseOption": 0,
+            },
+            "height": {
+              "offset": 44,
+              "persentage": 0,
+              "baseOption": 1,
+            }
+          },
+        },
+        "styles": {
+          "text": {
+            "dataType": 1,
+            "data": [
+              "desc"
+            ],
+          },
+          "textColor": "#051b28ff",
+          "textFontSize": 15,
+          "numberOfLines": 2,
+          "strickHeight": 1,
+          "strickWidth": 1,
+        }
+      },
+      {
+        "tag": "0",
+        "nodeName": "divideLine",
+        "nodeType": 4,
+        "layout": {
+          "strategy": "0",
+          "absolutePosition": {
+            "x": {
+              "offset": 15,
+              "persentage": 0,
+              "baseOption": 0,
+            },
+            "y": {
+              "offset": 97,
+              "persentage": 0,
+              "baseOption": 1,
+            }
+          },
+          "absoluteSize": {
+            "width": {
+              "offset": -30,
+              "persentage": 1,
+              "baseOption": 0,
+            },
+            "height": {
+              "offset": 0.5,
+              "persentage": 0,
+              "baseOption": 1,
+            }
+          }
+        },
+        "styles": {
+          "backgroundColor": "#e4e4e4ff"
+        }
+      },
+      {
+        "tag": "0",
+        "nodeName": "productNumLabel",
+        "nodeType": 1,
+        "layout": {
+          "strategy": "0",
+          "absolutePosition": {
+            "x": {
+              "offset": 15,
+              "persentage": 0,
+              "baseOption": 0,
+            },
+            "y": {
+              "offset": 106,
+              "persentage": 0,
+              "baseOption": 1,
+            }
+          },
+          "absoluteSize": {
+            "width": {
+              "offset": -30,
+              "persentage": 1,
+              "baseOption": 0,
+            },
+            "height": {
+              "offset": 20,
+              "persentage": 0,
+              "baseOption": 1,
+            }
+          },
+        },
+        "styles": {
+          "text": {
+            "dataType": 0,
+            "data": "产品编号：",
+          },
+          "textColor": "#a5a5a5ff",
+          "textFontSize": 14,
+          "numberOfLines": 1,
+          "strickHeight": 1,
+        }
+      },
+      {
+        "tag": "0",
+        "nodeName": "productNum",
+        "nodeType": 1,
+        "layout": {
+          "strategy": "0",
+          "absolutePosition": {
+            "x": {
+              "offset": 77,
+              "persentage": 0,
+              "baseOption": 0,
+            },
+            "y": {
+              "offset": 106,
+              "persentage": 0,
+              "baseOption": 1,
+            }
+          },
+          "absoluteSize": {
+            "width": {
+              "offset": -107,
+              "persentage": 1,
+              "baseOption": 0,
+            },
+            "height": {
+              "offset": 20,
+              "persentage": 0,
+              "baseOption": 1,
+            }
+          },
+        },
+        "styles": {
+          "text": {
+            "dataType": 1,
+            "data": [
+              "number"
+            ],
+          },
+          "textColor": "#a5a5a5ff",
+          "textFontSize": 14,
+          "numberOfLines": 1,
+          "strickHeight": 1,
+        }
+      },
+      {
+        "tag": "0",
+        "nodeName": "jumpHintLabel",
+        "nodeType": 1,
+        "layout": {
+          "strategy": "0",
+          "absolutePosition": {
+            "x": {
+              "offset": 0,
+              "persentage": 0.5,
+              "baseOption": 0,
+            },
+            "y": {
+              "offset": 106,
+              "persentage": 0,
+              "baseOption": 1,
+            }
+          },
+          "absoluteSize": {
+            "width": {
+              "offset": -15,
+              "persentage": 0.5,
+              "baseOption": 0,
+            },
+            "height": {
+              "offset": 20,
+              "persentage": 0,
+              "baseOption": 1,
+            }
+          },
+        },
+        "styles": {
+          "text": {
+            "dataType": 0,
+            "data": "立即预订",
+          },
+          "textColor": "#2dbb55ff",
+          "textFontSize": 14,
+          "numberOfLines": 1,
+          "strickHeight": 1,
+          "strickWidth": 1,
+          "textAlignment": 2,
+          "dependData": {
+            "dataType": 1,
+            "data": [
+              "jumpUrl"
+            ],
+          }
+        }
+      }
+    ]
+  }
+}
