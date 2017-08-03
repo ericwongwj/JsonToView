@@ -87,6 +87,11 @@ public class MyRecyclerView extends FrameLayout {
         mAdapter.showNoMore();
     }
 
+
+    public void setPullUpLoadMoreEnabled(boolean enabled) {
+
+    }
+
     /**
      * 8位16进制数 ARGB
      */
@@ -110,4 +115,8 @@ public class MyRecyclerView extends FrameLayout {
         return mRecyclerView;
     }
 
+    //这里以后可能会出问题
+    public void setLoadMoreAble(boolean loadMoreAble) {
+        this.loadMoreAble = loadMoreAble;
+    }
 }

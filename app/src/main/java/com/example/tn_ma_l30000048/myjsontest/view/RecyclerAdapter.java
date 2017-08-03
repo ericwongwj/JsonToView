@@ -10,6 +10,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.tn_ma_l30000048.myjsontest.R;
+import com.example.tn_ma_l30000048.myjsontest.parser.JsonViewRoot;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,7 +22,7 @@ import java.util.List;
  * Created by tn-ma-l30000048 on 17/8/2.
  */
 
-public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<BaseViewHolder<T>> {
+public class RecyclerAdapter<T> extends RecyclerView.Adapter<BaseViewHolder<T>> {
 
     public static final int HEADER_TYPE = 111;
     public static final int FOOTER_TYPE = 222;
@@ -35,10 +38,12 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<BaseViewHo
     private boolean hasHeader = false;
     private boolean hasFooter = false;
     private List<T> mData = new ArrayList<>();
-    private View headerView;
-    private View footerView;
-    private ViewGroup cellView;//暂时定义为一个ViewGroup且cell相同 cell未必相同
+    private JSONObject mHeaderJson;
+    private JSONObject mFooterJson;
+    private JSONObject mCellJson;//暂时定义为一个ViewGroup且cell相同 cell未必相同
     private Context mContext;
+
+    private OnItemClickListener onItemClickListener;
 
     public RecyclerAdapter(Context context) {
         mContext = context;
@@ -53,8 +58,7 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<BaseViewHo
         notifyDataSetChanged();
     }
 
-
-    public void initStatusView() {
+    public void initStatusView() {//包括正在加载和没有更多了
         mStatusView = LayoutInflater.from(mContext).inflate(R.layout.view_last_status, null);
         mStatusView.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         mLoadMoreView = (LinearLayout) mStatusView.findViewById(R.id.load_more_view);
@@ -64,23 +68,29 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<BaseViewHo
 
     @Override
     public BaseViewHolder<T> onCreateViewHolder(ViewGroup parent, int viewType) {
-        //viewType由getItemViewType产生
         if (viewType == HEADER_TYPE) {
-            return new BaseViewHolder<>(headerView);
+            System.out.println("create header holder");
+            JsonViewRoot header = new JsonViewRoot(mHeaderJson, mContext, parent.getWidth(), parent.getHeight());
+            return new BaseViewHolder<>(header.getJsonView());
         } else if (viewType == FOOTER_TYPE) {
-            return new BaseViewHolder<>(footerView);
+            System.out.println("create footer holder");
+            JsonViewRoot footer = new JsonViewRoot(mFooterJson, mContext, parent.getWidth(), parent.getHeight());
+            return new BaseViewHolder<>(footer.getJsonView());
         } else if (viewType == STATUS_TYPE) {
+            System.out.println("create status holder");
             return new BaseViewHolder<>(mStatusView);
-        } else
-            return onCreateBaseViewHolder(parent, viewType);
-//        return new BaseViewHolder<>(cellView);
+        } else {
+            System.out.println("create cell holder");
+            JsonViewRoot cell = new JsonViewRoot(mCellJson, mContext, parent.getWidth(), parent.getHeight());
+            return new BaseViewHolder<>(cell.getJsonView());
+        }
     }
-
-    protected abstract BaseViewHolder<T> onCreateBaseViewHolder(ViewGroup parent, int viewType);
 
     @Override
     public void onBindViewHolder(BaseViewHolder<T> holder, int position) {
+        System.out.println("mData.size()" + mData.size() + " pos=" + position);
         //重点在这里 还可能要处理一些网络请求的问题
+        position = position % 8;
         if (position == 0) {
             if (mViewCount == 1 || hasHeader)
                 return;
@@ -115,7 +125,7 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<BaseViewHo
         if (hasHeader && position == 0) return HEADER_TYPE;
         if (hasFooter && position == mViewCount - 2) return FOOTER_TYPE;
         if (position == mViewCount - 1) return STATUS_TYPE;
-        return super.getItemViewType(position);
+        return super.getItemViewType(position);//普通的cell目前设为统一的
     }
 
     @Override
@@ -138,7 +148,6 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<BaseViewHo
         mLoadMoreAction = action;
     }
 
-
     public void clear() {
         if (mData == null) return;
         mData.clear();
@@ -153,21 +162,20 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<BaseViewHo
         notifyDataSetChanged();
     }
 
-
-    public void setHeader(View header) {
+    public void setHeader(JSONObject header) {
         hasHeader = true;
-        headerView = header;
+        mHeaderJson = header;
         mViewCount++;
     }
 
-    public void setCell(ViewGroup cell) {
-        cellView = cell;
+    public void setCell(JSONObject cell) {
+        mCellJson = cell;
         mViewCount++;
     }
 
-    public void setFooter(View footer) {
+    public void setFooter(JSONObject footer) {
         hasFooter = true;
-        footerView = footer;
+        mFooterJson = footer;
         mViewCount++;
     }
 
@@ -190,5 +198,12 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<BaseViewHo
             notifyItemRangeInserted(positionStart, size);
         }
     }
+
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
+
+        void onItemLongClick(View view, int position);
+    }
+
 
 }

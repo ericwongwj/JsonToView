@@ -25,9 +25,11 @@ public class ViewFactory {
                     case Constants.TYPE_IMAGE:
                         return JsonImageView.build(body,context,parentWidth,parentHeight);
                     case Constants.TYPE_VIEW:
-                        return buildView(body,context,parentWidth,parentHeight);//如果不考虑嵌套 view只有可能生成一条直线之类的
+                        return buildView(body, context, parentWidth, parentHeight);
                     case Constants.TYPE_INDICATOR:
                         return JsonLoadingView.build(body, context, parentWidth, parentHeight);
+                    case Constants.TYPE_RICHTEXT:
+                        return JsonTextView.build(body, context, parentWidth, parentHeight);
                     case Constants.TYPE_TABLEVIEW:
                         return JsonListView.build(body,context,parentWidth,parentHeight);
                     case Constants.TYPE_COLLECTIONVIEW:
@@ -50,6 +52,7 @@ public class ViewFactory {
             return ViewGroupFactory.build(body, context, parentWidth, parentHeight);
 
         View view = new View(context);
+        JsonBasicWidget.setBasic(body, view);
         JsonBasicWidget.setAbsoluteLayoutParams(JsonHelper.getLayout(body),view,parentWidth,parentHeight);
         JSONObject style=JsonHelper.getStyles(body);
         String color= null;

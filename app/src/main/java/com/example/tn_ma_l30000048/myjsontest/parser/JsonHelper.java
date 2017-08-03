@@ -1,11 +1,15 @@
 package com.example.tn_ma_l30000048.myjsontest.parser;
 
+import android.content.Context;
+import android.content.res.AssetManager;
 import android.graphics.Color;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -14,6 +18,26 @@ import java.util.regex.Pattern;
  */
 
 public class JsonHelper {
+
+    public static JSONObject readLocalJson(Context context, String name) {
+        AssetManager assetManager = context.getAssets();
+        JSONObject jsonObject = null;
+        try {
+            InputStream is = assetManager.open("jsons/layout/" + name);
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            String content = new String(buffer, "UTF-8");
+            jsonObject = new JSONObject(content);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return jsonObject;
+    }
+
     static JSONObject getLayout(JSONObject json){
         JSONObject layout=null;
         try {

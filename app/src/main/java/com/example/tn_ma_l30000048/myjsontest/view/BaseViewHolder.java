@@ -1,10 +1,10 @@
 package com.example.tn_ma_l30000048.myjsontest.view;
 
-import android.support.annotation.IdRes;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.tn_ma_l30000048.myjsontest.parser.JsonViewRoot;
 
 /**
  * Created by tn-ma-l30000048 on 17/8/2.
@@ -12,44 +12,43 @@ import android.view.ViewGroup;
 
 public class BaseViewHolder<T> extends RecyclerView.ViewHolder {
 
+    View mItemView;
+    JsonViewRoot mViewRoot;
+
     public BaseViewHolder(View itemView) {
         super(itemView);
-//        if(((String)itemView.getTag()).equals("cell")){
-//            //首先判断是否是viewgroup 重点是 如果把内部的view拿出来 能够在后面进行set
-//            //viewholder中应当有列表每个item的所有子view的具体内容
-//            if(itemView instanceof ViewGroup){
-//
-//            }
-//        }else if(itemView.getTag().equals("header")){
-//
-//        }else if(itemView.getTag().equals("footer")){
-//
-//        }else if(itemView.getTag().equals("status")){
-//
-//        }
+        this.mViewRoot = null;
+        this.mItemView = itemView;
     }
 
-    public BaseViewHolder(ViewGroup parent, int layoutId) {
-        super(LayoutInflater.from(parent.getContext()).inflate(layoutId, parent, false));
-        onInitializeView();
+    public BaseViewHolder(JsonViewRoot viewRoot) {
+        super(viewRoot.getJsonView());
+        System.out.println("new base view holder");
+        this.mViewRoot = viewRoot;
+        this.mItemView = viewRoot.getJsonView();
     }
 
-    public void onInitializeView() {
-
-    }
-
-    public <T extends View> T findViewById(@IdRes int resId) {
-        return (T) itemView.findViewById(resId);
+    public <T extends View> T findCellViewByNodeName(String name) {
+        T subView = null;
+        if (mItemView instanceof ViewGroup) {
+            subView = (T) mViewRoot.findViewByNodeName(name);
+        }
+        return subView;
     }
 
     //这里的设计算不上好
-    public void setData(final T data) {
-        itemView.setOnClickListener(new View.OnClickListener() {
+    public void setOnClickListener(final T data) {
+        mItemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onItemViewClick(data);
             }
         });
+    }
+
+    //这个要怎么实现？
+    public void setData(T data) {
+
     }
 
     protected void onItemViewClick(T data) {

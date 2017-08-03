@@ -19,7 +19,6 @@ public class ContactListAdapter extends RecyclerAdapter<Bean> {
         super(context, data);
     }
 
-    @Override
     protected BaseViewHolder<Bean> onCreateBaseViewHolder(ViewGroup parent, int viewType) {
         return new ContactViewHolder(parent);
     }

@@ -6,17 +6,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.tn_ma_l30000048.myjsontest.R;
+import com.example.tn_ma_l30000048.myjsontest.parser.JsonHelper;
+import com.example.tn_ma_l30000048.myjsontest.parser.JsonViewRoot;
 import com.example.tn_ma_l30000048.myjsontest.view.Action;
 import com.example.tn_ma_l30000048.myjsontest.view.Bean;
 import com.example.tn_ma_l30000048.myjsontest.view.ContactListAdapter;
 import com.example.tn_ma_l30000048.myjsontest.view.MyRecyclerView;
 
+import org.json.JSONObject;
+
 public class TestMyListActivity extends AppCompatActivity {
 
+    LinearLayout rootContainer;
     private MyRecyclerView mRecyclerView;
     private ContactListAdapter mAdapter;
     private Handler mHandler = new Handler();
@@ -27,6 +34,23 @@ public class TestMyListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_my_list);
 
+        rootContainer = (LinearLayout) findViewById(R.id.contanier);
+        rootContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                testMyList();
+            }
+        });
+    }
+
+    void testMyList() {
+        JSONObject jsonObject = JsonHelper.readLocalJson(this, "TNChatContactList.json");
+        JsonViewRoot myRoot = new JsonViewRoot(jsonObject, this, rootContainer.getWidth(), rootContainer.getHeight());
+        rootContainer.addView(myRoot.getJsonView());
+    }
+
+
+    void oldTest() {
         mAdapter = new ContactListAdapter(this);
 
         //添加Header
@@ -35,15 +59,17 @@ public class TestMyListActivity extends AppCompatActivity {
         textView.setTextSize(16);
         textView.setGravity(Gravity.CENTER);
         textView.setText("Tuniu App");
-        mAdapter.setHeader(textView);
         final TextView footer = new TextView(this);
         footer.setLayoutParams(new LinearLayoutCompat.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 150));
         footer.setTextSize(16);
         footer.setGravity(Gravity.CENTER);
         footer.setText("-- Footer --");
-        mAdapter.setFooter(footer);
 
-        mRecyclerView = (MyRecyclerView) findViewById(R.id.enhanced_recycler_view);
+//        mAdapter.setHeader(textView);
+//        mAdapter.setCell();
+//        mAdapter.setFooter(footer);
+
+//        mRecyclerView = (MyRecyclerView) findViewById(R.id.enhanced_recycler_view);
         mRecyclerView.setSwipeRefreshColors(0xFF437845, 0xFFE44F98, 0xFF2FAC21);
 //        mRecyclerView.setLayoutManager(new GridLayoutManager(this,2));
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
@@ -70,7 +96,6 @@ public class TestMyListActivity extends AppCompatActivity {
                 getData(true);
             }
         });
-
     }
 
     public void getData(final boolean isRefresh) {
@@ -106,3 +131,4 @@ public class TestMyListActivity extends AppCompatActivity {
         };
     }
 }
+

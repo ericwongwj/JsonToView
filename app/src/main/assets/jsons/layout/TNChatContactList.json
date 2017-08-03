@@ -16,7 +16,8 @@
                     "baseOption": 0
                 },
                 "y": {
-                    "offset": 64,
+                    "offset": 4,
+                    //64
                     "persentage": 0,
                     "baseOption": 1
                 }

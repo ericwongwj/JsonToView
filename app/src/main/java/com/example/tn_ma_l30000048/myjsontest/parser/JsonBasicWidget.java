@@ -110,7 +110,7 @@ public class JsonBasicWidget {
             while (keys.hasNext()) {
                 String key = keys.next();
                 if (key.equalsIgnoreCase("tag")) {
-                    String tag = json.getString(key);
+                    String id = json.getString(key);//理论上可以作为界面中的id
                 } else if (key.equalsIgnoreCase("nodeName")) {
                     String name = json.getString(key);
                     v.setTag(name);
