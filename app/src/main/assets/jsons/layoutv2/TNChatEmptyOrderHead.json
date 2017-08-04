@@ -13,26 +13,26 @@
         "x": {
           "offset": 0,
           "persentage": 0,
-          "baseOption": 0,
+          "baseOption": 0
         },
         "y": {
           "offset": 0,
           "persentage": 0,
-          "baseOption": 1,
+          "baseOption": 1
         }
       },
       "absoluteSize": {
         "width": {
           "offset": 0,
           "persentage": 1,
-          "baseOption": 0,
+          "baseOption": 0
         },
         "height": {
           "offset": 0,
           "persentage": 1,
-          "baseOption": 1,
+          "baseOption": 1
         }
-      },
+      }
     },
     "styles": {
       "backgroundColor": "#ffffff"
@@ -48,31 +48,31 @@
             "x": {
               "offset": -40.5,
               "persentage": 0.5,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "y": {
               "offset": 22,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
           },
           "absoluteSize": {
             "width": {
               "offset": 81,
               "persentage": 0,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "height": {
               "offset": 85,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
-          },
+          }
         },
         "styles": {
           "imageSource": {
             "dataType": 0,
-            "data": "no_message",
+            "data": "no_message"
           },
           "contentMode": 1
         }
@@ -87,31 +87,31 @@
             "x": {
               "offset": 0,
               "persentage": 0,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "y": {
               "offset": 121,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
           },
           "absoluteSize": {
             "width": {
               "offset": 0,
               "persentage": 1,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "height": {
               "offset": 28,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
-          },
+          }
         },
         "styles": {
           "text": {
             "dataType": 0,
-            "data": "暂无订单",
+            "data": "暂无订单"
           },
           "textColor": "#051b28",
           "textFontSize": 20,
@@ -131,31 +131,31 @@
             "x": {
               "offset": 0,
               "persentage": 0,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "y": {
               "offset": 150,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
           },
           "absoluteSize": {
             "width": {
               "offset": 0,
               "persentage": 1,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "height": {
               "offset": 21,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
-          },
+          }
         },
         "styles": {
           "text": {
             "dataType": 0,
-            "data": "没想好去哪儿玩？到【问大家】问问哪里好玩吧",
+            "data": "没想好去哪儿玩？到【问大家】问问哪里好玩吧"
           },
           "textColor": "#A5A5A5",
           "textFontSize": 14,
@@ -175,31 +175,31 @@
             "x": {
               "offset": -150,
               "persentage": 0.5,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "y": {
               "offset": 191,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
           },
           "absoluteSize": {
             "width": {
               "offset": 140,
               "persentage": 0,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "height": {
               "offset": 40,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
-          },
+          }
         },
         "styles": {
           "text": {
             "dataType": 0,
-            "data": "问大家",
+            "data": "问大家"
           },
           "textColor": "#ffffff",
           "textFontSize": 14,
@@ -223,31 +223,31 @@
             "x": {
               "offset": 10,
               "persentage": 0.5,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "y": {
               "offset": 191,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
           },
           "absoluteSize": {
             "width": {
               "offset": 140,
               "persentage": 0,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "height": {
               "offset": 40,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
-          },
+          }
         },
         "styles": {
           "text": {
             "dataType": 0,
-            "data": "查看更多历史订单",
+            "data": "查看更多历史订单"
           },
           "textColor": "#051b28",
           "textFontSize": 14,
@@ -271,24 +271,24 @@
             "x": {
               "offset": 0,
               "persentage": 0,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "y": {
               "offset": 257,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
           },
           "absoluteSize": {
             "width": {
               "offset": 0,
               "persentage": 1,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "height": {
               "offset": 40,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
           }
         },
@@ -305,31 +305,31 @@
                 "x": {
                   "offset": 105.5,
                   "persentage": 0,
-                  "baseOption": 0,
+                  "baseOption": 0
                 },
                 "y": {
                   "offset": 16,
                   "persentage": 0,
-                  "baseOption": 1,
+                  "baseOption": 1
                 }
               },
               "absoluteSize": {
                 "width": {
                   "offset": 11,
                   "persentage": 0,
-                  "baseOption": 0,
+                  "baseOption": 0
                 },
                 "height": {
                   "offset": 8,
                   "persentage": 0,
-                  "baseOption": 1,
+                  "baseOption": 1
                 }
-              },
+              }
             },
             "styles": {
               "imageSource": {
                 "dataType": 0,
-                "data": "tnchat_recommend_slash",
+                "data": "tnchat_recommend_slash"
               },
               "contentMode": 1
             }
@@ -343,34 +343,34 @@
                 "x": {
                   "offset": 123.5,
                   "persentage": 0,
-                  "baseOption": 0,
+                  "baseOption": 0
                 },
                 "y": {
                   "offset": 13.5,
                   "persentage": 0,
-                  "baseOption": 1,
+                  "baseOption": 1
                 }
               },
               "absoluteSize": {
                 "width": {
                   "offset": 14,
                   "persentage": 0,
-                  "baseOption": 0,
+                  "baseOption": 0
                 },
                 "height": {
                   "offset": 13,
                   "persentage": 0,
-                  "baseOption": 1,
+                  "baseOption": 1
                 }
-              },
+              }
             },
             "styles": {
               "imageSource": {
                 "dataType": 0,
-                "data": "tnchat_recommend_carema",
+                "data": "tnchat_recommend_carema"
               },
               "contentMode": 1
-            },
+            }
           },
           {
             "nodeType": 1,
@@ -380,31 +380,31 @@
                 "x": {
                   "offset": 141.5,
                   "persentage": 0,
-                  "baseOption": 0,
+                  "baseOption": 0
                 },
                 "y": {
                   "offset": 0,
                   "persentage": 0,
-                  "baseOption": 1,
+                  "baseOption": 1
                 }
               },
               "absoluteSize": {
                 "width": {
                   "offset": 0,
                   "persentage": 1,
-                  "baseOption": 0,
+                  "baseOption": 0
                 },
                 "height": {
                   "offset": 0,
                   "persentage": 1,
-                  "baseOption": 1,
+                  "baseOption": 1
                 }
-              },
+              }
             },
             "styles": {
               "text": {
                 "dataType": 0,
-                "data": "您可能感兴趣的玩法",
+                "data": "您可能感兴趣的玩法"
               },
               "textColor": "#A5A5A5",
               "textFontSize": 12,
@@ -423,31 +423,31 @@
                 "x": {
                   "offset": 256,
                   "persentage": 0,
-                  "baseOption": 0,
+                  "baseOption": 0
                 },
                 "y": {
                   "offset": 16,
                   "persentage": 0,
-                  "baseOption": 1,
+                  "baseOption": 1
                 }
               },
               "absoluteSize": {
                 "width": {
                   "offset": 11,
                   "persentage": 0,
-                  "baseOption": 0,
+                  "baseOption": 0
                 },
                 "height": {
                   "offset": 8,
                   "persentage": 0,
-                  "baseOption": 1,
+                  "baseOption": 1
                 }
-              },
+              }
             },
             "styles": {
               "imageSource": {
                 "dataType": 0,
-                "data": "tnchat_recommend_slash",
+                "data": "tnchat_recommend_slash"
               },
               "contentMode": 1
             }

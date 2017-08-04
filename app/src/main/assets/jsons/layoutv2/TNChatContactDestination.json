@@ -8,7 +8,7 @@
     "nodeType": 4,
     "action": {
       "dataType": 0,
-      "data": "https://www.baidu.com",
+      "data": "https://www.baidu.com"
     },
     "layout": {
       "strategy": 0,
@@ -16,29 +16,29 @@
         "x": {
           "offset": 0,
           "persentage": 0,
-          "baseOption": 0,
+          "baseOption": 0
         },
         "y": {
           "offset": 0,
           "persentage": 0,
-          "baseOption": 1,
+          "baseOption": 1
         }
       },
       "absoluteSize": {
         "width": {
           "offset": 0,
           "persentage": 1,
-          "baseOption": 0,
+          "baseOption": 0
         },
         "height": {
           "offset": 0,
           "persentage": 1,
-          "baseOption": 1,
+          "baseOption": 1
         }
       }
     },
     "styles": {
-      "backgroundColor": "#ffffff",
+      "backgroundColor": "#ffffff"
     },
     "subNode": [
       {
@@ -51,36 +51,36 @@
             "x": {
               "offset": 0,
               "persentage": 0,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "y": {
               "offset": 0,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
           },
           "absoluteSize": {
             "width": {
               "offset": 0,
               "persentage": 1,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "height": {
               "offset": 0,
               "persentage": 1,
-              "baseOption": 1,
+              "baseOption": 1
             }
-          },
+          }
         },
         "styles": {
           "imageSource": {
             "dataType": 1,
             "data": [
               "img"
-            ],
+            ]
           },
           "contentMode": 1
-        },
+        }
       },
       {
         "tag": "0",
@@ -92,33 +92,33 @@
             "x": {
               "offset": 0,
               "persentage": 0,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "y": {
               "offset": -20,
               "persentage": 1,
-              "baseOption": 1,
+              "baseOption": 1
             }
           },
           "absoluteSize": {
             "width": {
               "offset": 0,
               "persentage": 1,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "height": {
               "offset": 20,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
-          },
+          }
         },
         "styles": {
           "text": {
             "dataType": 1,
             "data": [
               "name"
-            ],
+            ]
           },
           "textColor": "#ffffff",
           "backgroundColor": "#000000",

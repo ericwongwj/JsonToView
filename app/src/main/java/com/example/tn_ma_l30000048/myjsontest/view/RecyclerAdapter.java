@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.tn_ma_l30000048.myjsontest.R;
 import com.example.tn_ma_l30000048.myjsontest.parser.JsonViewRoot;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -41,6 +42,7 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<BaseViewHolder<T>> 
     private JSONObject mHeaderJson;
     private JSONObject mFooterJson;
     private JSONObject mCellJson;//暂时定义为一个ViewGroup且cell相同 cell未必相同
+    private JSONArray mInsertViews;
     private Context mContext;
 
     private OnItemClickListener onItemClickListener;
@@ -177,6 +179,11 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<BaseViewHolder<T>> 
         hasFooter = true;
         mFooterJson = footer;
         mViewCount++;
+    }
+
+    public void setInsertViews(JSONArray insertViews) {
+        mInsertViews = insertViews;
+        mViewCount += insertViews.length();
     }
 
 

@@ -13,7 +13,7 @@ import org.json.JSONObject;
  */
 
 public class ViewFactory {
-    static final String TAG="ViewFactory";
+    static final String TAG = "ViewFactory ";
 
     public static View build(JSONObject body, Context context, int parentWidth, int parentHeight){
         if(body.has("nodeType")){
@@ -31,7 +31,9 @@ public class ViewFactory {
                     case Constants.TYPE_RICHTEXT:
                         return JsonTextView.build(body, context, parentWidth, parentHeight);
                     case Constants.TYPE_TABLEVIEW:
-                        return JsonListView.build(body,context,parentWidth,parentHeight);
+                        return JsonTableView.build(body, context, parentWidth, parentHeight);
+                    case Constants.TYPE_SCROLLVIEW:
+                        System.out.println(TAG + "scroll view");
                     case Constants.TYPE_COLLECTIONVIEW:
                         return JsonGridLayout.build(body, context, parentWidth, parentHeight);
                     default:
@@ -45,11 +47,12 @@ public class ViewFactory {
     }
 
     public static View buildView(JSONObject body, Context context, int parentWidth, int parentHeight){
-        System.out.println("----build view-----");
 
         //如果是一个layout
         if (body.has("subNode"))
             return ViewGroupFactory.build(body, context, parentWidth, parentHeight);
+
+        System.out.println("----build view-----");
 
         View view = new View(context);
         JsonBasicWidget.setBasic(body, view);

@@ -61,7 +61,7 @@ public class JsonBasicWidget {
         y = DensityUtils.dp2px(view.getContext(), (float) y);
         view.setX((float)x);
         view.setY((float)y);
-        System.out.println(TAG+" (pixel) x:"+x+" y:"+y+" w:"+w+" h"+h);
+        System.out.println("layout (pixel) x:" + x + " y:" + y + " w:" + w + " h" + h);
 
         view.setLayoutParams(layoutParams);
     }

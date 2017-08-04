@@ -13,31 +13,31 @@
         "x": {
           "offset": 0,
           "persentage": 0,
-          "baseOption": 0,
+          "baseOption": 0
         },
         "y": {
           "offset": 0,
           "persentage": 0,
-          "baseOption": 1,
+          "baseOption": 1
         }
       },
       "absoluteSize": {
         "width": {
           "offset": 0,
           "persentage": 1,
-          "baseOption": 0,
+          "baseOption": 0
         },
         "height": {
           "offset": 0,
           "persentage": 1,
-          "baseOption": 1,
+          "baseOption": 1
         }
-      },
+      }
     },
     "styles": {
       "text": {
         "dataType": 0,
-        "data": "Foot",
+        "data": "Foot"
       },
       "textColor": "#051b28",
       "textFontSize": 17,

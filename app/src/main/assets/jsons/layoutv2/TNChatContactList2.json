@@ -13,29 +13,29 @@
         "x": {
           "offset": 0,
           "persentage": 0,
-          "baseOption": 0,
+          "baseOption": 0
         },
         "y": {
           "offset": 64,
           "persentage": 0,
-          "baseOption": 1,
+          "baseOption": 1
         }
       },
       "absoluteSize": {
         "width": {
           "offset": 0,
           "persentage": 1,
-          "baseOption": 0,
+          "baseOption": 0
         },
         "height": {
           "offset": 0,
           "persentage": 1,
-          "baseOption": 1,
+          "baseOption": 1
         }
       }
     },
     "styles": {
-      "backgroundColor": "#ffffff00",
+      "backgroundColor": "#ffffff00"
     },
     "subNode": [
       {
@@ -72,7 +72,7 @@
               "relationship": 0,
               "multiplier": 1,
               "offset": 0
-            },
+            }
           }
         },
         "styles": {
@@ -91,12 +91,12 @@
             "insertViews": [
               {
                 "templateName": "TNChatContactInsertView",
-                "row": 2,
+                "row": 2
               }
             ],
-            "scrollDisabled": 0,
+            "scrollDisabled": 0
           }
-        },
+        }
       }
     ]
   },

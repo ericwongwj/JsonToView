@@ -9,7 +9,7 @@
     "nodeType": 4,
     "action": {
       "dataType": 0,
-      "data": "tuniuapp://page?pageName=TNChatGroupsViewController",
+      "data": "tuniuapp://page?pageName=TNChatGroupsViewController"
     },
     "layout": {
       "strategy": "0",
@@ -17,26 +17,26 @@
         "x": {
           "offset": 0,
           "persentage": 0,
-          "baseOption": 0,
+          "baseOption": 0
         },
         "y": {
           "offset": 0,
           "persentage": 0,
-          "baseOption": 1,
+          "baseOption": 1
         }
       },
       "absoluteSize": {
         "width": {
           "offset": 0,
           "persentage": 1,
-          "baseOption": 0,
+          "baseOption": 0
         },
         "height": {
           "offset": 0,
           "persentage": 1,
-          "baseOption": 1,
+          "baseOption": 1
         }
-      },
+      }
     },
     "styles": {
       "backgroundColor": "#ffffff"
@@ -52,24 +52,24 @@
             "x": {
               "offset": 0,
               "persentage": 0,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "y": {
               "offset": 0,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
           },
           "absoluteSize": {
             "width": {
               "offset": 0,
               "persentage": 1,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "height": {
               "offset": 0.5,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
           }
         },
@@ -87,35 +87,35 @@
             "x": {
               "offset": 15,
               "persentage": 0,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "y": {
               "offset": 7,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
           },
           "absoluteSize": {
             "width": {
               "offset": 40,
               "persentage": 0,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "height": {
               "offset": 40,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
-          },
+          }
         },
         "styles": {
           "imageSource": {
             "dataType": 0,
-            "data": "chat_contact_group",
+            "data": "chat_contact_group"
           },
           "cornerRadius": 20,
           "contentMode": 1
-        },
+        }
       },
       {
         "tag": "0",
@@ -127,31 +127,31 @@
             "x": {
               "offset": 70,
               "persentage": 0,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "y": {
               "offset": 12,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
           },
           "absoluteSize": {
             "width": {
               "offset": -70,
               "persentage": 1,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "height": {
               "offset": 31,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
-          },
+          }
         },
         "styles": {
           "text": {
             "dataType": 0,
-            "data": "群组",
+            "data": "群组"
           },
           "textColor": "#051b28",
           "textFontSize": 17,
@@ -171,26 +171,26 @@
             "x": {
               "offset": 0,
               "persentage": 0,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "y": {
               "offset": 55,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
           },
           "absoluteSize": {
             "width": {
               "offset": 0,
               "persentage": 1,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "height": {
               "offset": 30,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
-          },
+          }
         },
         "styles": {
           "backgroundColor": "#f2f3f8"
@@ -206,31 +206,31 @@
                 "x": {
                   "offset": 20,
                   "persentage": 0,
-                  "baseOption": 0,
+                  "baseOption": 0
                 },
                 "y": {
                   "offset": 0,
                   "persentage": 0,
-                  "baseOption": 1,
+                  "baseOption": 1
                 }
               },
               "absoluteSize": {
                 "width": {
                   "offset": 0,
                   "persentage": 1,
-                  "baseOption": 0,
+                  "baseOption": 0
                 },
                 "height": {
                   "offset": 0,
                   "persentage": 1,
-                  "baseOption": 1,
+                  "baseOption": 1
                 }
-              },
+              }
             },
             "styles": {
               "text": {
                 "dataType": 0,
-                "data": "最近联系人",
+                "data": "最近联系人"
               },
               "textColor": "#a5a5a5",
               "textFontSize": 14,

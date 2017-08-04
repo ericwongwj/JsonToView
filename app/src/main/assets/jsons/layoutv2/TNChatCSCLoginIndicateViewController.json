@@ -12,24 +12,24 @@
         "x": {
           "offset": 0,
           "persentage": 0,
-          "baseOption": 0,
+          "baseOption": 0
         },
         "y": {
           "offset": 0,
           "persentage": 0,
-          "baseOption": 1,
+          "baseOption": 1
         }
       },
       "absoluteSize": {
         "width": {
           "offset": 0,
           "persentage": 1,
-          "baseOption": 0,
+          "baseOption": 0
         },
         "height": {
           "offset": 0,
           "persentage": 1,
-          "baseOption": 1,
+          "baseOption": 1
         }
       }
     },
@@ -72,12 +72,12 @@
               "multiplier": 1,
               "offset": 174
             }
-          },
+          }
         },
         "styles": {
           "imageSource": {
             "dataType": 0,
-            "data": "http://m.tuniucdn.com/fb2/t1/G2/M00/B2/EC/Cii-TFgEOwaITllaAAFRE_gXB2cAADdEgP2Rz8AAVEr447.png",
+            "data": "http://m.tuniucdn.com/fb2/t1/G2/M00/B2/EC/Cii-TFgEOwaITllaAAFRE_gXB2cAADdEgP2Rz8AAVEr447.png"
           },
           "contentMode": 1
         },
@@ -93,31 +93,31 @@
             "x": {
               "offset": 0,
               "persentage": 0,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "y": {
               "offset": 191,
               "persentage": 0.12,
-              "baseOption": 1,
+              "baseOption": 1
             }
           },
           "absoluteSize": {
             "width": {
               "offset": 0,
               "persentage": 1,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "height": {
               "offset": 28,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
           }
         },
         "styles": {
           "text": {
             "dataType": 0,
-            "data": "未登录",
+            "data": "未登录"
           },
           "textColor": "#051b28ff",
           "textFontSize": 20,
@@ -138,31 +138,31 @@
             "x": {
               "offset": 0,
               "persentage": 0,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "y": {
               "offset": 220,
               "persentage": 0.12,
-              "baseOption": 1,
+              "baseOption": 1
             }
           },
           "absoluteSize": {
             "width": {
               "offset": 0,
               "persentage": 1,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "height": {
               "offset": 20,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
           }
         },
         "styles": {
           "text": {
             "dataType": 0,
-            "data": "查看订单需要先登录哦～",
+            "data": "查看订单需要先登录哦～"
           },
           "textColor": "#a5a5a5ff",
           "textFontSize": 14,
@@ -179,7 +179,7 @@
         "nodeType": 3,
         "action": {
           "dataType": 0,
-          "data": "tuniuapp://event?iosHandleClass=TTNAutoUIEventOpenUrl&iosMethodName=loginAction:",
+          "data": "tuniuapp://event?iosHandleClass=TTNAutoUIEventOpenUrl&iosMethodName=loginAction:"
         },
         "layout": {
           "strategy": "0",
@@ -187,31 +187,31 @@
             "x": {
               "offset": -70,
               "persentage": 0.5,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "y": {
               "offset": 247,
               "persentage": 0.12,
-              "baseOption": 1,
+              "baseOption": 1
             }
           },
           "absoluteSize": {
             "width": {
               "offset": 140,
               "persentage": 0,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "height": {
               "offset": 40,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
           }
         },
         "styles": {
           "text": {
             "dataType": 0,
-            "data": "去登录",
+            "data": "去登录"
           },
           "textColor": "#ffffffff",
           "textFontSize": 14,

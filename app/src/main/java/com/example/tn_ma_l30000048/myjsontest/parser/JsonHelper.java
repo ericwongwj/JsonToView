@@ -23,7 +23,7 @@ public class JsonHelper {
         AssetManager assetManager = context.getAssets();
         JSONObject jsonObject = null;
         try {
-            InputStream is = assetManager.open("jsons/layout/" + name);
+            InputStream is = assetManager.open("jsons/layoutv2/" + name);
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
@@ -33,6 +33,23 @@ public class JsonHelper {
         } catch (IOException e) {
             e.printStackTrace();
         } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return jsonObject;
+    }
+
+    public static JSONObject findLocalJsonByName(Context context, String name) {
+        AssetManager assetManager = context.getAssets();
+        JSONObject jsonObject = null;
+        try {
+            String[] fn = assetManager.list("jsons/layoutv2");
+            int i;
+            for (i = 0; i < fn.length; i++) {
+                if (fn[i].contains(name))
+                    break;
+            }
+            jsonObject = readLocalJson(context, name + ".json");
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return jsonObject;

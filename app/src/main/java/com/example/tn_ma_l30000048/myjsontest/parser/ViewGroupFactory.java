@@ -36,15 +36,12 @@ public class ViewGroupFactory {
     }
 
     static FrameLayout buildFrameLayout(JSONObject body, Context context, int parentWidth, int parentHeight){
-        System.out.println("build FrameLayout");
+        System.out.println("----build FrameLayout----");
         FrameLayout frameLayout=new FrameLayout(context);
         JsonBasicWidget.setBasic(body, frameLayout);
 
-        //暂时先统统设为适配父容器
-        System.out.println("parent w=" + parentWidth + "   h=" + parentHeight);
-//        ViewGroup.LayoutParams layoutParams=new FrameLayout.LayoutParams(parentWidth,parentHeight);
+//        System.out.println("parent w=" + parentWidth + "   h=" + parentHeight);
         JsonBasicWidget.setAbsoluteLayoutParams(JsonHelper.getLayout(body), frameLayout, parentWidth, parentHeight);
-//        frameLayout.setLayoutParams(layoutParams);
         setStyle(JsonHelper.getStyles(body),frameLayout);
         setSubNode(JsonHelper.getSubNodes(body),frameLayout);
         return frameLayout;
@@ -81,7 +78,6 @@ public class ViewGroupFactory {
             int index=0;
             try {
                 while(!nodes.isNull(index)){
-                    System.out.println("sub node " + index);
                     JSONObject nodeBody=nodes.getJSONObject(index);
                     View subView=ViewFactory.build(nodeBody,viewGroup.getContext(),viewGroup.getLayoutParams().width,viewGroup.getLayoutParams().height);
                     //TODO 容易出空指针

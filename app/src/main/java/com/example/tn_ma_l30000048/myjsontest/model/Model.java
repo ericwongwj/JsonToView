@@ -1,7 +1,5 @@
 package com.example.tn_ma_l30000048.myjsontest.model;
 
-import java.util.List;
-
 /**
  * Created by tn-ma-l30000048 on 17/7/25.
  */
@@ -15,30 +13,6 @@ public class Model {
     Node rootNode;
     HeaderInfo headerInfo;
     RequestInfo requestInfo;
-
-    static class HeaderInfo{
-        int hasBackButton;//int: 0,1
-        String headTitle;
-        List<ExtensionButtons> extensionButtonses;
-    }
-
-    static class RequestInfo{
-        String baseUrl;
-        String path;
-        Parameters parameters;
-    }
-
-    static class ExtensionButtons{
-        String text;
-        String action;
-        String imageSource;
-    }
-
-    static class Parameters {
-        String sessionId;
-        String page;
-        String count;
-    }
 
     @Override
     public String toString() {

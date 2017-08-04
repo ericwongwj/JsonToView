@@ -12,24 +12,24 @@
         "x": {
           "offset": 0,
           "persentage": 0,
-          "baseOption": 0,
+          "baseOption": 0
         },
         "y": {
           "offset": 0,
           "persentage": 0,
-          "baseOption": 1,
+          "baseOption": 1
         }
       },
       "absoluteSize": {
         "width": {
           "offset": 0,
           "persentage": 1,
-          "baseOption": 0,
+          "baseOption": 0
         },
         "height": {
           "offset": 0,
           "persentage": 1,
-          "baseOption": 1,
+          "baseOption": 1
         }
       }
     },
@@ -47,35 +47,35 @@
             "x": {
               "offset": 15,
               "persentage": 0,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "y": {
               "offset": 15,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
           },
           "absoluteSize": {
             "width": {
               "offset": 20,
               "persentage": 0,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "height": {
               "offset": 20,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
-          },
+          }
         },
         "styles": {
           "imageSource": {
             "dataType": 1,
             "data": [
               "pictureImage"
-            ],
-          },
-        },
+            ]
+          }
+        }
       },
       {
         "tag": "0",
@@ -87,38 +87,38 @@
             "x": {
               "offset": 45,
               "persentage": 0,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "y": {
               "offset": 15,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
           },
           "absoluteSize": {
             "width": {
               "offset": -45,
               "persentage": 1,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "height": {
               "offset": 20,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
-          },
+          }
         },
         "styles": {
           "text": {
             "dataType": 1,
             "data": [
               "typeName"
-            ],
+            ]
           },
           "textColor": "#a5a5a5ff",
           "textFontSize": 14,
           "numberOfLines": 1,
-          "strickHeight": 1,
+          "strickHeight": 1
         }
       },
       {
@@ -131,39 +131,39 @@
             "x": {
               "offset": 15,
               "persentage": 0,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "y": {
               "offset": 44,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
           },
           "absoluteSize": {
             "width": {
               "offset": -30,
               "persentage": 1,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "height": {
               "offset": 44,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
-          },
+          }
         },
         "styles": {
           "text": {
             "dataType": 1,
             "data": [
               "desc"
-            ],
+            ]
           },
           "textColor": "#051b28ff",
           "textFontSize": 15,
           "numberOfLines": 2,
           "strickHeight": 1,
-          "strickWidth": 1,
+          "strickWidth": 1
         }
       },
       {
@@ -176,24 +176,24 @@
             "x": {
               "offset": 15,
               "persentage": 0,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "y": {
               "offset": 97,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
           },
           "absoluteSize": {
             "width": {
               "offset": -30,
               "persentage": 1,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "height": {
               "offset": 0.5,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
           }
         },
@@ -211,36 +211,36 @@
             "x": {
               "offset": 15,
               "persentage": 0,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "y": {
               "offset": 106,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
           },
           "absoluteSize": {
             "width": {
               "offset": -30,
               "persentage": 1,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "height": {
               "offset": 20,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
-          },
+          }
         },
         "styles": {
           "text": {
             "dataType": 0,
-            "data": "产品编号：",
+            "data": "产品编号："
           },
           "textColor": "#a5a5a5ff",
           "textFontSize": 14,
           "numberOfLines": 1,
-          "strickHeight": 1,
+          "strickHeight": 1
         }
       },
       {
@@ -253,38 +253,38 @@
             "x": {
               "offset": 77,
               "persentage": 0,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "y": {
               "offset": 106,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
           },
           "absoluteSize": {
             "width": {
               "offset": -107,
               "persentage": 1,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "height": {
               "offset": 20,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
-          },
+          }
         },
         "styles": {
           "text": {
             "dataType": 1,
             "data": [
               "number"
-            ],
+            ]
           },
           "textColor": "#a5a5a5ff",
           "textFontSize": 14,
           "numberOfLines": 1,
-          "strickHeight": 1,
+          "strickHeight": 1
         }
       },
       {
@@ -297,31 +297,31 @@
             "x": {
               "offset": 0,
               "persentage": 0.5,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "y": {
               "offset": 106,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
           },
           "absoluteSize": {
             "width": {
               "offset": -15,
               "persentage": 0.5,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "height": {
               "offset": 20,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
-          },
+          }
         },
         "styles": {
           "text": {
             "dataType": 0,
-            "data": "查看订单",
+            "data": "查看订单"
           },
           "textColor": "#2dbb55ff",
           "textFontSize": 14,
@@ -333,7 +333,7 @@
             "dataType": 1,
             "data": [
               "jumpUrl"
-            ],
+            ]
           }
         }
       }

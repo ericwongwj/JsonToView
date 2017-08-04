@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btn_test_view).setOnClickListener(this);
         findViewById(R.id.btn_test_list).setOnClickListener(this);
         findViewById(R.id.btn_test_new_list).setOnClickListener(this);
-        findViewById(R.id.btn_show_layout).setOnClickListener(this);
+        findViewById(R.id.btn_grid).setOnClickListener(this);
         findViewById(R.id.btn_my_list).setOnClickListener(this);
         lv=(ListView)findViewById(R.id.main_lv);
         lv.setOnItemClickListener(this);
@@ -71,12 +71,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         AssetManager assetManager=getAssets();
         String[] jsonStrings=null;
         try {
-            String[] fn=assetManager.list("jsons/layout");
+            String[] fn = assetManager.list("jsons/layoutv2");
             jsonStrings=new String[fn.length];
             int i=0;
             for(String name:fn){
                 list.add(name);
-                InputStream is=assetManager.open("jsons/layout/"+name);
+                InputStream is = assetManager.open("jsons/layoutv2/" + name);
                 int size = is.available();
                 byte[] buffer = new byte[size];
                 is.read(buffer);
@@ -111,8 +111,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(MainActivity.this, TestMyListActivity.class));
 //                adapter.notifyDataSetChanged();
                 break;
-            case R.id.btn_show_layout:
-                adapter.notifyDataSetChanged();
+            case R.id.btn_grid:
+                startActivity(new Intent(MainActivity.this, TestGridActivity.class));
                 break;
         }
     }

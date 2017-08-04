@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.tn_ma_l30000048.myjsontest.model.HeaderInfo;
+import com.example.tn_ma_l30000048.myjsontest.model.RequestInfo;
 import com.example.tn_ma_l30000048.myjsontest.utils.DensityUtils;
 
 import org.json.JSONArray;
@@ -12,6 +14,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -22,23 +25,26 @@ import java.util.Queue;
  */
 
 public class JsonViewRoot {
-    static final String TAG = "JsonViewRoot";
+    static final String TAG = "JsonViewRoot ";
 
     public String SDKVersion;
     public String ModuleVersion;
     public List<String> mJSContext;
     public int containerType;//0 view 1 占满整个屏幕 为viewcontroller
-    public int containerHeight;//dp
-    public int containerWidth;
+    public double containerHeight;//dp
+    public double containerWidth;
     public String registerProperty;
-    public HashMap<String, View> mViewMap = new HashMap<>();
+    public HashMap<String, View> mViewMap = new HashMap<>();//nodeName到子view的map
+    public HashMap<String, Object> mDataMap = new HashMap<>();//request得到的所有数据
     private View myJsonView;
-    private List<JsonViewRoot> jsonViewRootList = new ArrayList<>();
     private Context mContext;
+
+    private HeaderInfo mHeaderInfo;
+    private List<RequestInfo> mRequestInfoList;
 
 
     public JsonViewRoot(JSONObject jsonObject, Context context, int parentWidth, int parentHeight) {
-        System.out.println("my root " + parentWidth + " " + parentHeight);
+        System.out.println("JSON VIEW ROOT " + parentWidth + " " + parentHeight);
         mContext = context;
         try {
             SDKVersion=jsonObject.getString("SDKVersion");
@@ -47,26 +53,29 @@ public class JsonViewRoot {
                 registerProperty = jsonObject.getString("registerProperty");//js code
             if (jsonObject.has("JSContext"))
                 parseJSContext(jsonObject.getJSONArray("JSContext"));
-            if (jsonObject.has("containerType"))
+            if (jsonObject.has("containerType"))//0:view  1:page
                 containerType = jsonObject.getInt("containerType");
 
             parseWandH(jsonObject, parentWidth, parentHeight);
 
-            JSONObject rootNode=jsonObject.getJSONObject("rootNode");
-            if(rootNode.getInt("nodeType")==4)
-                myJsonView = ViewGroupFactory.build(rootNode, context, parentWidth, containerHeight);
-            else if (rootNode.getInt("nodeType") == 0)
-                myJsonView = ViewGroupFactory.build(rootNode, context, parentWidth, containerHeight);
-            else
-                myJsonView = ViewFactory.build(rootNode, context, parentWidth, containerHeight);
-            initViewMap();
-
             if (jsonObject.has("headerInfo")) {
                 parseHeaderInfo(jsonObject.getJSONObject("headerInfo"));
+                System.out.println(TAG + mHeaderInfo.toString());
             }
             if (jsonObject.has("requestInfo")) {
                 parseRequestInfo(jsonObject.getJSONArray("requestInfo"));
+                System.out.println(TAG + mRequestInfoList.get(0).toString());
             }
+
+            JSONObject rootNode = jsonObject.getJSONObject("rootNode");
+            if (rootNode.getInt("nodeType") == 4)
+                myJsonView = ViewGroupFactory.build(rootNode, context, parentWidth, (int) containerHeight);
+            else if (rootNode.getInt("nodeType") == 0)
+                myJsonView = ViewGroupFactory.build(rootNode, context, parentWidth, (int) containerHeight);
+            else
+                myJsonView = ViewFactory.build(rootNode, context, parentWidth, (int) containerHeight);
+            initViewMap();
+
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -74,30 +83,59 @@ public class JsonViewRoot {
     }
 
     private void parseHeaderInfo(JSONObject jsonObject) throws JSONException {
+        mHeaderInfo = new HeaderInfo();
         if (jsonObject.has("hasBackButton")) {
-
+            mHeaderInfo.hashBackButton = jsonObject.getInt("hasBackButton");
         }
         if (jsonObject.has("headTitle")) {
-
+            mHeaderInfo.headTitle = jsonObject.getString("headTitle");
+        }
+        if (jsonObject.has("extensionButtons")) {
+            mHeaderInfo.extensionButtons = new ArrayList<>();
+            JSONArray extBtns = jsonObject.getJSONArray("extensionButtons");
+            if (extBtns != null && extBtns.length() != 0) {
+                for (int i = 0; i < extBtns.length(); i++) {
+                    JSONObject jsonBtn = extBtns.getJSONObject(i);
+                    HeaderInfo.ExtensionButton btn = new HeaderInfo.ExtensionButton();
+                    btn.setAction(jsonBtn.getString("action"));
+                    btn.setText(jsonBtn.getString("text"));
+                    btn.setImageSource(jsonBtn.getString("imageResource"));
+                    mHeaderInfo.extensionButtons.add(btn);
+                }
+            }
         }
     }
 
+    //array，特殊场景太多，所以单一请求无法满足需求。当前所有请求处理并行发送；
+    //下拉刷新会将重新发送所有请求；上拉加载只会发送第一个请求；
     private void parseRequestInfo(JSONArray jsonArray) throws JSONException {
+        mRequestInfoList = new ArrayList<>();
         if (!jsonArray.isNull(0)) {
             int index = 0;
             while (!jsonArray.isNull(index)) {
-                System.out.println("requestInfo " + index);
+                RequestInfo requestInfo = new RequestInfo();
                 JSONObject object = jsonArray.getJSONObject(index);
                 if (object.has("baseUrl")) {
-
+                    requestInfo.baseUrl = object.getString("baseUrl");
                 }
                 if (object.has("path")) {
-
+                    requestInfo.path = object.getString("path");
                 }
-                if (object.has("parameter")) {
-
+                if (object.has("parameters")) {//dic的值可以是一个string，也可以是一个js code————"{{/*js code*/}}"
+                    Object obj = object.get("parameters");
+                    if (obj instanceof String) {
+                        requestInfo.parameterString = (String) obj;
+                    } else if (obj instanceof JSONObject) {
+                        requestInfo.parameters = new HashMap<>();
+                        JSONObject paraJson = (JSONObject) obj;
+                        for (Iterator<String> it = paraJson.keys(); it.hasNext(); ) {
+                            String key = it.next();
+                            requestInfo.parameters.put(key, paraJson.getString(key));
+                        }
+                    }
                 }
                 index++;
+                mRequestInfoList.add(requestInfo);
             }
         }
 
@@ -117,13 +155,13 @@ public class JsonViewRoot {
 
     private void parseWandH(JSONObject jsonObject, int parentWidth, int parentHeight) throws JSONException {
         if (jsonObject.has("containerHeight")) {
-            System.out.println("has container height");
             String height = jsonObject.getString("containerHeight");//in dp
+            System.out.println(TAG + "container height:" + height + " dp");
             if (height.substring(0, 2).equals("{{"))
-                System.out.println("containerHeight is js code");
+                System.out.println(TAG + "containerHeight is js code");
             else {
-                containerHeight = Integer.parseInt(height);
-                containerHeight = (int) DensityUtils.dp2px(mContext, containerHeight);
+                containerHeight = Double.parseDouble(height);
+                containerHeight = DensityUtils.dp2px(mContext, (float) containerHeight);
             }
         } else containerHeight = parentHeight;
 
@@ -134,8 +172,8 @@ public class JsonViewRoot {
             if (width.substring(0, 2).equals("{{"))
                 System.out.println("containerHeight is js code");
             else {
-                containerHeight = Integer.parseInt(width);
-                containerHeight = (int) DensityUtils.dp2px(mContext, containerHeight);
+                containerHeight = Double.parseDouble(width);
+                containerHeight = DensityUtils.dp2px(mContext, (float) containerHeight);
             }
         } else containerWidth = parentWidth;
     }
@@ -144,6 +182,7 @@ public class JsonViewRoot {
     public void initViewMap() {
         Queue<View> queue = new LinkedList<>();
         queue.offer(myJsonView);
+        System.out.println("initViewMap");
         while (!queue.isEmpty()) {
             View v = queue.poll();
             if (v.getTag() == null)
@@ -159,10 +198,6 @@ public class JsonViewRoot {
         }
     }
 
-    public View getJsonView() {
-        return myJsonView;
-    }
-
     //需要自己根据nodeName返回相应的view 并且调用者应该知道view的具体类型
     public View findViewByNodeName(String nodeName) {
         return findViewByNodeName(nodeName, null);
@@ -174,4 +209,15 @@ public class JsonViewRoot {
         return viewClazz.cast(mViewMap.get(nodeName));
     }
 
+    public View getJsonView() {
+        return myJsonView;
+    }
+
+    public HeaderInfo getHeaderInfo() {
+        return mHeaderInfo;
+    }
+
+    public List<RequestInfo> getRequestInfo() {
+        return mRequestInfoList;
+    }
 }

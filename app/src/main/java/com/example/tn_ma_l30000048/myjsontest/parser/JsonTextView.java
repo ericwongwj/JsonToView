@@ -47,21 +47,33 @@ public class JsonTextView {
                 }else if(key.equalsIgnoreCase("textFontSize")){
                     int fontSize=json.getInt(key);
                     tv.setTextSize(fontSize);
-                }else if(key.equalsIgnoreCase("numberOfLines")){
+                } else if (key.equalsIgnoreCase("textAlignment")) {
+                    switch (json.getInt(key)) {
+                        case 0:
+                            tv.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
+                            break;
+                        case 1:
+                            tv.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                            break;
+                        case 2:
+                            tv.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_END);
+                            break;
+                    }
+                } else if (key.equalsIgnoreCase("numberOfLines")) {
                     int lines=json.getInt(key);
                     tv.setLines(lines);
                 }else if(key.equalsIgnoreCase("strickHeight")){
                     int strickHeight=json.getInt(key);
-                    if(strickHeight==0)
-                        System.out.println("resize height for text");
-                    else if(strickHeight==1)
-                        System.out.println("strick height");
+//                    if(strickHeight==0)
+//                        System.out.println(TAG+" resize height for text");
+//                    else if(strickHeight==1)
+//                        System.out.println(TAG+"strick height");
                 }else if(key.equalsIgnoreCase("strickWidth")){
                     int strickWidth=json.getInt(key);
-                    if(strickWidth==0)
-                        System.out.println("resize width for text");
-                    else if(strickWidth==1)
-                        System.out.println("strick width");
+//                    if(strickWidth==0)
+//                        System.out.println(TAG+"resize width for text");
+//                    else if(strickWidth==1)
+//                        System.out.println(TAG+"strick width");
                 }else if(key.equalsIgnoreCase("isHide")){
                     String jsCode=json.getString(key);
                     tv.setVisibility(View.VISIBLE);

@@ -13,26 +13,26 @@
         "x": {
           "offset": 0,
           "persentage": 0,
-          "baseOption": 0,
+          "baseOption": 0
         },
         "y": {
           "offset": 0,
           "persentage": 0,
-          "baseOption": 1,
+          "baseOption": 1
         }
       },
       "absoluteSize": {
         "width": {
           "offset": 0,
           "persentage": 1,
-          "baseOption": 0,
+          "baseOption": 0
         },
         "height": {
           "offset": 0,
           "persentage": 1,
-          "baseOption": 1,
+          "baseOption": 1
         }
-      },
+      }
     },
     "styles": {
       "backgroundColor": "#ffffff"
@@ -73,15 +73,15 @@
               "multiplier": 1,
               "offset": 0
             }
-          },
+          }
         },
         "styles": {
           "imageSource": {
             "dataType": 0,
-            "data": "http://m.tuniucdn.com/fb2/t1/G1/M00/49/8C/Cii9EFh8mw2IB53kAGQChEu30v4AAG_2ADCHVAAZAKc487_w800_h0_c0_t0.jpg",
+            "data": "http://m.tuniucdn.com/fb2/t1/G1/M00/49/8C/Cii9EFh8mw2IB53kAGQChEu30v4AAG_2ADCHVAAZAKc487_w800_h0_c0_t0.jpg"
           },
           "contentMode": 0
-        },
+        }
       },
       {
         "tag": 111,
@@ -118,11 +118,11 @@
               "multiplier": 1,
               "offset": 0
             }
-          },
+          }
         },
         "styles": {
           "backgroundColor": "#00000033"
-        },
+        }
       },
       {
         "tag": 112,
@@ -160,7 +160,7 @@
               "multiplier": 1,
               "offset": 30
             }
-          },
+          }
         },
         "styles": {
           "backgroundColor": "#ffffff44",
@@ -187,13 +187,13 @@
                   "relationship": 0,
                   "multiplier": 1,
                   "offset": 0
-                },
-              },
+                }
+              }
             },
             "styles": {
               "text": {
                 "dataType": 0,
-                "data": "查找北京相关的问题",
+                "data": "查找北京相关的问题"
               },
               "textColor": "#000000",
               "textFontSize": 12,
@@ -221,13 +221,13 @@
                   "relationship": 0,
                   "multiplier": 1,
                   "offset": -10
-                },
-              },
+                }
+              }
             },
             "styles": {
               "imageSource": {
                 "dataType": 0,
-                "data": "group_phrase_earch",
+                "data": "group_phrase_earch"
               },
               "contentMode": 1
             }
@@ -254,16 +254,16 @@
               "relationship": 0,
               "multiplier": 1,
               "offset": 0
-            },
-          },
+            }
+          }
         },
         "styles": {
           "imageSource": {
             "dataType": 0,
-            "data": "lianxiren",
+            "data": "lianxiren"
           },
           "contentMode": 0
-        },
+        }
       },
       {
         "nodeName": "poiName",
@@ -284,13 +284,13 @@
               "relationship": 0,
               "multiplier": 1,
               "offset": 20
-            },
-          },
+            }
+          }
         },
         "styles": {
           "text": {
             "dataType": 0,
-            "data": "北京",
+            "data": "北京"
           },
           "textColor": "#ffffff",
           "textFontSize": 20,

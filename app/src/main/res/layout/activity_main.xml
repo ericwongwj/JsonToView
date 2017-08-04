@@ -42,10 +42,10 @@
             android:text="my list" />
 
         <Button
-            android:id="@+id/btn_show_layout"
+            android:id="@+id/btn_grid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Layout" />
+            android:text="Grid" />
     </LinearLayout>
 
     <ListView

@@ -222,7 +222,7 @@ public class JasonHelper {
         else if (colorString.length() == 9) {
             String a = colorString.substring(colorString.length() - 2, colorString.length());
             String argb = "#" + a + colorString.substring(1, colorString.length() - 2);
-            System.out.println(argb);
+//            System.out.println(argb);
             return Color.parseColor(argb);
         }
         return 0;

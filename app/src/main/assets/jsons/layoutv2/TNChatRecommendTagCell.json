@@ -12,33 +12,33 @@
         "x": {
           "offset": 0,
           "persentage": 0,
-          "baseOption": 0,
+          "baseOption": 0
         },
         "y": {
           "offset": 11,
           "persentage": 0,
-          "baseOption": 1,
+          "baseOption": 1
         }
       },
       "absoluteSize": {
         "width": {
           "offset": 0,
           "persentage": 1,
-          "baseOption": 0,
+          "baseOption": 0
         },
         "height": {
           "offset": 16,
           "persentage": 0,
-          "baseOption": 1,
+          "baseOption": 1
         }
-      },
+      }
     },
     "styles": {
       "text": {
         "dataType": 1,
         "data": [
           "name"
-        ],
+        ]
       },
       "textColor": "#a5a5a5",
       "textFontSize": 9,

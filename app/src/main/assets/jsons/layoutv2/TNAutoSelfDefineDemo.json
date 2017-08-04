@@ -13,41 +13,41 @@
         "x": {
           "offset": 0,
           "persentage": 0,
-          "baseOption": 0,
+          "baseOption": 0
         },
         "y": {
           "offset": 64,
           "persentage": 0,
-          "baseOption": 1,
+          "baseOption": 1
         }
       },
       "absoluteSize": {
         "width": {
           "offset": 0,
           "persentage": 1,
-          "baseOption": 0,
+          "baseOption": 0
         },
         "height": {
           "offset": 0,
           "persentage": 1,
-          "baseOption": 1,
+          "baseOption": 1
         }
       },
       "contentSize": {
         "width": {
           "offset": 0,
           "persentage": 1,
-          "baseOption": 0,
+          "baseOption": 0
         },
         "height": {
           "offset": 0,
           "persentage": 3,
-          "baseOption": 1,
+          "baseOption": 1
         }
       }
     },
     "styles": {
-      "backgroundColor": "#ffffff00",
+      "backgroundColor": "#ffffff00"
     },
     "subNode": [
       {
@@ -56,7 +56,7 @@
         "nodeType": 1,
         "action": {
           "dataType": 0,
-          "data": "tuniuapp://page?iosPageName=TTNAutoUINormalViewController&parameters=%7B%22templateName%22%3A%22TNChatCSCLoginIndicateViewController%22%7D",
+          "data": "tuniuapp://page?iosPageName=TTNAutoUINormalViewController¶meters=%7B%22templateName%22%3A%22TNChatCSCLoginIndicateViewController%22%7D"
         },
         "layout": {
           "strategy": 0,
@@ -64,24 +64,24 @@
             "x": {
               "offset": 0,
               "persentage": 0,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "y": {
               "offset": 0,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
           },
           "absoluteSize": {
             "width": {
               "offset": 0,
               "persentage": 1,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "height": {
               "offset": 30,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
           }
         },
@@ -89,7 +89,7 @@
           "backgroundColor": "#ffffff",
           "text": {
             "dataType": 0,
-            "data": "登录页面333",
+            "data": "登录页面333"
           },
           "textColor": "#051b28",
           "textFontSize": 14,
@@ -97,7 +97,7 @@
           "strickHeight": 1,
           "strickWidth": 1,
           "textAlignment": 1
-        },
+        }
       },
       {
         "tag": "0",
@@ -105,7 +105,7 @@
         "nodeType": 10,
         "styles": {
           "templateName": "TNAutoSelfDefineFragment1"
-        },
+        }
       },
       {
         "tag": "0",
@@ -113,7 +113,7 @@
         "nodeType": 10,
         "styles": {
           "templateName": "TNAutoSelfDefineFragment2"
-        },
+        }
       }
     ]
   },

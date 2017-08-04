@@ -20,9 +20,9 @@ import java.util.Iterator;
  * Created by tn-ma-l30000048 on 17/7/31.
  */
 
-public class JsonListView {
+public class JsonTableView {
 
-    static RecyclerAdapter<Bean> madapter;
+    public static final String TAG = JsonTableView.class.getSimpleName() + " ";
 
     public static MyRecyclerView build(JSONObject body, Context context, int parentWidth, int parentHeight) {
         System.out.println("----build MyRecyclerView----");
@@ -31,13 +31,13 @@ public class JsonListView {
         JsonBasicWidget.setAbsoluteLayoutParams(JsonHelper.getLayout(body),recyclerView,parentWidth, parentHeight);
 
         RecyclerAdapter<Bean> adapter = new RecyclerAdapter<Bean>(context);
-        adapter.setHeader(JsonHelper.readLocalJson(context, "TNChatContactHead.json"));
-        adapter.setFooter(JsonHelper.readLocalJson(context, "TNChatContactFoot.json"));
-        adapter.setCell(JsonHelper.readLocalJson(context, "TNChatContactCell.json"));
+//        adapter.setHeader(JsonHelper.readLocalJson(context, "TNChatContactHead.json"));
+//        adapter.setFooter(JsonHelper.readLocalJson(context, "TNChatContactFoot.json"));
+//        adapter.setCell(JsonHelper.readLocalJson(context, "TNChatContactCell.json"));
         adapter.addAll(getVirtualData());
 
         recyclerView.setAdapter(adapter);
-        setListStyle(JsonHelper.getStyles(body),recyclerView);
+        setBaseStyle(JsonHelper.getStyles(body), recyclerView, adapter);
 
         recyclerView.setSwipeRefreshColors(0xFF437845, 0xFFE44F98, 0xFF2FAC21);
 //        mRecyclerView.setLayoutManager(new GridLayoutManager(this,2));
@@ -56,7 +56,7 @@ public class JsonListView {
     }
 
 
-    static void setListStyle(JSONObject json, MyRecyclerView rv) {
+    static void setBaseStyle(JSONObject json, MyRecyclerView rv, RecyclerAdapter<Bean> adapter) {
         Iterator<String> keys=json.keys();
         try{
             while(keys.hasNext()){
@@ -69,7 +69,7 @@ public class JsonListView {
                     rv.getRecyclerView().setNestedScrollingEnabled(scrollDisabled == 0);
                 }else if(key.equalsIgnoreCase("tableStyle")){
                     JSONObject tableStyle=json.getJSONObject(key);
-                    setTableStyle(tableStyle, rv);
+                    setTableStyle(tableStyle, rv, adapter);
                 }
             }
         }catch (Exception e){
@@ -77,23 +77,26 @@ public class JsonListView {
         }
     }
 
-    static void setTableStyle(JSONObject tableStyle, MyRecyclerView rv) {
+    static void setTableStyle(JSONObject tableStyle, MyRecyclerView rv, RecyclerAdapter<Bean> adapter) {
         Iterator<String> keys=tableStyle.keys();
         try {
             while (keys.hasNext()) {
                 String key = keys.next();
                 if (key.equalsIgnoreCase("cellTemplateName")) {
                     String cell = tableStyle.getString(key);
-                    if (!TextUtils.isEmpty(cell))
-                        setCell(cell);
+                    if (!TextUtils.isEmpty(cell)) {//当创建cell模板时，需要设置containerHeight用于返回相应cell的高度??
+                        adapter.setCell(JsonHelper.findLocalJsonByName(rv.getContext(), cell));
+                    }
                 } else if (key.equalsIgnoreCase("headView")) {
                     String headView = tableStyle.getString(key);
-                    if (!TextUtils.isEmpty(headView))
-                        setHeader(headView);
+                    if (!TextUtils.isEmpty(headView)) {
+                        adapter.setHeader(JsonHelper.findLocalJsonByName(rv.getContext(), headView));
+                    }
                 } else if (key.equalsIgnoreCase("footView")) {
                     String footView = tableStyle.getString(key);
-                    if (!TextUtils.isEmpty(footView))
-                        setFooter(footView);
+                    if (!TextUtils.isEmpty(footView)) {
+                        adapter.setFooter(JsonHelper.findLocalJsonByName(rv.getContext(), footView));
+                    }
                 } else if (key.equalsIgnoreCase("dataPath")) {
                     JSONArray data = tableStyle.getJSONArray(key);
 //                    setData();
@@ -107,8 +110,7 @@ public class JsonListView {
                     if (tableStyle.getInt(key) == 0)
                         rv.getSwipeRefreshLayout().setEnabled(false);
                     else rv.getSwipeRefreshLayout().setEnabled(true);
-                }
-                else if(key.equalsIgnoreCase("pullDownAction")){
+                } else if (key.equalsIgnoreCase("pullDownAction")) {//不执行太多逻辑
                     String jsCode = tableStyle.getString(key);
                     //        mRecyclerView.setRefreshAction();
                 }
@@ -123,17 +125,6 @@ public class JsonListView {
         }catch (Exception e){
             e.printStackTrace();
         }
-    }
-
-    static void setHeader(String name) {
-    }
-
-    static void setFooter(String name) {
-
-    }
-
-    static void setCell(String name) {
-
     }
 
     public static Bean[] getVirtualData() {

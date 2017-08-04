@@ -10,7 +10,7 @@
       "dataType": 1,
       "data": [
         "content"
-      ],
+      ]
     },
     "layout": {
       "strategy": 0,
@@ -18,24 +18,24 @@
         "x": {
           "offset": 10,
           "persentage": 0,
-          "baseOption": 0,
+          "baseOption": 0
         },
         "y": {
           "offset": 10,
           "persentage": 0,
-          "baseOption": 1,
+          "baseOption": 1
         }
       },
       "absoluteSize": {
         "width": {
           "offset": -20,
           "persentage": 1,
-          "baseOption": 0,
+          "baseOption": 0
         },
         "height": {
           "offset": -10,
           "persentage": 0.5,
-          "baseOption": 2,
+          "baseOption": 2
         }
       },
       "margin": {
@@ -49,7 +49,7 @@
         "bottom": 0,
         "left": 0,
         "right": 0
-      },
+      }
     },
     "styles": {
       "backgroundColor": "#ffffffff",
@@ -65,8 +65,8 @@
         "height": {
           "offset": 2,
           "persentage": 0,
-          "baseOption": 0,
-        },
+          "baseOption": 0
+        }
       },
       "shadowRadius": 2
     },
@@ -81,24 +81,24 @@
             "x": {
               "offset": 10,
               "persentage": 0,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "y": {
               "offset": 10,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
           },
           "absoluteSize": {
             "width": {
               "offset": -20,
               "persentage": 1,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "height": {
               "offset": 0,
               "persentage": 0.37,
-              "baseOption": 2,
+              "baseOption": 2
             }
           },
           "margin": {
@@ -112,13 +112,13 @@
             "bottom": 0,
             "left": 0,
             "right": 0
-          },
+          }
         },
         "styles": {
           "imageSource": {
             "dataType": 0,
-            "data": "group_chat_customer_introduce",
-          },
+            "data": "group_chat_customer_introduce"
+          }
         },
         "subNode": []
       },
@@ -132,24 +132,24 @@
             "x": {
               "offset": 10,
               "persentage": 0,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "y": {
               "offset": 0,
               "persentage": 0.85,
-              "baseOption": 1,
+              "baseOption": 1
             }
           },
           "absoluteSize": {
             "width": {
               "offset": 0,
               "persentage": 0.5,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "height": {
               "offset": 17,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
           },
           "margin": {
@@ -163,17 +163,17 @@
             "bottom": 0,
             "left": 0,
             "right": 0
-          },
+          }
         },
         "styles": {
           "text": {
             "dataType": 0,
-            "data": "欢迎使用在线客服",
+            "data": "欢迎使用在线客服"
           },
           "textColor": "#666666ff",
           "textFontSize": 14,
           "numberOfLines": 1,
-          "strickHeight": 0,
+          "strickHeight": 0
         },
         "subNode": []
       },
@@ -187,24 +187,24 @@
             "x": {
               "offset": 0,
               "persentage": 0.5,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "y": {
               "offset": 0,
               "persentage": 0.85,
-              "baseOption": 1,
+              "baseOption": 1
             }
           },
           "absoluteSize": {
             "width": {
               "offset": -10,
               "persentage": 0.5,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "height": {
               "offset": 17,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
           },
           "margin": {
@@ -218,12 +218,12 @@
             "bottom": 0,
             "left": 0,
             "right": 0
-          },
+          }
         },
         "styles": {
           "text": {
             "dataType": 0,
-            "data": "功能说明 >",
+            "data": "功能说明 >"
           },
           "textColor": "#666666ff",
           "textFontSize": 14,

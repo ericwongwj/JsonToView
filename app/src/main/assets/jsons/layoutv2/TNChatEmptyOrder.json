@@ -13,29 +13,29 @@
         "x": {
           "offset": 0,
           "persentage": 0,
-          "baseOption": 0,
+          "baseOption": 0
         },
         "y": {
           "offset": 64,
           "persentage": 0,
-          "baseOption": 1,
+          "baseOption": 1
         }
       },
       "absoluteSize": {
         "width": {
           "offset": 0,
           "persentage": 1,
-          "baseOption": 0,
+          "baseOption": 0
         },
         "height": {
           "offset": 0,
           "persentage": 1,
-          "baseOption": 1,
+          "baseOption": 1
         }
       }
     },
     "styles": {
-      "backgroundColor": "#ffffff00",
+      "backgroundColor": "#ffffff00"
     },
     "subNode": [
       {
@@ -48,24 +48,24 @@
             "x": {
               "offset": 0,
               "persentage": 0,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "y": {
               "offset": 0,
               "persentage": 0,
-              "baseOption": 1,
+              "baseOption": 1
             }
           },
           "absoluteSize": {
             "width": {
               "offset": 0,
               "persentage": 1,
-              "baseOption": 0,
+              "baseOption": 0
             },
             "height": {
               "offset": 0,
               "persentage": 1,
-              "baseOption": 1,
+              "baseOption": 1
             }
           }
         },
@@ -82,7 +82,7 @@
             "pullUpAction": "{{$page++;}}",
             "headView": "TNChatEmptyOrderHead"
           }
-        },
+        }
       }
     ]
   },
