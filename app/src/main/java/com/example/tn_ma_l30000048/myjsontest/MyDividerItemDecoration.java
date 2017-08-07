@@ -16,11 +16,11 @@ import android.view.View;
 
 public class MyDividerItemDecoration extends RecyclerView.ItemDecoration {
 
+    public static final int HORIZONTAL_LIST = LinearLayoutManager.HORIZONTAL;
+    public static final int VERTICAL_LIST = LinearLayoutManager.VERTICAL;
     private static final int[] ATTRS = new int[]{
             android.R.attr.listDivider
     };
-    public static final int HORIZONTAL_LIST = LinearLayoutManager.HORIZONTAL;
-    public static final int VERTICAL_LIST = LinearLayoutManager.VERTICAL;
     /**
      * 用于绘制间隔样式
      */
@@ -42,11 +42,11 @@ public class MyDividerItemDecoration extends RecyclerView.ItemDecoration {
     @Override
     public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
         // 绘制间隔
-        if (mOrientation == VERTICAL_LIST) {
+        //if (mOrientation == VERTICAL_LIST) {
             drawVertical(c, parent);
-        } else {
+        //} else {
             drawHorizontal(c, parent);
-        }
+        //}
     }
 
     @Override

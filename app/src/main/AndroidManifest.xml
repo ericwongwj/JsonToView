@@ -23,7 +23,8 @@
         <activity android:name=".activity.JsonToViewActivity" />
         <activity android:name=".activity.ShowJsonActivity" />
         <activity android:name=".activity.TestMyListActivity" />
-        <activity android:name=".activity.TestGridActivity"></activity>
+        <activity android:name=".activity.TestGridActivity" />
+        <activity android:name=".activity.TestRelativeActivity"></activity>
     </application>
 
 </manifest>

@@ -1,11 +1,13 @@
 package com.example.tn_ma_l30000048.myjsontest.parser;
 
 import android.content.Context;
+import android.support.v7.widget.GridLayoutManager;
 import android.text.TextUtils;
 import android.util.Log;
-import android.widget.GridLayout;
 
+import com.example.tn_ma_l30000048.myjsontest.model.AbsoluteCalculate;
 import com.example.tn_ma_l30000048.myjsontest.utils.JasonHelper;
+import com.example.tn_ma_l30000048.myjsontest.utils.JsonUtils;
 import com.example.tn_ma_l30000048.myjsontest.view.Bean;
 import com.example.tn_ma_l30000048.myjsontest.view.MyRecyclerView;
 import com.example.tn_ma_l30000048.myjsontest.view.RecyclerAdapter;
@@ -19,12 +21,15 @@ import java.util.Iterator;
  * Created by tn-ma-l30000048 on 17/8/1.
  */
 
-public class JsonGridLayout {
-    public static GridLayout build(JSONObject body, Context context, int parentWidth, int parentHeight) {
-        GridLayout gridLayout = new GridLayout(context);
-        JsonBasicWidget.setAbsoluteLayoutParams(JsonHelper.getLayout(body), gridLayout, parentWidth, parentHeight);
+public class JsonGridView {
+    public static MyRecyclerView build(JSONObject body, Context context, int parentWidth, int parentHeight) {
+//        GridLayout gridLayout = new GridLayout(context);
+//        JsonBasicWidget.setAbsoluteLayoutParams(JsonHelper.getLayout(body), gridLayout, parentWidth, parentHeight);
 
-        return gridLayout;
+        MyRecyclerView gridView = new MyRecyclerView(context);
+        gridView.setLayoutManager(new GridLayoutManager(context, 2));
+//        return gridLayout;
+        return gridView;
     }
 
 
@@ -78,6 +83,9 @@ public class JsonGridLayout {
                     //        mRecyclerView.setLoadMoreAction();
                 } else if (key.equalsIgnoreCase("itemSize")) {
                     JSONObject itemSize = gridStyle.getJSONObject(key);
+                    AbsoluteCalculate width = JsonUtils.decode(itemSize.toString(), AbsoluteCalculate.class);
+                    AbsoluteCalculate height = JsonUtils.decode(itemSize.toString(), AbsoluteCalculate.class);
+
                 } else if (key.equalsIgnoreCase("minimumInteritemSpacing")) {
 
                 } else if (key.equalsIgnoreCase("minimumLineSpacing")) {
@@ -85,6 +93,9 @@ public class JsonGridLayout {
                 } else if (key.equalsIgnoreCase("scrollDisabled")) {
                     int scrollDisabled = gridStyle.getInt(key);
                     rv.getRecyclerView().setNestedScrollingEnabled(scrollDisabled == 0);
+                } else if (key.equalsIgnoreCase("requestId")) {
+                    int reqId = gridStyle.getInt(key);
+
                 }
             }
         } catch (Exception e) {

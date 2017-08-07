@@ -1,9 +1,11 @@
 package com.example.tn_ma_l30000048.myjsontest.parser;
 
 import android.content.Context;
+import android.os.Handler;
 import android.view.View;
-import android.view.ViewGroup;
 
+import com.example.tn_ma_l30000048.myjsontest.R;
+import com.example.tn_ma_l30000048.myjsontest.bean.ContactData;
 import com.example.tn_ma_l30000048.myjsontest.model.HeaderInfo;
 import com.example.tn_ma_l30000048.myjsontest.model.RequestInfo;
 import com.example.tn_ma_l30000048.myjsontest.utils.DensityUtils;
@@ -15,17 +17,16 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
+import java.util.Map;
 
 /**
  * Created by tn-ma-l30000048 on 17/7/28.
- * 这里对应的只能是一个json文件
+ * 这里对应的是一个json文件  只有一个rootNode也就是说只有一个根部局
  */
 
-public class JsonViewRoot {
-    static final String TAG = "JsonViewRoot ";
+public class JsonRoot {
+    static final String TAG = "JsonRoot ";
 
     public String SDKVersion;
     public String ModuleVersion;
@@ -34,16 +35,21 @@ public class JsonViewRoot {
     public double containerHeight;//dp
     public double containerWidth;
     public String registerProperty;
-    public HashMap<String, View> mViewMap = new HashMap<>();//nodeName到子view的map
-    public HashMap<String, Object> mDataMap = new HashMap<>();//request得到的所有数据
-    private View myJsonView;
-    private Context mContext;
 
+    private Context mContext;
+    private ViewWrapper rootViewWrapper;//根布局只会有一个rootNode
+    private Map<String, Object> mDataMap;
+    Runnable contactListRunnable = new Runnable() {
+        @Override
+        public void run() {
+            addListData();
+        }
+    };
     private HeaderInfo mHeaderInfo;
     private List<RequestInfo> mRequestInfoList;
+    private Handler mHandler = new Handler();
 
-
-    public JsonViewRoot(JSONObject jsonObject, Context context, int parentWidth, int parentHeight) {
+    public JsonRoot(JSONObject jsonObject, Context context, int parentWidth, int parentHeight) {
         System.out.println("JSON VIEW ROOT " + parentWidth + " " + parentHeight);
         mContext = context;
         try {
@@ -60,22 +66,22 @@ public class JsonViewRoot {
 
             if (jsonObject.has("headerInfo")) {
                 parseHeaderInfo(jsonObject.getJSONObject("headerInfo"));
-                System.out.println(TAG + mHeaderInfo.toString());
+                System.out.println(TAG + "headerInfo:" + mHeaderInfo.toString());
             }
             if (jsonObject.has("requestInfo")) {
                 parseRequestInfo(jsonObject.getJSONArray("requestInfo"));
-                System.out.println(TAG + mRequestInfoList.get(0).toString());
             }
 
+            //渲染界面  主要问题在于 如果只是一个控件
             JSONObject rootNode = jsonObject.getJSONObject("rootNode");
-            if (rootNode.getInt("nodeType") == 4)
-                myJsonView = ViewGroupFactory.build(rootNode, context, parentWidth, (int) containerHeight);
-            else if (rootNode.getInt("nodeType") == 0)
-                myJsonView = ViewGroupFactory.build(rootNode, context, parentWidth, (int) containerHeight);
-            else
-                myJsonView = ViewFactory.build(rootNode, context, parentWidth, (int) containerHeight);
-            initViewMap();
-
+            ViewGroupWrapper virtualRoot = new ViewGroupWrapper(context);
+            if (rootNode.getInt("nodeType") == 4 || rootNode.getInt("nodeType") == 0) {
+                rootViewWrapper = ViewGroupFactory.build(virtualRoot, rootNode, parentWidth, (int) containerHeight);
+                rootViewWrapper.setDataMap(mDataMap);
+            } else {
+                rootViewWrapper = ViewFactory.build(rootNode, virtualRoot, parentWidth, (int) containerHeight);
+                rootViewWrapper.setDataMap(mDataMap);
+            }
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -108,6 +114,7 @@ public class JsonViewRoot {
 
     //array，特殊场景太多，所以单一请求无法满足需求。当前所有请求处理并行发送；
     //下拉刷新会将重新发送所有请求；上拉加载只会发送第一个请求；
+    //得到请求路径就直接请求网络？  编码阶段先添加假数据  如何考虑
     private void parseRequestInfo(JSONArray jsonArray) throws JSONException {
         mRequestInfoList = new ArrayList<>();
         if (!jsonArray.isNull(0)) {
@@ -137,8 +144,10 @@ public class JsonViewRoot {
                 index++;
                 mRequestInfoList.add(requestInfo);
             }
+            mDataMap = new HashMap<>();
+            //TODO: 去请求界面（列表的第一个？）
+            mHandler.postDelayed(contactListRunnable, 1500);
         }
-
     }
 
     private void parseJSContext(JSONArray jsonArray) throws JSONException {
@@ -178,39 +187,28 @@ public class JsonViewRoot {
         } else containerWidth = parentWidth;
     }
 
-    //recyclerview的处理？三个类型的cell？
-    public void initViewMap() {
-        Queue<View> queue = new LinkedList<>();
-        queue.offer(myJsonView);
-        System.out.println("initViewMap");
-        while (!queue.isEmpty()) {
-            View v = queue.poll();
-            if (v.getTag() == null)
-                continue;
-            System.out.println("nodeName:" + v.getTag() + " " + v.getClass().getSimpleName());
-            mViewMap.put(v.getTag().toString(), v);
-            if (v instanceof ViewGroup) {
-                for (int i = 0; i < ((ViewGroup) v).getChildCount(); i++) {
-                    View subView = ((ViewGroup) v).getChildAt(i);
-                    queue.offer(subView);
-                }
-            }
+    private void setData() {//遍历view树来set数据
+
+    }
+
+    //    ========test fake data============
+    void addListData() {
+        List<ContactData> contactData = new ArrayList<>();
+        int[] picIds = {R.drawable.pic1, R.drawable.pic2, R.drawable.pic3};
+        for (int i = -0; i < 20; i++) {
+            ContactData data = new ContactData("联系人" + i, picIds[i % 3]);
+            contactData.add(data);
         }
+        mDataMap.put("recentContactList", contactData);
+        System.out.println(mDataMap.get("recentContactList").getClass().getSimpleName());
     }
 
-    //需要自己根据nodeName返回相应的view 并且调用者应该知道view的具体类型
-    public View findViewByNodeName(String nodeName) {
-        return findViewByNodeName(nodeName, null);
-    }
-
-    public View findViewByNodeName(String nodeName, Class<? extends View> viewClazz) {
-        if (viewClazz == null)
-            return mViewMap.get(nodeName);
-        return viewClazz.cast(mViewMap.get(nodeName));
+    public ViewWrapper getRootViewWrapper() {
+        return rootViewWrapper;
     }
 
     public View getJsonView() {
-        return myJsonView;
+        return rootViewWrapper.getJsonView();
     }
 
     public HeaderInfo getHeaderInfo() {
@@ -220,4 +218,6 @@ public class JsonViewRoot {
     public List<RequestInfo> getRequestInfo() {
         return mRequestInfoList;
     }
+
+
 }

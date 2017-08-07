@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.example.tn_ma_l30000048.myjsontest.R;
 import com.example.tn_ma_l30000048.myjsontest.parser.JsonHelper;
-import com.example.tn_ma_l30000048.myjsontest.parser.JsonViewRoot;
+import com.example.tn_ma_l30000048.myjsontest.parser.JsonRoot;
 import com.example.tn_ma_l30000048.myjsontest.view.Action;
 import com.example.tn_ma_l30000048.myjsontest.view.Bean;
 import com.example.tn_ma_l30000048.myjsontest.view.ContactListAdapter;
@@ -45,7 +45,7 @@ public class TestMyListActivity extends AppCompatActivity {
 
     void testMyList() {
         JSONObject jsonObject = JsonHelper.readLocalJson(this, "TNChatContactList.json");
-        JsonViewRoot myRoot = new JsonViewRoot(jsonObject, this, rootContainer.getWidth(), rootContainer.getHeight());
+        JsonRoot myRoot = new JsonRoot(jsonObject, this, rootContainer.getWidth(), rootContainer.getHeight());
         rootContainer.addView(myRoot.getJsonView());
     }
 

@@ -13,7 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.tn_ma_l30000048.myjsontest.R;
-import com.example.tn_ma_l30000048.myjsontest.parser.JsonViewRoot;
+import com.example.tn_ma_l30000048.myjsontest.parser.JsonRoot;
 import com.example.tn_ma_l30000048.myjsontest.utils.JasonHelper;
 import com.example.tn_ma_l30000048.myjsontest.utils.ViewUtils;
 
@@ -32,15 +32,15 @@ public class TestJsonViewActivity extends AppCompatActivity {
         container.setBackgroundColor(Color.CYAN);
 
         JSONObject jsonObject=generateTextView();
-//        TextView tv1=(TextView) ViewFactory.build(jsonObject,this,container.getWidth(),container.getHeight());
+//        TextView tv1=(TextView) ViewFactory.buildViewGroup(jsonObject,this,container.getWidth(),container.getHeight());
 //        container.addView(tv1);
 //
         JSONObject jsonObject1=generateImageView();
-//        ImageView iv1=(ImageView)ViewFactory.build(jsonObject1,this,container.getWidth(),container.getHeight());
+//        ImageView iv1=(ImageView)ViewFactory.buildViewGroup(jsonObject1,this,container.getWidth(),container.getHeight());
 //        container.addView(iv1);
 
         JSONObject jsonObject2=generateListView();
-//        RecyclerView rv= (RecyclerView) ViewFactory.build(jsonObject2,this,container.getWidth(),container.getHeight());
+//        RecyclerView rv= (RecyclerView) ViewFactory.buildViewGroup(jsonObject2,this,container.getWidth(),container.getHeight());
 
 //        container.addView(rv);
 
@@ -50,7 +50,7 @@ public class TestJsonViewActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable(){
             public void run() {
                 System.out.println("w="+container.getWidth()+"h="+container.getHeight());
-                JsonViewRoot myRoot = new JsonViewRoot(loadFailCard, TestJsonViewActivity.this, container.getWidth(), container.getHeight());
+                JsonRoot myRoot = new JsonRoot(loadFailCard, TestJsonViewActivity.this, container.getWidth(), container.getHeight());
                 container.addView(myRoot.getJsonView());
 
             }

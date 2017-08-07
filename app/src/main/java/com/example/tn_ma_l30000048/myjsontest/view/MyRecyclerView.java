@@ -27,6 +27,7 @@ public class MyRecyclerView extends FrameLayout {
     private RecyclerAdapter mAdapter;
     private boolean loadMoreAble;
 
+
     public MyRecyclerView(@NonNull Context context) {
         this(context, null);
     }

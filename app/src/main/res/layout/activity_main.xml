@@ -30,10 +30,10 @@
             android:text="Test List" />
 
         <Button
-            android:id="@+id/btn_test_new_list"
+            android:id="@+id/btn_test_relative"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Testnew List" />
+            android:text="testRelative" />
 
         <Button
             android:id="@+id/btn_my_list"

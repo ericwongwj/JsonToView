@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.tn_ma_l30000048.myjsontest.parser.JsonViewRoot;
+import com.example.tn_ma_l30000048.myjsontest.parser.JsonRoot;
 
 /**
  * Created by tn-ma-l30000048 on 17/8/2.
@@ -13,7 +13,7 @@ import com.example.tn_ma_l30000048.myjsontest.parser.JsonViewRoot;
 public class BaseViewHolder<T> extends RecyclerView.ViewHolder {
 
     View mItemView;
-    JsonViewRoot mViewRoot;
+    JsonRoot mViewRoot;
 
     public BaseViewHolder(View itemView) {
         super(itemView);
@@ -21,7 +21,7 @@ public class BaseViewHolder<T> extends RecyclerView.ViewHolder {
         this.mItemView = itemView;
     }
 
-    public BaseViewHolder(JsonViewRoot viewRoot) {
+    public BaseViewHolder(JsonRoot viewRoot) {
         super(viewRoot.getJsonView());
         System.out.println("new base view holder");
         this.mViewRoot = viewRoot;
@@ -31,7 +31,7 @@ public class BaseViewHolder<T> extends RecyclerView.ViewHolder {
     public <T extends View> T findCellViewByNodeName(String name) {
         T subView = null;
         if (mItemView instanceof ViewGroup) {
-            subView = (T) mViewRoot.findViewByNodeName(name);
+//            subView = (T) mViewRoot.getRootViewWrapper().findViewByNodeName(name);
         }
         return subView;
     }

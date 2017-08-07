@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btn_test_layout).setOnClickListener(this);
         findViewById(R.id.btn_test_view).setOnClickListener(this);
         findViewById(R.id.btn_test_list).setOnClickListener(this);
-        findViewById(R.id.btn_test_new_list).setOnClickListener(this);
+        findViewById(R.id.btn_test_relative).setOnClickListener(this);
         findViewById(R.id.btn_grid).setOnClickListener(this);
         findViewById(R.id.btn_my_list).setOnClickListener(this);
         lv=(ListView)findViewById(R.id.main_lv);
@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         adapter=new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,jsonFiles);
         lv.setAdapter(adapter);
+
     }
 
     String[] readLayoutAssets(List<String> list){
@@ -102,10 +103,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_test_list:
                 startActivity(new Intent(MainActivity.this,TestListActivity.class));
                 break;
-            case R.id.btn_test_new_list:
-                Intent intent = new Intent(MainActivity.this, TestListActivity.class);
-                intent.putExtra("version", "new");
-                startActivity(intent);
+            case R.id.btn_test_relative:
+                startActivity(new Intent(MainActivity.this, TestRelativeActivity.class));
                 break;
             case R.id.btn_my_list:
                 startActivity(new Intent(MainActivity.this, TestMyListActivity.class));

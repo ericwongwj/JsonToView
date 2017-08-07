@@ -2,6 +2,7 @@ package com.example.tn_ma_l30000048.myjsontest.view;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +11,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.tn_ma_l30000048.myjsontest.R;
-import com.example.tn_ma_l30000048.myjsontest.parser.JsonViewRoot;
+import com.example.tn_ma_l30000048.myjsontest.parser.JsonRoot;
 
-import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -25,9 +26,11 @@ import java.util.List;
 
 public class RecyclerAdapter<T> extends RecyclerView.Adapter<BaseViewHolder<T>> {
 
-    public static final int HEADER_TYPE = 111;
-    public static final int FOOTER_TYPE = 222;
-    public static final int STATUS_TYPE = 333;
+    private static final int HEADER_TYPE = 111;
+    private static final int FOOTER_TYPE = 222;
+    private static final int STATUS_TYPE = 333;
+    private static final int INSERT_TYPE = 444;
+
     private static final String TAG = "RecyclerAdapter";
     public boolean isShowNoMore = false;   //停止加载
     public boolean loadMoreAble = false;   //是否可加载更多
@@ -41,9 +44,13 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<BaseViewHolder<T>> 
     private List<T> mData = new ArrayList<>();
     private JSONObject mHeaderJson;
     private JSONObject mFooterJson;
-    private JSONObject mCellJson;//暂时定义为一个ViewGroup且cell相同 cell未必相同
-    private JSONArray mInsertViews;
+    private JSONObject mCellJson;
+    private List<JSONObject> mInsertJsons;
+    private SparseArray<JSONObject> mInsertRows;
+    private int rowsIndex = 0;
+
     private Context mContext;
+
 
     private OnItemClickListener onItemClickListener;
 
@@ -71,19 +78,19 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<BaseViewHolder<T>> 
     @Override
     public BaseViewHolder<T> onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == HEADER_TYPE) {
-            System.out.println("create header holder");
-            JsonViewRoot header = new JsonViewRoot(mHeaderJson, mContext, parent.getWidth(), parent.getHeight());
+            JsonRoot header = new JsonRoot(mHeaderJson, mContext, parent.getWidth(), parent.getHeight());
             return new BaseViewHolder<>(header.getJsonView());
         } else if (viewType == FOOTER_TYPE) {
-            System.out.println("create footer holder");
-            JsonViewRoot footer = new JsonViewRoot(mFooterJson, mContext, parent.getWidth(), parent.getHeight());
+            JsonRoot footer = new JsonRoot(mFooterJson, mContext, parent.getWidth(), parent.getHeight());
             return new BaseViewHolder<>(footer.getJsonView());
         } else if (viewType == STATUS_TYPE) {
-            System.out.println("create status holder");
             return new BaseViewHolder<>(mStatusView);
+        } else if (viewType == INSERT_TYPE) {
+            System.out.println("create insert holder");
+            JsonRoot insertView = new JsonRoot(mInsertJsons.get(rowsIndex++), mContext, parent.getWidth(), parent.getHeight());
+            return new BaseViewHolder<>(insertView.getJsonView());
         } else {
-            System.out.println("create cell holder");
-            JsonViewRoot cell = new JsonViewRoot(mCellJson, mContext, parent.getWidth(), parent.getHeight());
+            JsonRoot cell = new JsonRoot(mCellJson, mContext, parent.getWidth(), parent.getHeight());
             return new BaseViewHolder<>(cell.getJsonView());
         }
     }
@@ -127,6 +134,7 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<BaseViewHolder<T>> 
         if (hasHeader && position == 0) return HEADER_TYPE;
         if (hasFooter && position == mViewCount - 2) return FOOTER_TYPE;
         if (position == mViewCount - 1) return STATUS_TYPE;
+        if (mInsertRows.get(position) != null) return INSERT_TYPE;
         return super.getItemViewType(position);//普通的cell目前设为统一的
     }
 
@@ -181,9 +189,20 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<BaseViewHolder<T>> 
         mViewCount++;
     }
 
-    public void setInsertViews(JSONArray insertViews) {
-        mInsertViews = insertViews;
-        mViewCount += insertViews.length();
+    public void setInsertViews(List<JSONObject> insertViews) {
+        mInsertRows = new SparseArray<>();
+        mInsertJsons = insertViews;
+        for (JSONObject insertView : insertViews) {
+            int row = 0;
+            try {
+                row = insertView.getInt("row");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            mInsertRows.put(row, insertView);//这里put进去的应该是得到的insertView界面的json
+
+        }
+        mViewCount += insertViews.size();
     }
 
 

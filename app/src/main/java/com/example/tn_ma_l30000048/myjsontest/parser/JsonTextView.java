@@ -22,10 +22,15 @@ public class JsonTextView {
 
     static final String TAG = "JsonTextView";
 
+    public static ViewWrapper build(JSONObject body, ViewGroupWrapper parent, int parentWidth, int parentHeight) {
+        TextView textView = buildTextView(body, parent.getContext(), parentWidth, parentHeight);
+        return new ViewWrapper(textView, parent);
+    }
+
     //暂时先不判断json是否有效
-    public static TextView build(JSONObject body, Context context, int parentWidth, int parentHeight){
+    public static TextView buildTextView(JSONObject body, Context context, int parentWidth, int parentHeight) {
         TextView textView=new TextView(context);
-        System.out.println("----build textView----");
+        System.out.println("----buildViewGroup textView----");
         JsonBasicWidget.setBasic(body, textView);
         JsonBasicWidget.setAbsoluteLayoutParams(JsonHelper.getLayout(body),textView,parentWidth,parentHeight);
         setTextStyle(JsonHelper.getStyles(body),textView);
@@ -84,11 +89,12 @@ public class JsonTextView {
                         tv.setText(str);
                     }else if(text.getInt("dataType")==1){
                         JSONArray jsonArray=text.getJSONArray("data");
+                        //这里的数据从网络请求到的数据
                         List<String> strs=new ArrayList<>();
                         for(int i=0;!jsonArray.isNull(i);i++){
                             strs.add(jsonArray.getString(i));
                         }
-                        tv.setText(strs.get(0));
+                        tv.setText("data:" + strs.get(0));
                     }
                 }
             }

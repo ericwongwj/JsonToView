@@ -29,7 +29,7 @@ public class ViewUtils {
 
     /**
      * Generate a value suitable for use in setId.
-     * This value will not collide with ID values generated at build time by aapt for R.id.
+     * This value will not collide with ID values generated at buildViewGroup time by aapt for R.id.
      *
      * @return a generated ID value
      */

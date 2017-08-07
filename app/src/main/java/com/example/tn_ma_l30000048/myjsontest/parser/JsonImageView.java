@@ -21,10 +21,14 @@ import java.util.List;
 
 public class JsonImageView {
 
+    public static ViewWrapper build(JSONObject body, ViewGroupWrapper parent, int parentWidth, int parentHeight) {
+        ImageView imageView = buildImageView(body, parent.getContext(), parentWidth, parentHeight);
+        return new ViewWrapper(imageView, parent);
+    }
 
-    public static ImageView build(JSONObject body, Context context, int parentWidth, int parentHeight){
+    public static ImageView buildImageView(JSONObject body, Context context, int parentWidth, int parentHeight) {
         ImageView imageView=new ImageView(context);
-        System.out.println("----build ImageView----");
+        System.out.println("----buildViewGroup ImageView----");
         JsonBasicWidget.setBasic(body, imageView);
         JsonBasicWidget.setAbsoluteLayoutParams(JsonHelper.getLayout(body),imageView,parentWidth,parentHeight);
         int picid = setImageStyle(JsonHelper.getStyles(body), imageView);
@@ -52,11 +56,11 @@ public class JsonImageView {
                     setImageScaleType(iv,contentMode);
                 }else if(key.equalsIgnoreCase("imageSource")){
                     JSONObject imageRes = json.getJSONObject(key);
-                    if (imageRes.getInt("dataType") == 0) {
+                    if (imageRes.getInt("dataType") == 0) {//直接可以使用的数据源
                         String src = imageRes.getString("data");//TODO
                         picId = R.drawable.placeholder;
 //                        Glide.with(iv.getContext()).load(R.drawable.placeholder).asBitmap().into(iv);
-                    } else if (imageRes.getInt("dataType") == 1) {
+                    } else if (imageRes.getInt("dataType") == 1) {//请求到的数据中的key list
                         JSONArray jsonArray = imageRes.getJSONArray("data");
                         List<String> srcs=new ArrayList<>();
                         for(int i=0;!jsonArray.isNull(i);i++){

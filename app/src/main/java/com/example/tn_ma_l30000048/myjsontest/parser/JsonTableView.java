@@ -3,7 +3,6 @@ package com.example.tn_ma_l30000048.myjsontest.parser;
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.example.tn_ma_l30000048.myjsontest.R;
 import com.example.tn_ma_l30000048.myjsontest.utils.JasonHelper;
@@ -12,9 +11,12 @@ import com.example.tn_ma_l30000048.myjsontest.view.MyRecyclerView;
 import com.example.tn_ma_l30000048.myjsontest.view.RecyclerAdapter;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by tn-ma-l30000048 on 17/7/31.
@@ -24,8 +26,13 @@ public class JsonTableView {
 
     public static final String TAG = JsonTableView.class.getSimpleName() + " ";
 
-    public static MyRecyclerView build(JSONObject body, Context context, int parentWidth, int parentHeight) {
-        System.out.println("----build MyRecyclerView----");
+    public static ViewWrapper build(JSONObject body, ViewGroupWrapper parent, int parentWidth, int parentHeight) {
+        MyRecyclerView myRecyclerView = buildTableView(body, parent.getContext(), parentWidth, parentHeight);
+        return new ViewWrapper(myRecyclerView, parent);
+    }
+
+    public static MyRecyclerView buildTableView(JSONObject body, Context context, int parentWidth, int parentHeight) {
+        System.out.println("----buildViewGroup MyRecyclerView----");
         final MyRecyclerView recyclerView = new MyRecyclerView(context);
         JsonBasicWidget.setBasic(body, recyclerView);
         JsonBasicWidget.setAbsoluteLayoutParams(JsonHelper.getLayout(body),recyclerView,parentWidth, parentHeight);
@@ -73,7 +80,7 @@ public class JsonTableView {
                 }
             }
         }catch (Exception e){
-            Log.e(e.getClass().getSimpleName(),e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -82,7 +89,7 @@ public class JsonTableView {
         try {
             while (keys.hasNext()) {
                 String key = keys.next();
-                if (key.equalsIgnoreCase("cellTemplateName")) {
+                if (key.equalsIgnoreCase("cellTemplateName")) {//这里有本地/网络IO
                     String cell = tableStyle.getString(key);
                     if (!TextUtils.isEmpty(cell)) {//当创建cell模板时，需要设置containerHeight用于返回相应cell的高度??
                         adapter.setCell(JsonHelper.findLocalJsonByName(rv.getContext(), cell));
@@ -90,16 +97,28 @@ public class JsonTableView {
                 } else if (key.equalsIgnoreCase("headView")) {
                     String headView = tableStyle.getString(key);
                     if (!TextUtils.isEmpty(headView)) {
-                        adapter.setHeader(JsonHelper.findLocalJsonByName(rv.getContext(), headView));
+                        JSONObject headJson = JsonHelper.findLocalJsonByName(rv.getContext(), headView);//这一步耗时
+                        adapter.setHeader(headJson);
                     }
                 } else if (key.equalsIgnoreCase("footView")) {
                     String footView = tableStyle.getString(key);
                     if (!TextUtils.isEmpty(footView)) {
-                        adapter.setFooter(JsonHelper.findLocalJsonByName(rv.getContext(), footView));
+                        JSONObject footJson = JsonHelper.findLocalJsonByName(rv.getContext(), footView);//耗时
+                        adapter.setFooter(footJson);
                     }
+                } else if (key.equalsIgnoreCase("insertViews")) {//改变的时候 notifydatasetchange
+                    JSONArray insertViews = tableStyle.getJSONArray(key);
+                    List<JSONObject> inserViews = new ArrayList<>();
+                    for (int i = 0; i < insertViews.length(); i++) {
+                        JSONObject insertView = insertViews.getJSONObject(i);
+                        String templateName = insertView.getString("templateName");
+                    }
+                    adapter.setInsertViews(inserViews);
                 } else if (key.equalsIgnoreCase("dataPath")) {
                     JSONArray data = tableStyle.getJSONArray(key);
-//                    setData();
+                    for (int i = 0; i < data.length(); i++)
+                        System.out.println("dataPath" + i + " " + data.getString(i));
+
                 }
                 else if(key.equalsIgnoreCase("enablePullUpToLoadMore")){
                     if (tableStyle.getInt(key) == 0)
@@ -118,11 +137,8 @@ public class JsonTableView {
                     String jsCode = tableStyle.getString(key);
                     //        mRecyclerView.setLoadMoreAction();
                 }
-                else if(key.equalsIgnoreCase("insertViews")){
-                    JSONArray inserViews=tableStyle.getJSONArray(key);
-                }
             }
-        }catch (Exception e){
+        } catch (JSONException e) {
             e.printStackTrace();
         }
     }
