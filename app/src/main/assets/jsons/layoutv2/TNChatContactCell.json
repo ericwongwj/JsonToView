@@ -4,7 +4,7 @@
   "containerType": 0,
   "containerHeight": "55",
   "rootNode": {
-    "tag": "0",
+    "tag": "1",
     "nodeName": "view",
     "nodeType": 4,
     "action": {
@@ -43,7 +43,7 @@
     },
     "subNode": [
       {
-        "tag": "0",
+        "tag": "1",
         "nodeName": "avatar",
         "nodeType": 2,
         "layout": {
@@ -85,7 +85,7 @@
         }
       },
       {
-        "tag": "0",
+        "tag": "2",
         "nodeName": "contactName",
         "nodeType": 1,
         "layout": {

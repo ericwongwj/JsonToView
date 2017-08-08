@@ -21,15 +21,15 @@ public class ViewGroupWrapper extends ViewWrapper {
 
     protected Map<String, View> mViewNameMap = new HashMap<>();//nodeName到子view的map
     protected SparseArray<View> mViewTagMap = new SparseArray<>();//tag到子view的map
-    protected List<ViewWrapper> subViewWrappers = new ArrayList<>();
 
-    public ViewGroupWrapper(Context context) {
-        super(context);//for virtual node
+    protected List<ViewWrapper> mSubViewWrappers = new ArrayList<>();
+
+    ViewGroupWrapper(Context context) {
+        super(context);
     }
 
-    //每个viewGroup都有自己的viewMap
-    public ViewGroupWrapper(View v, ViewGroupWrapper parent) {
-        super(v, parent);
+    ViewGroupWrapper(View v) {
+        super(v);
         initViewMap();
     }
 
@@ -41,14 +41,14 @@ public class ViewGroupWrapper extends ViewWrapper {
 
         Queue<View> queue = new LinkedList<>();
         queue.offer(jsonView);
-        System.out.println("initViewMap");
+//        System.out.println("initViewMap");
         while (!queue.isEmpty()) {
             View v = queue.poll();
             if (v.getTag() == null)
                 continue;
             mViewTagMap.put(v.getId(), v);
             mViewNameMap.put(v.getTag().toString(), v);
-            System.out.println("nodeName:" + v.getTag() + " " + v.getClass().getSimpleName());
+//            System.out.println("nodeName:" + v.getTag() + " " + v.getClass().getSimpleName());
             if (v instanceof ViewGroup) {
                 for (int i = 0; i < ((ViewGroup) v).getChildCount(); i++) {
                     View subView = ((ViewGroup) v).getChildAt(i);
@@ -80,7 +80,7 @@ public class ViewGroupWrapper extends ViewWrapper {
     }
 
     public void appendView(ViewWrapper vm) {
-        subViewWrappers.add(vm);
+        mSubViewWrappers.add(vm);
     }
 
 

@@ -14,7 +14,7 @@ public class JsonLoadingView {
     public static View build(JSONObject body, Context context, int parentWidth, int parentHeight) {
         View recyclerView = new View(context);
         ProgressDialog pd = ProgressDialog.show(context, "this is pd", "loading...");
-        JsonBasicWidget.setAbsoluteLayoutParams(JsonHelper.getLayout(body), recyclerView, parentWidth, parentHeight);
+        JsonViewUtils.setAbsoluteLayoutParams(JsonHelper.getLayout(body), recyclerView, parentWidth, parentHeight);
 
         pd.dismiss();
         return recyclerView;

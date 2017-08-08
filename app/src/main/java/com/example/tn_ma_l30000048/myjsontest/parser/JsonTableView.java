@@ -28,14 +28,14 @@ public class JsonTableView {
 
     public static ViewWrapper build(JSONObject body, ViewGroupWrapper parent, int parentWidth, int parentHeight) {
         MyRecyclerView myRecyclerView = buildTableView(body, parent.getContext(), parentWidth, parentHeight);
-        return new ViewWrapper(myRecyclerView, parent);
+        return new ViewWrapper(myRecyclerView);
     }
 
     public static MyRecyclerView buildTableView(JSONObject body, Context context, int parentWidth, int parentHeight) {
         System.out.println("----buildViewGroup MyRecyclerView----");
         final MyRecyclerView recyclerView = new MyRecyclerView(context);
-        JsonBasicWidget.setBasic(body, recyclerView);
-        JsonBasicWidget.setAbsoluteLayoutParams(JsonHelper.getLayout(body),recyclerView,parentWidth, parentHeight);
+        JsonViewUtils.setBasic(body, recyclerView, new ViewWrapper());
+        JsonViewUtils.setAbsoluteLayoutParams(JsonHelper.getLayout(body), recyclerView, parentWidth, parentHeight);
 
         RecyclerAdapter<Bean> adapter = new RecyclerAdapter<Bean>(context);
 //        adapter.setHeader(JsonHelper.readLocalJson(context, "TNChatContactHead.json"));

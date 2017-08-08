@@ -24,7 +24,7 @@ import java.util.Iterator;
 public class JsonGridView {
     public static MyRecyclerView build(JSONObject body, Context context, int parentWidth, int parentHeight) {
 //        GridLayout gridLayout = new GridLayout(context);
-//        JsonBasicWidget.setAbsoluteLayoutParams(JsonHelper.getLayout(body), gridLayout, parentWidth, parentHeight);
+//        JsonViewUtils.setAbsoluteLayoutParams(JsonHelper.getLayout(body), gridLayout, parentWidth, parentHeight);
 
         MyRecyclerView gridView = new MyRecyclerView(context);
         gridView.setLayoutManager(new GridLayoutManager(context, 2));

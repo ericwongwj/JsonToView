@@ -1,19 +1,15 @@
 package com.example.tn_ma_l30000048.myjsontest.parser;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.util.Log;
 import android.widget.ImageView;
 
-import com.example.tn_ma_l30000048.myjsontest.R;
+import com.example.tn_ma_l30000048.myjsontest.model.AtomicData;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 /**
  * Created by tn-ma-l30000048 on 17/7/31.
@@ -21,25 +17,26 @@ import java.util.List;
 
 public class JsonImageView {
 
-    public static ViewWrapper build(JSONObject body, ViewGroupWrapper parent, int parentWidth, int parentHeight) {
-        ImageView imageView = buildImageView(body, parent.getContext(), parentWidth, parentHeight);
-        return new ViewWrapper(imageView, parent);
+    public static ViewWrapper build(JSONObject body, ViewGroupWrapper jsonRoot, int parentWidth, int parentHeight) {
+        ViewWrapper viewWrapper = new ViewWrapper(jsonRoot.getContext());
+        ImageView textView = buildImageView(body, viewWrapper, parentWidth, parentHeight);
+        JsonViewUtils.setBasic(body, textView, viewWrapper);
+        viewWrapper.setJsonView(textView);
+        return viewWrapper;
     }
 
-    public static ImageView buildImageView(JSONObject body, Context context, int parentWidth, int parentHeight) {
-        ImageView imageView=new ImageView(context);
-        System.out.println("----buildViewGroup ImageView----");
-        JsonBasicWidget.setBasic(body, imageView);
-        JsonBasicWidget.setAbsoluteLayoutParams(JsonHelper.getLayout(body),imageView,parentWidth,parentHeight);
-        int picid = setImageStyle(JsonHelper.getStyles(body), imageView);
-        imageView.setImageResource(picid);
+    public static ImageView buildImageView(JSONObject body, ViewWrapper viewWrapper, int parentWidth, int parentHeight) {
+        ImageView imageView = new ImageView(viewWrapper.getContext());
+        System.out.println("----build ImageView----");
+        JsonViewUtils.setBasic(body, imageView, viewWrapper);
+        JsonViewUtils.setAbsoluteLayoutParams(JsonHelper.getLayout(body), imageView, parentWidth, parentHeight);
+        setImageStyle(body, imageView, viewWrapper);
         return imageView;
     }
 
     //这个之后要修改
-    static int setImageStyle(JSONObject json, ImageView iv) {
+    static void setImageStyle(JSONObject json, ImageView iv, ViewWrapper viewWrapper) {
         Iterator<String> keys=json.keys();
-        int picId = -1;
         try{
             while(keys.hasNext()){
                 String key=keys.next();
@@ -55,27 +52,16 @@ public class JsonImageView {
                     int contentMode = json.getInt(key);
                     setImageScaleType(iv,contentMode);
                 }else if(key.equalsIgnoreCase("imageSource")){
-                    JSONObject imageRes = json.getJSONObject(key);
-                    if (imageRes.getInt("dataType") == 0) {//直接可以使用的数据源
-                        String src = imageRes.getString("data");//TODO
-                        picId = R.drawable.placeholder;
-//                        Glide.with(iv.getContext()).load(R.drawable.placeholder).asBitmap().into(iv);
-                    } else if (imageRes.getInt("dataType") == 1) {//请求到的数据中的key list
-                        JSONArray jsonArray = imageRes.getJSONArray("data");
-                        List<String> srcs=new ArrayList<>();
-                        for(int i=0;!jsonArray.isNull(i);i++){
-                            srcs.add(jsonArray.getString(i));
-                        }
-                        picId = R.drawable.icon;
-//                        Glide.with(iv.getContext()).load(R.drawable.icon).asBitmap().into(iv);
-                    }
+                    AtomicData dataSource = new AtomicData();
+                    JSONObject imgSrc = json.getJSONObject(key);
+                    JsonViewUtils.setDataSource(imgSrc, dataSource);
+                    viewWrapper.setDataSource(dataSource);
                 }
             }
         }catch (Exception e){
             Log.e(e.getClass().getSimpleName(),e.getMessage());
             e.printStackTrace();
         }
-        return picId;
     }
 
     //    0:  UIViewContentModeScaleToFill, //fitXY

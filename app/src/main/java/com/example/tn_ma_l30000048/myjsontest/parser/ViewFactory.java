@@ -12,25 +12,24 @@ import org.json.JSONObject;
  */
 
 public class ViewFactory {
-    static final String TAG = "ViewFactory ";
 
-    public static ViewWrapper build(JSONObject body, ViewGroupWrapper parent, int parentWidth, int parentHeight) {
+    public static ViewWrapper build(JSONObject body, ViewGroupWrapper jsonRoot, int parentWidth, int parentHeight) {
         if(body.has("nodeType")){
             try {
                 Integer type=(Integer) body.get("nodeType");
                 switch (type){
                     case Constants.TYPE_TEXTVIEW:
-                        return JsonTextView.build(body, parent, parentWidth, parentHeight);
+                        return JsonTextView.build(body, jsonRoot, parentWidth, parentHeight);
                     case Constants.TYPE_IMAGE:
-                        return JsonImageView.build(body, parent, parentWidth, parentHeight);
+                        return JsonImageView.build(body, jsonRoot, parentWidth, parentHeight);
                     case Constants.TYPE_VIEW:
-                        return buildView(body, parent, parentWidth, parentHeight);
+                        return buildLine(body, jsonRoot, parentWidth, parentHeight);
 //                    case Constants.TYPE_INDICATOR:
 //                        return JsonLoadingView.build(body, context, parentWidth, parentHeight);
 //                    case Constants.TYPE_RICHTEXT:
 //                        return JsonTextView.buildTextView(body, context, parentWidth, parentHeight);
                     case Constants.TYPE_TABLEVIEW:
-                        return JsonTableView.build(body, parent, parentWidth, parentHeight);
+                        return JsonTableView.build(body, jsonRoot, parentWidth, parentHeight);
 //                    case Constants.TYPE_SCROLLVIEW:
 //                        System.out.println(TAG + "scroll view");
 //                    case Constants.TYPE_COLLECTIONVIEW:
@@ -45,17 +44,18 @@ public class ViewFactory {
         return null;
     }
 
-    public static ViewWrapper buildView(JSONObject body, ViewGroupWrapper parent, int parentWidth, int parentHeight) {
+    public static ViewWrapper buildLine(JSONObject body, ViewGroupWrapper jsonRoot, int parentWidth, int parentHeight) {
 
         //如果是一个layout
         if (body.has("subNode"))
-            return ViewGroupFactory.build(parent, body, parentWidth, parentHeight);
+            return ViewGroupFactory.build(body, jsonRoot, parentWidth, parentHeight);
 
-        System.out.println("----buildView view-----");
+        System.out.println("----buildLine view-----");
 
-        View view = new View(parent.getContext());
-        JsonBasicWidget.setBasic(body, view);
-        JsonBasicWidget.setAbsoluteLayoutParams(JsonHelper.getLayout(body),view,parentWidth,parentHeight);
+        View view = new View(jsonRoot.getContext());
+        ViewWrapper viewWrapper = new ViewWrapper(view);
+        JsonViewUtils.setBasic(body, view, viewWrapper);
+        JsonViewUtils.setAbsoluteLayoutParams(JsonHelper.getLayout(body), view, parentWidth, parentHeight);
         JSONObject style=JsonHelper.getStyles(body);
         String color= null;
         try {
@@ -65,10 +65,7 @@ public class ViewFactory {
         }
         view.setBackgroundColor(JasonHelper.parseColor(color));
 
-        ViewWrapper vw = new ViewWrapper(view, parent);
-        parent.appendView(vw);
-
-        return vw;
+        return viewWrapper;
     }
 
 

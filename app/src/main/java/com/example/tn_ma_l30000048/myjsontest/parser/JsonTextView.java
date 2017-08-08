@@ -1,18 +1,15 @@
 package com.example.tn_ma_l30000048.myjsontest.parser;
 
-import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.tn_ma_l30000048.myjsontest.model.AtomicData;
 import com.example.tn_ma_l30000048.myjsontest.utils.JasonHelper;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 /**
  * Created by tn-ma-l30000048 on 17/7/31.
@@ -20,25 +17,26 @@ import java.util.List;
 
 public class JsonTextView {
 
-    static final String TAG = "JsonTextView";
-
-    public static ViewWrapper build(JSONObject body, ViewGroupWrapper parent, int parentWidth, int parentHeight) {
-        TextView textView = buildTextView(body, parent.getContext(), parentWidth, parentHeight);
-        return new ViewWrapper(textView, parent);
+    public static ViewWrapper build(JSONObject body, ViewGroupWrapper jsonRoot, int parentWidth, int parentHeight) {
+        ViewWrapper viewWrapper = new ViewWrapper(jsonRoot.getContext());
+        TextView textView = buildTextView(body, viewWrapper, parentWidth, parentHeight);
+        JsonViewUtils.setBasic(body, textView, viewWrapper);
+        viewWrapper.setJsonView(textView);
+        return viewWrapper;
     }
 
     //暂时先不判断json是否有效
-    public static TextView buildTextView(JSONObject body, Context context, int parentWidth, int parentHeight) {
-        TextView textView=new TextView(context);
-        System.out.println("----buildViewGroup textView----");
-        JsonBasicWidget.setBasic(body, textView);
-        JsonBasicWidget.setAbsoluteLayoutParams(JsonHelper.getLayout(body),textView,parentWidth,parentHeight);
-        setTextStyle(JsonHelper.getStyles(body),textView);
+    public static TextView buildTextView(JSONObject body, ViewWrapper viewWrapper, int parentWidth, int parentHeight) {
+        TextView textView = new TextView(viewWrapper.getContext());
+        System.out.println("----build TextView----");
+        JsonViewUtils.setAbsoluteLayoutParams(JsonHelper.getLayout(body), textView, parentWidth, parentHeight);
+        JsonViewUtils.setAction();
+        setTextStyle(JsonHelper.getStyles(body), textView, viewWrapper);
         return textView;
     }
 
 
-    static void setTextStyle(JSONObject json,TextView tv){
+    private static void setTextStyle(JSONObject json, TextView tv, ViewWrapper viewWrapper) {
         Iterator<String> keys=json.keys();
         try{
             while(keys.hasNext()){
@@ -83,19 +81,10 @@ public class JsonTextView {
                     String jsCode=json.getString(key);
                     tv.setVisibility(View.VISIBLE);
                 }else if(key.equalsIgnoreCase("text")){
+                    AtomicData dataSource = new AtomicData();
                     JSONObject text=json.getJSONObject(key);
-                    if(text.getInt("dataType")==0){
-                        String str=text.getString("data");
-                        tv.setText(str);
-                    }else if(text.getInt("dataType")==1){
-                        JSONArray jsonArray=text.getJSONArray("data");
-                        //这里的数据从网络请求到的数据
-                        List<String> strs=new ArrayList<>();
-                        for(int i=0;!jsonArray.isNull(i);i++){
-                            strs.add(jsonArray.getString(i));
-                        }
-                        tv.setText("data:" + strs.get(0));
-                    }
+                    JsonViewUtils.setDataSource(text, dataSource);
+                    viewWrapper.setDataSource(dataSource);
                 }
             }
         }catch (Exception e){

@@ -1,24 +1,30 @@
 package com.example.tn_ma_l30000048.myjsontest.parser;
 
+import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.tn_ma_l30000048.myjsontest.model.AbsolutePosition;
 import com.example.tn_ma_l30000048.myjsontest.model.AbsoluteSize;
+import com.example.tn_ma_l30000048.myjsontest.model.AtomicData;
 import com.example.tn_ma_l30000048.myjsontest.model.Layout;
 import com.example.tn_ma_l30000048.myjsontest.utils.DensityUtils;
 import com.example.tn_ma_l30000048.myjsontest.utils.JsonUtils;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by tn-ma-l30000048 on 17/7/31.
  */
 
-public class JsonBasicWidget {
-    static final String TAG="JsonBasicWidget";
+public class JsonViewUtils {
+    static final String TAG = "JsonViewUtils";
 
     public static void setAbsoluteLayoutParams(JSONObject json, View view, int parentWidth, int parentHeight) {
         Layout layout= JsonUtils.decode(json.toString(), Layout.class);
@@ -104,16 +110,18 @@ public class JsonBasicWidget {
         view.setLayoutParams(layoutParams);
     }
 
-    public static void setBasic(JSONObject json, View v) {
+    public static void setBasic(JSONObject json, View v, ViewWrapper viewWrapper) {
         Iterator<String> keys = json.keys();
         try {
             while (keys.hasNext()) {
                 String key = keys.next();
                 if (key.equalsIgnoreCase("tag")) {
                     String id = json.getString(key);//理论上可以作为界面中的id
+                    viewWrapper.setTagId(Integer.parseInt(id));
                 } else if (key.equalsIgnoreCase("nodeName")) {
                     String name = json.getString(key);
-                    v.setTag(name);
+//                    v.setTag(name);
+                    viewWrapper.setNodeName(name);
                 }
             }
         } catch (Exception e) {
@@ -121,7 +129,44 @@ public class JsonBasicWidget {
         }
     }
 
-    static void setAction(){
 
+    public static void setBasic(JSONObject json, View v, SparseArray<View> viewMap, SparseArray<String> nameMap) {
+        Iterator<String> keys = json.keys();
+        try {
+            String id = null;
+            String name = null;
+            while (keys.hasNext()) {
+                String key = keys.next();
+                if (key.equalsIgnoreCase("tag")) {
+                    id = json.getString(key);//理论上可以作为界面中的id
+                } else if (key.equalsIgnoreCase("nodeName")) {
+                    name = json.getString(key);
+                    v.setTag(name);
+                }
+            }//json中这两个应该都不为空
+            viewMap.put(Integer.parseInt(id), v);
+            nameMap.put(Integer.parseInt(id), name);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void setAction() {
+
+    }
+
+    public static void setDataSource(JSONObject jsonObject, AtomicData dataSource) throws JSONException {
+        if (jsonObject.getInt("dataType") == 0) {
+            dataSource.setDataType(0);
+            dataSource.setData(jsonObject.getString("data"));
+        } else if (jsonObject.getInt("dataType") == 1) {
+            JSONArray jsonArray = jsonObject.getJSONArray("data");
+            List<String> paths = new ArrayList<>();
+            for (int i = 0; i < jsonArray.length(); i++) {
+                paths.add(jsonArray.getString(i));
+            }
+            dataSource.setDataType(1);
+            dataSource.setDataPaths(paths);
+        }
     }
 }

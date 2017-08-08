@@ -2,10 +2,14 @@ package com.example.tn_ma_l30000048.myjsontest.parser;
 
 import android.content.Context;
 import android.os.Handler;
+import android.util.SparseArray;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.tn_ma_l30000048.myjsontest.R;
 import com.example.tn_ma_l30000048.myjsontest.bean.ContactData;
+import com.example.tn_ma_l30000048.myjsontest.model.AtomicData;
 import com.example.tn_ma_l30000048.myjsontest.model.HeaderInfo;
 import com.example.tn_ma_l30000048.myjsontest.model.RequestInfo;
 import com.example.tn_ma_l30000048.myjsontest.utils.DensityUtils;
@@ -25,7 +29,7 @@ import java.util.Map;
  * 这里对应的是一个json文件  只有一个rootNode也就是说只有一个根部局
  */
 
-public class JsonRoot {
+public class JsonRoot extends ViewGroupWrapper {
     static final String TAG = "JsonRoot ";
 
     public String SDKVersion;
@@ -37,19 +41,22 @@ public class JsonRoot {
     public String registerProperty;
 
     private Context mContext;
-    private ViewWrapper rootViewWrapper;//根布局只会有一个rootNode
     private Map<String, Object> mDataMap;
     Runnable contactListRunnable = new Runnable() {
         @Override
         public void run() {
             addListData();
+
         }
     };
     private HeaderInfo mHeaderInfo;
     private List<RequestInfo> mRequestInfoList;
+    private SparseArray<View> mTagViewMap = new SparseArray<>();
+    private SparseArray<String> mTagNameMap = new SparseArray<>();
     private Handler mHandler = new Handler();
 
     public JsonRoot(JSONObject jsonObject, Context context, int parentWidth, int parentHeight) {
+        super(context);
         System.out.println("JSON VIEW ROOT " + parentWidth + " " + parentHeight);
         mContext = context;
         try {
@@ -74,13 +81,10 @@ public class JsonRoot {
 
             //渲染界面  主要问题在于 如果只是一个控件
             JSONObject rootNode = jsonObject.getJSONObject("rootNode");
-            ViewGroupWrapper virtualRoot = new ViewGroupWrapper(context);
             if (rootNode.getInt("nodeType") == 4 || rootNode.getInt("nodeType") == 0) {
-                rootViewWrapper = ViewGroupFactory.build(virtualRoot, rootNode, parentWidth, (int) containerHeight);
-                rootViewWrapper.setDataMap(mDataMap);
+                ViewGroupFactory.build(rootNode, this, (int) containerWidth, (int) containerHeight);
             } else {
-                rootViewWrapper = ViewFactory.build(rootNode, virtualRoot, parentWidth, (int) containerHeight);
-                rootViewWrapper.setDataMap(mDataMap);
+                ViewGroupFactory.build(rootNode, this, (int) containerWidth, (int) containerHeight);
             }
 
         } catch (JSONException e) {
@@ -188,7 +192,31 @@ public class JsonRoot {
     }
 
     private void setData() {//遍历view树来set数据
+        for (ViewWrapper vw : mSubViewWrappers) {
+            if (vw.getDataSource() != null) {
 
+            }
+        }
+    }
+
+    private void setDataToView(View view, AtomicData atomicData) {
+        if (view instanceof TextView) {
+            if (atomicData.getDataType() == 0) {
+                ((TextView) view).setText(atomicData.getData());
+            } else if (atomicData.getDataType() == 1) {
+
+            }
+        } else if (view instanceof ImageView) {
+
+        }
+    }
+
+    public HeaderInfo getHeaderInfo() {
+        return mHeaderInfo;
+    }
+
+    public List<RequestInfo> getRequestInfo() {
+        return mRequestInfoList;
     }
 
     //    ========test fake data============
@@ -202,22 +230,5 @@ public class JsonRoot {
         mDataMap.put("recentContactList", contactData);
         System.out.println(mDataMap.get("recentContactList").getClass().getSimpleName());
     }
-
-    public ViewWrapper getRootViewWrapper() {
-        return rootViewWrapper;
-    }
-
-    public View getJsonView() {
-        return rootViewWrapper.getJsonView();
-    }
-
-    public HeaderInfo getHeaderInfo() {
-        return mHeaderInfo;
-    }
-
-    public List<RequestInfo> getRequestInfo() {
-        return mRequestInfoList;
-    }
-
 
 }

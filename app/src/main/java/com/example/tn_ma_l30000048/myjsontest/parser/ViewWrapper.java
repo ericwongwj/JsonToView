@@ -3,48 +3,66 @@ package com.example.tn_ma_l30000048.myjsontest.parser;
 import android.content.Context;
 import android.view.View;
 
-import java.util.Map;
+import com.example.tn_ma_l30000048.myjsontest.model.AtomicData;
 
 /**
  * Created by tn-ma-l30000048 on 17/8/7.
  */
 
 public class ViewWrapper {
-    protected ViewGroupWrapper mParent;
-    protected Map<String, Object> mDataMap;//请求到的所有数据 每一个vg都持有对请求到的那一份的引用
     protected View jsonView;
+    protected int tagId;
+    protected String nodeName;
     protected Context mContext;
-    int tagId;//可能可以设置这个？
+    protected AtomicData dataSource;
 
-    public ViewWrapper(View v) {
-        this(v, null);
+    public ViewWrapper() {
+
     }
 
     public ViewWrapper(Context context) {
-        mContext = context;
+        this.mContext = context;
     }
 
-    public ViewWrapper(View v, ViewGroupWrapper parent) {
-        this(v, parent, null);
-    }
-
-    public ViewWrapper(View v, ViewGroupWrapper parent, Map<String, Object> dataMap) {
+    public ViewWrapper(View v) {
         jsonView = v;
-        mDataMap = dataMap;
         mContext = v.getContext();
-        mParent = parent;
     }
 
-    //通常数据是由这里加载进来的
-    public void setDataMap(Map<String, Object> mDataMap) {
-        this.mDataMap = mDataMap;
+
+    public ViewWrapper(View v, int tag, String name) {
+        jsonView = v;
+        tagId = tag;
+        nodeName = name;
+        mContext = v.getContext();
     }
 
     public View getJsonView() {
         return jsonView;
     }
 
+    public void setJsonView(View jsonView) {
+        this.jsonView = jsonView;
+        this.mContext = jsonView.getContext();
+    }
+
     public Context getContext() {
         return mContext;
+    }
+
+    public void setTagId(int tagId) {
+        this.tagId = tagId;
+    }
+
+    public void setNodeName(String nodeName) {
+        this.nodeName = nodeName;
+    }
+
+    public AtomicData getDataSource() {
+        return dataSource;
+    }
+
+    public void setDataSource(AtomicData dataSource) {
+        this.dataSource = dataSource;
     }
 }

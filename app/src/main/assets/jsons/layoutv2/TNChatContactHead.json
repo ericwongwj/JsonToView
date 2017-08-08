@@ -43,7 +43,7 @@
     },
     "subNode": [
       {
-        "tag": "0",
+        "tag": "1",
         "nodeName": "divideLine",
         "nodeType": 4,
         "layout": {
@@ -78,7 +78,7 @@
         }
       },
       {
-        "tag": "0",
+        "tag": "2",
         "nodeName": "avatar",
         "nodeType": 2,
         "layout": {
@@ -118,7 +118,7 @@
         }
       },
       {
-        "tag": "0",
+        "tag": "3",
         "nodeName": "contactName",
         "nodeType": 1,
         "layout": {
@@ -162,7 +162,7 @@
         }
       },
       {
-        "tag": "0",
+        "tag": "4",
         "nodeName": "textWrap",
         "nodeType": 4,
         "layout": {
@@ -197,7 +197,7 @@
         },
         "subNode": [
           {
-            "tag": "0",
+            "tag": "5",
             "nodeName": "headTitle",
             "nodeType": 1,
             "layout": {
