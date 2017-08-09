@@ -100,6 +100,16 @@ public class MyRecyclerView extends FrameLayout {
         mSwipeRefreshLayout.setColorSchemeColors(colors);
     }
 
+    public void showSwipeRefreshWithTime(int time) {
+        showSwipeRefresh();
+        mSwipeRefreshLayout.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                dismissSwipeRefresh();
+            }
+        }, time);
+    }
+
     public void showSwipeRefresh() {
         mSwipeRefreshLayout.setRefreshing(true);
     }

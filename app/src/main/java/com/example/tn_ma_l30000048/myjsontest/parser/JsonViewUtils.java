@@ -110,7 +110,7 @@ public class JsonViewUtils {
         view.setLayoutParams(layoutParams);
     }
 
-    public static void setBasic(JSONObject json, View v, ViewWrapper viewWrapper) {
+    public static void setTagToWrapper(JSONObject json, View v, ViewWrapper viewWrapper) {
         Iterator<String> keys = json.keys();
         try {
             while (keys.hasNext()) {
@@ -130,7 +130,7 @@ public class JsonViewUtils {
     }
 
 
-    public static void setBasic(JSONObject json, View v, SparseArray<View> viewMap, SparseArray<String> nameMap) {
+    public static void setTagToWrapper(JSONObject json, View v, SparseArray<View> viewMap, SparseArray<String> nameMap) {
         Iterator<String> keys = json.keys();
         try {
             String id = null;
@@ -155,7 +155,8 @@ public class JsonViewUtils {
 
     }
 
-    public static void setDataSource(JSONObject jsonObject, AtomicData dataSource) throws JSONException {
+    public static AtomicData parseDataSource(JSONObject jsonObject) throws JSONException {
+        AtomicData dataSource = new AtomicData();
         if (jsonObject.getInt("dataType") == 0) {
             dataSource.setDataType(0);
             dataSource.setData(jsonObject.getString("data"));
@@ -168,5 +169,17 @@ public class JsonViewUtils {
             dataSource.setDataType(1);
             dataSource.setDataPaths(paths);
         }
+        return dataSource;
+    }
+
+    public static AtomicData parseDataSource(JSONArray jsonArray) throws JSONException {
+        AtomicData dataSource = new AtomicData();
+        List<String> paths = new ArrayList<>();
+        for (int i = 0; i < jsonArray.length(); i++) {
+            paths.add(jsonArray.getString(i));
+        }
+        dataSource.setDataType(1);
+        dataSource.setDataPaths(paths);
+        return dataSource;
     }
 }

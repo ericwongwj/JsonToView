@@ -38,7 +38,7 @@
     },
     "subNode": [
       {
-        "tag": "0",
+        "tag": "1",
         "nodeName": "productIcon",
         "nodeType": 2,
         "layout": {
@@ -78,7 +78,7 @@
         }
       },
       {
-        "tag": "0",
+        "tag": "2",
         "nodeName": "productName",
         "nodeType": 1,
         "layout": {
@@ -122,7 +122,7 @@
         }
       },
       {
-        "tag": "0",
+        "tag": "3",
         "nodeName": "productDesc",
         "nodeType": 1,
         "layout": {
@@ -167,7 +167,7 @@
         }
       },
       {
-        "tag": "0",
+        "tag": "4",
         "nodeName": "divideLine",
         "nodeType": 4,
         "layout": {
@@ -202,7 +202,7 @@
         }
       },
       {
-        "tag": "0",
+        "tag": "5",
         "nodeName": "productNum",
         "nodeType": 1,
         "layout": {
@@ -246,7 +246,7 @@
         }
       },
       {
-        "tag": "0",
+        "tag": "6",
         "nodeName": "jumpHintLabel",
         "nodeType": 1,
         "layout": {

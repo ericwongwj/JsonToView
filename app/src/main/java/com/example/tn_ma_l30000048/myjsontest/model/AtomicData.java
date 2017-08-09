@@ -37,4 +37,12 @@ public class AtomicData {
     public void setData(String data) {
         this.data = data;
     }
+
+
+    @Override
+    public String toString() {
+        if (dataPaths == null)
+            return "dataType:" + dataType + " direct data:" + data;
+        return "dataType:" + dataType + " dataPath size:" + dataPaths.size();
+    }
 }

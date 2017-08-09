@@ -17,10 +17,12 @@ import java.util.Iterator;
 
 public class JsonImageView {
 
+    static final String TAG = JsonImageView.class.getSimpleName() + " ";
+
     public static ViewWrapper build(JSONObject body, ViewGroupWrapper jsonRoot, int parentWidth, int parentHeight) {
         ViewWrapper viewWrapper = new ViewWrapper(jsonRoot.getContext());
         ImageView textView = buildImageView(body, viewWrapper, parentWidth, parentHeight);
-        JsonViewUtils.setBasic(body, textView, viewWrapper);
+        JsonViewUtils.setTagToWrapper(body, textView, viewWrapper);
         viewWrapper.setJsonView(textView);
         return viewWrapper;
     }
@@ -28,13 +30,12 @@ public class JsonImageView {
     public static ImageView buildImageView(JSONObject body, ViewWrapper viewWrapper, int parentWidth, int parentHeight) {
         ImageView imageView = new ImageView(viewWrapper.getContext());
         System.out.println("----build ImageView----");
-        JsonViewUtils.setBasic(body, imageView, viewWrapper);
+        JsonViewUtils.setTagToWrapper(body, imageView, viewWrapper);
         JsonViewUtils.setAbsoluteLayoutParams(JsonHelper.getLayout(body), imageView, parentWidth, parentHeight);
-        setImageStyle(body, imageView, viewWrapper);
+        setImageStyle(JsonHelper.getStyles(body), imageView, viewWrapper);
         return imageView;
     }
 
-    //这个之后要修改
     static void setImageStyle(JSONObject json, ImageView iv, ViewWrapper viewWrapper) {
         Iterator<String> keys=json.keys();
         try{
@@ -50,12 +51,12 @@ public class JsonImageView {
                     iv.setBackground(gd);
                 }else if(key.equalsIgnoreCase("contentMode")) {
                     int contentMode = json.getInt(key);
-                    setImageScaleType(iv,contentMode);
+                    setImageScaleType(iv, contentMode);//需要确定一下
                 }else if(key.equalsIgnoreCase("imageSource")){
-                    AtomicData dataSource = new AtomicData();
                     JSONObject imgSrc = json.getJSONObject(key);
-                    JsonViewUtils.setDataSource(imgSrc, dataSource);
+                    AtomicData dataSource = JsonViewUtils.parseDataSource(imgSrc);
                     viewWrapper.setDataSource(dataSource);
+                    System.out.println(TAG + dataSource);
                 }
             }
         }catch (Exception e){

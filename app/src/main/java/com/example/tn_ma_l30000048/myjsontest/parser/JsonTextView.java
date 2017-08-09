@@ -20,7 +20,7 @@ public class JsonTextView {
     public static ViewWrapper build(JSONObject body, ViewGroupWrapper jsonRoot, int parentWidth, int parentHeight) {
         ViewWrapper viewWrapper = new ViewWrapper(jsonRoot.getContext());
         TextView textView = buildTextView(body, viewWrapper, parentWidth, parentHeight);
-        JsonViewUtils.setBasic(body, textView, viewWrapper);
+        JsonViewUtils.setTagToWrapper(body, textView, viewWrapper);
         viewWrapper.setJsonView(textView);
         return viewWrapper;
     }
@@ -81,9 +81,8 @@ public class JsonTextView {
                     String jsCode=json.getString(key);
                     tv.setVisibility(View.VISIBLE);
                 }else if(key.equalsIgnoreCase("text")){
-                    AtomicData dataSource = new AtomicData();
                     JSONObject text=json.getJSONObject(key);
-                    JsonViewUtils.setDataSource(text, dataSource);
+                    AtomicData dataSource = JsonViewUtils.parseDataSource(text);
                     viewWrapper.setDataSource(dataSource);
                 }
             }

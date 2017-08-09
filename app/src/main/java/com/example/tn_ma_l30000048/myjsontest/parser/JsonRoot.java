@@ -2,17 +2,17 @@ package com.example.tn_ma_l30000048.myjsontest.parser;
 
 import android.content.Context;
 import android.os.Handler;
-import android.util.SparseArray;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.tn_ma_l30000048.myjsontest.R;
 import com.example.tn_ma_l30000048.myjsontest.bean.ContactData;
 import com.example.tn_ma_l30000048.myjsontest.model.AtomicData;
 import com.example.tn_ma_l30000048.myjsontest.model.HeaderInfo;
 import com.example.tn_ma_l30000048.myjsontest.model.RequestInfo;
 import com.example.tn_ma_l30000048.myjsontest.utils.DensityUtils;
+import com.example.tn_ma_l30000048.myjsontest.view.MyRecyclerView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -51,11 +51,9 @@ public class JsonRoot extends ViewGroupWrapper {
     };
     private HeaderInfo mHeaderInfo;
     private List<RequestInfo> mRequestInfoList;
-    private SparseArray<View> mTagViewMap = new SparseArray<>();
-    private SparseArray<String> mTagNameMap = new SparseArray<>();
     private Handler mHandler = new Handler();
 
-    public JsonRoot(JSONObject jsonObject, Context context, int parentWidth, int parentHeight) {
+    public JsonRoot(JSONObject jsonObject, final Context context, int parentWidth, int parentHeight) {
         super(context);
         System.out.println("JSON VIEW ROOT " + parentWidth + " " + parentHeight);
         mContext = context;
@@ -79,17 +77,66 @@ public class JsonRoot extends ViewGroupWrapper {
                 parseRequestInfo(jsonObject.getJSONArray("requestInfo"));
             }
 
+            mDataMap = new HashMap<>();
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    constructDataMap(mDataMap, JsonHelper.readLocalDataJson(context, "testData.json"));
+                    setData();
+                }
+            }, 300);
+
             //渲染界面  主要问题在于 如果只是一个控件
             JSONObject rootNode = jsonObject.getJSONObject("rootNode");
             if (rootNode.getInt("nodeType") == 4 || rootNode.getInt("nodeType") == 0) {
-                ViewGroupFactory.build(rootNode, this, (int) containerWidth, (int) containerHeight);
+                ViewWrapper vw = ViewGroupFactory.build(rootNode, this, (int) containerWidth, (int) containerHeight);
+                mJsonView = vw.getJsonView();
             } else {
-                ViewGroupFactory.build(rootNode, this, (int) containerWidth, (int) containerHeight);
+                //need to test and modify
+                ViewWrapper vw = ViewFactory.build(rootNode, this, (int) containerWidth, (int) containerHeight);
+                mJsonView = vw.getJsonView();
             }
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    //对请求到的数据到model需要自己封装
+    public static void constructDataMap(Map<String, Object> map, JSONObject jsonObject) {
+        Iterator<String> keys = jsonObject.keys();
+        try {
+            while (keys.hasNext()) {
+                String key = keys.next();
+                Object value = jsonObject.get(key);
+                if (value instanceof JSONArray) {
+                    List<Map<String, Object>> list = new ArrayList<>();
+                    for (int i = 0; i < ((JSONArray) value).length(); i++) {
+                        JSONObject listObj = ((JSONArray) value).getJSONObject(i);
+                        Map<String, Object> subMap = new HashMap<>();
+                        constructDataMap(subMap, listObj);
+                        list.add(subMap);
+                    }
+                    map.put(key, list);
+                } else if (value instanceof JSONObject) {
+                    Map<String, Object> subMap = new HashMap<>();
+                    constructDataMap(subMap, jsonObject);
+                    map.put(key, subMap);
+                } else {
+                    map.put(key, jsonObject.get(key));
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static Object getDataFromMap(Map<String, Object> dataMap, List<String> keys) {
+        int i = 0;
+        while (i < keys.size() - 1) {
+            dataMap = (Map<String, Object>) dataMap.get(keys.get(i++));
+        }
+        return dataMap.get(keys.get(i));
     }
 
     private void parseHeaderInfo(JSONObject jsonObject) throws JSONException {
@@ -118,7 +165,7 @@ public class JsonRoot extends ViewGroupWrapper {
 
     //array，特殊场景太多，所以单一请求无法满足需求。当前所有请求处理并行发送；
     //下拉刷新会将重新发送所有请求；上拉加载只会发送第一个请求；
-    //得到请求路径就直接请求网络？  编码阶段先添加假数据  如何考虑
+    //得到请求路径就直接请求网络？  编码阶段先添加假数据  如何考虑  要注意一些固定数据的加载和网络数据请求的关系
     private void parseRequestInfo(JSONArray jsonArray) throws JSONException {
         mRequestInfoList = new ArrayList<>();
         if (!jsonArray.isNull(0)) {
@@ -148,9 +195,6 @@ public class JsonRoot extends ViewGroupWrapper {
                 index++;
                 mRequestInfoList.add(requestInfo);
             }
-            mDataMap = new HashMap<>();
-            //TODO: 去请求界面（列表的第一个？）
-            mHandler.postDelayed(contactListRunnable, 1500);
         }
     }
 
@@ -183,7 +227,7 @@ public class JsonRoot extends ViewGroupWrapper {
             System.out.println("has container width");
             String width = jsonObject.getString("containerWidth");//in dp
             if (width.substring(0, 2).equals("{{"))
-                System.out.println("containerHeight is js code");
+                System.out.println("containerWidth is js code");
             else {
                 containerHeight = Double.parseDouble(width);
                 containerHeight = DensityUtils.dp2px(mContext, (float) containerHeight);
@@ -192,22 +236,34 @@ public class JsonRoot extends ViewGroupWrapper {
     }
 
     private void setData() {//遍历view树来set数据
+        if (mDataMap == null) return;//这里的逻辑不完善
         for (ViewWrapper vw : mSubViewWrappers) {
             if (vw.getDataSource() != null) {
-
+                AtomicData dataSource = vw.getDataSource();
+                if (vw.getJsonView() instanceof TextView) {
+                    if (dataSource.getDataType() == 0)
+                        ((TextView) vw.getJsonView()).setText(dataSource.getData());
+                    else if (dataSource.getDataType() == 1) {
+                        List<String> keys = dataSource.getDataPaths();
+                        String s = (String) getDataFromMap(mDataMap, keys);//这的做的转换尽量安全
+                        ((TextView) vw.getJsonView()).setText(s);
+                    }
+                } else if (vw.getJsonView() instanceof ImageView) {
+                    if (dataSource.getDataType() == 0) {
+                        //如何读取本地的图片？
+                        ((ImageView) vw.getJsonView()).setImageResource(R.drawable.icon);
+                    } else if (dataSource.getDataType() == 1) {
+                        List<String> keys = dataSource.getDataPaths();
+                        String url = (String) getDataFromMap(mDataMap, keys);
+                        Glide.with(mContext).load(url).asBitmap().into((ImageView) vw.getJsonView());
+                    }
+                } else if (vw.getJsonView() instanceof MyRecyclerView) {
+                    if (vw.getDataSource().getDataType() == 1) {
+                        List<Map<String, Object>> listData;//每一个item的数据也是一个map
+                    }
+                    System.out.println(TAG + " load list");
+                }
             }
-        }
-    }
-
-    private void setDataToView(View view, AtomicData atomicData) {
-        if (view instanceof TextView) {
-            if (atomicData.getDataType() == 0) {
-                ((TextView) view).setText(atomicData.getData());
-            } else if (atomicData.getDataType() == 1) {
-
-            }
-        } else if (view instanceof ImageView) {
-
         }
     }
 
@@ -215,11 +271,13 @@ public class JsonRoot extends ViewGroupWrapper {
         return mHeaderInfo;
     }
 
+
+    //    ========test fake data============
+
     public List<RequestInfo> getRequestInfo() {
         return mRequestInfoList;
     }
 
-    //    ========test fake data============
     void addListData() {
         List<ContactData> contactData = new ArrayList<>();
         int[] picIds = {R.drawable.pic1, R.drawable.pic2, R.drawable.pic3};
@@ -230,5 +288,6 @@ public class JsonRoot extends ViewGroupWrapper {
         mDataMap.put("recentContactList", contactData);
         System.out.println(mDataMap.get("recentContactList").getClass().getSimpleName());
     }
+
 
 }

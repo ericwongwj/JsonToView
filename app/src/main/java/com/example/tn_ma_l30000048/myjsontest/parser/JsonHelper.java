@@ -19,11 +19,31 @@ import java.util.regex.Pattern;
 
 public class JsonHelper {
 
-    public static JSONObject readLocalJson(Context context, String name) {
+    public static JSONObject readLocalUIJson(Context context, String name) {
         AssetManager assetManager = context.getAssets();
         JSONObject jsonObject = null;
         try {
             InputStream is = assetManager.open("jsons/layoutv2/" + name);
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            String content = new String(buffer, "UTF-8");
+            jsonObject = new JSONObject(content);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return jsonObject;
+    }
+
+
+    public static JSONObject readLocalDataJson(Context context, String name) {
+        AssetManager assetManager = context.getAssets();
+        JSONObject jsonObject = null;
+        try {
+            InputStream is = assetManager.open("jsons/data/" + name);
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
@@ -48,7 +68,7 @@ public class JsonHelper {
                 if (fn[i].contains(name))
                     break;
             }
-            jsonObject = readLocalJson(context, name + ".json");
+            jsonObject = readLocalUIJson(context, name + ".json");
         } catch (IOException e) {
             e.printStackTrace();
         }

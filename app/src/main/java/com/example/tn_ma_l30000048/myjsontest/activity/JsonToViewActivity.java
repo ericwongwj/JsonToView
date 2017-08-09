@@ -47,9 +47,12 @@ public class JsonToViewActivity extends AppCompatActivity implements View.OnClic
     public void onClick(View v) {
         JsonRoot myRoot = new JsonRoot(jsonObject, JsonToViewActivity.this, root.getWidth(), root.getHeight());
         if (myRoot.getJsonView() != null) {
-            root.addView(myRoot.getJsonView());
+            View jsonView = myRoot.getJsonView();
+            root.addView(jsonView);
             btn.setVisibility(View.GONE);
-        } else System.out.println("null");
+        } else {
+            System.out.println(getClass().getSimpleName() + " Json Root View is null");
+        }
     }
 
 }

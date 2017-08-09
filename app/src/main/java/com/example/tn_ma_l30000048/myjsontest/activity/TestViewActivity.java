@@ -1,15 +1,18 @@
 package com.example.tn_ma_l30000048.myjsontest.activity;
 
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.tn_ma_l30000048.myjsontest.R;
+import com.example.tn_ma_l30000048.myjsontest.parser.Constants;
 import com.example.tn_ma_l30000048.myjsontest.utils.ViewUtils;
 
 public class TestViewActivity extends AppCompatActivity implements View.OnClickListener {
@@ -50,6 +53,11 @@ public class TestViewActivity extends AppCompatActivity implements View.OnClickL
         showDisPlayInOnCreate(tv);
 
         getWandH();
+
+
+        ImageView imageView = (ImageView) findViewById(R.id.iv_test);
+        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        Glide.with(this).load(Constants.BIG_URL1).asBitmap().into(imageView);
     }
 
     void showDisPlayInOnCreate(View v){

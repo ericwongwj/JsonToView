@@ -36,11 +36,11 @@ public class ViewGroupWrapper extends ViewWrapper {
     //recyclerview的处理？四个类型的cell？
     //目前这个函数是一个viewgroup下所有view的信息
     public void initViewMap() {
-        if (jsonView == null)
+        if (mJsonView == null)
             return;
 
         Queue<View> queue = new LinkedList<>();
-        queue.offer(jsonView);
+        queue.offer(mJsonView);
 //        System.out.println("initViewMap");
         while (!queue.isEmpty()) {
             View v = queue.poll();

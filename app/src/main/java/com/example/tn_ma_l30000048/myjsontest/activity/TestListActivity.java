@@ -34,11 +34,12 @@ public class TestListActivity extends AppCompatActivity implements View.OnClickL
         findViewById(R.id.tv_add).setOnClickListener(this);
         findViewById(R.id.tv_delete).setOnClickListener(this);
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_test);
-        if (getIntent().getStringExtra("version") != null) {
-            mRecyclerView.setVisibility(View.GONE);
-        } else {
-            initDynamic();
-        }
+        //if (getIntent().getStringExtra("version") != null) {
+//            mRecyclerView.setVisibility(View.GONE);
+        initStatic();
+        // } else {
+        //   initDynamic();
+        //}
 
     }
 
@@ -64,10 +65,11 @@ public class TestListActivity extends AppCompatActivity implements View.OnClickL
 
     void initStatic(){
         mAdapter = new MyAdapter(getData());
-        // 设置布局管理器
+        mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        mRecyclerView.setBackgroundColor(0x77777777);
+        mRecyclerView.setAdapter(null);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        // 设置adapter
-        mRecyclerView.setAdapter(mAdapter);
+
         mRecyclerView.addItemDecoration(new MyDividerItemDecoration(this,LinearLayoutManager.VERTICAL));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mAdapter.setOnItemClickListener(new MyAdapter.OnItemClickListener() {
@@ -81,6 +83,10 @@ public class TestListActivity extends AppCompatActivity implements View.OnClickL
                 Toast.makeText(TestListActivity.this,"long click " + position + " item", Toast.LENGTH_SHORT).show();
             }
         });
+
+//        mRecyclerView.setAdapter(mAdapter);
+//        mRecyclerView.setLayoutManager(mLayoutManager);
+
     }
 
 

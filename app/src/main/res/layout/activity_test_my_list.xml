@@ -8,10 +8,10 @@
     tools:context="com.example.tn_ma_l30000048.myjsontest.activity.TestMyListActivity">
 
 
-    <!--<com.example.tn_ma_l30000048.myjsontest.view.MyRecyclerView-->
-    <!--android:id="@+id/enhanced_recycler_view"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content" />-->
+    <com.example.tn_ma_l30000048.myjsontest.view.MyRecyclerView
+        android:id="@+id/enhanced_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 
 </LinearLayout>

@@ -54,7 +54,7 @@ public class ViewFactory {
 
         View view = new View(jsonRoot.getContext());
         ViewWrapper viewWrapper = new ViewWrapper(view);
-        JsonViewUtils.setBasic(body, view, viewWrapper);
+        JsonViewUtils.setTagToWrapper(body, view, viewWrapper);
         JsonViewUtils.setAbsoluteLayoutParams(JsonHelper.getLayout(body), view, parentWidth, parentHeight);
         JSONObject style=JsonHelper.getStyles(body);
         String color= null;

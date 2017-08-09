@@ -10,7 +10,7 @@ import com.example.tn_ma_l30000048.myjsontest.model.AtomicData;
  */
 
 public class ViewWrapper {
-    protected View jsonView;
+    protected View mJsonView;
     protected int tagId;
     protected String nodeName;
     protected Context mContext;
@@ -25,25 +25,24 @@ public class ViewWrapper {
     }
 
     public ViewWrapper(View v) {
-        jsonView = v;
+        mJsonView = v;
         mContext = v.getContext();
     }
 
-
     public ViewWrapper(View v, int tag, String name) {
-        jsonView = v;
+        mJsonView = v;
         tagId = tag;
         nodeName = name;
         mContext = v.getContext();
     }
 
     public View getJsonView() {
-        return jsonView;
+        return mJsonView;
     }
 
-    public void setJsonView(View jsonView) {
-        this.jsonView = jsonView;
-        this.mContext = jsonView.getContext();
+    public void setJsonView(View mJsonView) {
+        this.mJsonView = mJsonView;
+        this.mContext = mJsonView.getContext();
     }
 
     public Context getContext() {

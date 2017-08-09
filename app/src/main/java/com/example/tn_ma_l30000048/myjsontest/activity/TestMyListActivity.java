@@ -33,18 +33,20 @@ public class TestMyListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_my_list);
+        mRecyclerView = (MyRecyclerView) findViewById(R.id.enhanced_recycler_view);
 
         rootContainer = (LinearLayout) findViewById(R.id.contanier);
         rootContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                testMyList();
+//                testMyList();
+                oldTest();
             }
         });
     }
 
     void testMyList() {
-        JSONObject jsonObject = JsonHelper.readLocalJson(this, "TNChatContactList.json");
+        JSONObject jsonObject = JsonHelper.readLocalUIJson(this, "TNChatContactList.json");
         JsonRoot myRoot = new JsonRoot(jsonObject, this, rootContainer.getWidth(), rootContainer.getHeight());
         rootContainer.addView(myRoot.getJsonView());
     }
@@ -69,7 +71,6 @@ public class TestMyListActivity extends AppCompatActivity {
 //        mAdapter.setCell();
 //        mAdapter.setFooter(footer);
 
-//        mRecyclerView = (MyRecyclerView) findViewById(R.id.enhanced_recycler_view);
         mRecyclerView.setSwipeRefreshColors(0xFF437845, 0xFFE44F98, 0xFF2FAC21);
 //        mRecyclerView.setLayoutManager(new GridLayoutManager(this,2));
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));

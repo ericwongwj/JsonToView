@@ -8,11 +8,11 @@
     tools:context="com.example.tn_ma_l30000048.myjsontest.activity.TestViewActivity">
 
     <LinearLayout
+        android:id="@+id/contanier"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:orientation="vertical"
         android:background="#DDDDDD"
-        android:id="@+id/contanier">
+        android:orientation="vertical">
 
     </LinearLayout>
 
@@ -22,6 +22,12 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:text="TextView" />
+
+    <ImageView
+        android:id="@+id/iv_test"
+        android:layout_width="143dp"
+        android:layout_height="143dp"
+        app:srcCompat="@drawable/icon" />
 
     <Button
         android:id="@+id/btn_test"

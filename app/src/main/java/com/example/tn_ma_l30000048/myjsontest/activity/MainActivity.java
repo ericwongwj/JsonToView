@@ -19,6 +19,8 @@ import com.example.tn_ma_l30000048.myjsontest.model.Module;
 import com.example.tn_ma_l30000048.myjsontest.model.RichText;
 import com.example.tn_ma_l30000048.myjsontest.model.TableView;
 import com.example.tn_ma_l30000048.myjsontest.model.TextLabel;
+import com.example.tn_ma_l30000048.myjsontest.parser.JsonHelper;
+import com.example.tn_ma_l30000048.myjsontest.parser.JsonRoot;
 import com.example.tn_ma_l30000048.myjsontest.utils.JasonHelper;
 import com.example.tn_ma_l30000048.myjsontest.utils.JsonUtils;
 import com.google.gson.Gson;
@@ -34,8 +36,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
 
@@ -66,6 +70,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         adapter=new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,jsonFiles);
         lv.setAdapter(adapter);
 
+        JSONObject jsonObject = JsonHelper.readLocalDataJson(this, "testData.json");
+        Map<String, Object> map = new HashMap<>();
+        JsonRoot.constructDataMap(map, jsonObject);
+        System.out.println(JsonRoot.getDataFromMap(map, Arrays.asList("nickName")));
+//        System.out.println(jsonObject);
     }
 
     String[] readLayoutAssets(List<String> list){
