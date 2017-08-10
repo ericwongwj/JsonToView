@@ -1,6 +1,7 @@
 package com.example.tn_ma_l30000048.myjsontest.parser;
 
 import android.content.Context;
+import android.os.Handler;
 import android.util.SparseArray;
 
 import com.example.tn_ma_l30000048.myjsontest.view.Action;
@@ -9,6 +10,8 @@ import com.example.tn_ma_l30000048.myjsontest.view.RecyclerAdapter;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -36,7 +39,7 @@ public class CollectionViewWrapper extends ViewWrapper {
         myRecyclerView.setRefreshAction(new Action() {
             @Override
             public void onAction() {
-
+                getData(true);
             }
         });
 
@@ -69,23 +72,35 @@ public class CollectionViewWrapper extends ViewWrapper {
         this.mInsertViewJson = insertViewJson;
     }
 
-//    public void getData(final boolean isRefresh) {
-//        mHandler.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                if (isRefresh) {
-//                    page = 1;
-//                    mAdapter.clear();
-//                    mAdapter.addAll(getVirtualData());
-//                    mRecyclerView.dismissSwipeRefresh();
-//                    mRecyclerView.getRecyclerView().scrollToPosition(0);
-//                } else {
-//                    mAdapter.addAll(getVirtualData());
-//                    if (page >= 3) {
-//                        mRecyclerView.showNoMore();
-//                    }
-//                }
-//            }
-//        }, 1500);
-//    }
+    public void getData(final boolean isRefresh) {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                MyRecyclerView myRecyclerView = (MyRecyclerView) mJsonView;
+                if (isRefresh) {
+                    adapter.currentPage = 1;
+                    adapter.clear();
+                    adapter.addMapList(getVirtualData());
+                    myRecyclerView.dismissSwipeRefresh();
+                    myRecyclerView.getRecyclerView().scrollToPosition(0);
+                } else {
+                    adapter.addMapList(getVirtualData());
+                    if (adapter.currentPage >= 3) {
+                        myRecyclerView.showNoMore();
+                    }
+                }
+            }
+        }, 1500);
+    }
+
+    List<Map<String,Object>> getVirtualData(){
+        List<Map<String,Object>> data=new ArrayList<>();
+        for(int i=0;i<8;i++){
+            Map<String,Object> map=new HashMap<>();
+            map.put("nickName","NICKNAME"+i);
+            map.put("avatar",Constants.ICON_URL1);
+            data.add(map);
+        }
+        return data;
+    }
 }

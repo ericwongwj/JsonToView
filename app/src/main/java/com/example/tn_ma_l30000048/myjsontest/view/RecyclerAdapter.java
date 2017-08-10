@@ -40,6 +40,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     protected LinearLayout mLoadMoreView;
     int mViewCount = 0;
     int pageNum = 5;//一页十个数据
+    public int currentPage=0;
     private boolean hasHeader = false;
     private boolean hasFooter = false;
 
@@ -217,6 +218,21 @@ public class RecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         int size = data.size();
         if (!isShowNoMore && size > 0) {
             //mData.addAll(data);
+            int positionStart;
+            if (hasFooter) {
+                positionStart = mViewCount - 2;
+            } else {
+                positionStart = mViewCount - 1;
+            }
+            mViewCount += size;
+            notifyItemRangeInserted(positionStart, size);
+        }
+    }
+
+    public void addMapList(List<Map<String,Object>> data) {
+        int size = data.size();
+        if (!isShowNoMore && size > 0) {
+            mDataMap.addAll(0,data);
             int positionStart;
             if (hasFooter) {
                 positionStart = mViewCount - 2;
