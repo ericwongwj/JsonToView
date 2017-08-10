@@ -28,7 +28,7 @@ public class JsonTextView {
     //暂时先不判断json是否有效
     public static TextView buildTextView(JSONObject body, ViewWrapper viewWrapper, int parentWidth, int parentHeight) {
         TextView textView = new TextView(viewWrapper.getContext());
-        System.out.println("----build TextView----");
+//        System.out.println("----build TextView----");
         JsonViewUtils.setAbsoluteLayoutParams(JsonHelper.getLayout(body), textView, parentWidth, parentHeight);
         JsonViewUtils.setAction();
         setTextStyle(JsonHelper.getStyles(body), textView, viewWrapper);

@@ -75,6 +75,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         JsonRoot.constructDataMap(map, jsonObject);
         System.out.println(JsonRoot.getDataFromMap(map, Arrays.asList("nickName")));
 //        System.out.println(jsonObject);
+
+
     }
 
     String[] readLayoutAssets(List<String> list){

@@ -1,15 +1,13 @@
 package com.example.tn_ma_l30000048.myjsontest;
 
-import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by tn-ma-l30000048 on 17/7/27.
@@ -17,11 +15,11 @@ import java.util.ArrayList;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
 
-    private ArrayList<String> mData;
+    private List<String> mData;
 
     private MyAdapter.OnItemClickListener onItemClickListener;
 
-    public MyAdapter(ArrayList<String> data) {
+    public MyAdapter(List<String> data) {
         this.mData = data;
     }
 
@@ -53,12 +51,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_item, parent, false);
+        System.out.println("onCreateViewHolder");
         return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         // 绑定数据
+        System.out.println("onBindViewHolder " + position);
         holder.mTv.setText(mData.get(position));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -67,6 +67,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
                 if(onItemClickListener != null) {
                     int pos = holder.getLayoutPosition();
                     onItemClickListener.onItemClick(holder.itemView, pos);
+                    mData.remove(0);
+                    mData.remove(1);
+                    mData.add("aaaaaa");
+                    mData.add("bbbbbb");
+                    notifyDataSetChanged();
                 }
             }
         });
@@ -90,18 +95,20 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
         return mData == null ? 0 : mData.size();
     }
 
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
+
+        void onItemLongClick(View view, int position);
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView mTv;
 
         public ViewHolder(View itemView) {
             super(itemView);
+            System.out.println("init View holder");
             mTv = (TextView) itemView.findViewById(R.id.item_tv);
         }
-    }
-
-    public interface OnItemClickListener {
-        void onItemClick(View view, int position);
-        void onItemLongClick(View view, int position);
     }
 }

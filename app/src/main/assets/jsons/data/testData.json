@@ -25,11 +25,28 @@
     {
       "nickName": "昵称6",
       "avatar": "http://www.tuniu.com/corp/ui/img/icon-consult.png"
+    },
+    {
+      "nickName": "昵称7",
+      "avatar": "http://www.tuniu.com/corp/ui/img/icon-phone.png"
+    },
+    {
+      "nickName": "昵称8",
+      "avatar": "http://www.tuniu.com/corp/ui/img/icon-mail.png"
+    },
+    {
+      "nickName": "昵称9",
+      "avatar": "http://www.tuniu.com/corp/ui/img/icon-consult.png"
+    },
+    {
+      "nickName": "昵称10",
+      "avatar": "http://www.tuniu.com/corp/ui/img/icon-phone.png"
     }
   ],
   "chat_contact_group": "http://www.tuniu.com/corp/ui/img/icon-consult.png",
   "Foot": "this is foot",
   "number": 123
+
   //  "object": {
   //    "a": "b",
   //    "c": "d",

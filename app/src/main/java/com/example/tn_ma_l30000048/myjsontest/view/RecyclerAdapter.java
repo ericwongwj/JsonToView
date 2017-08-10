@@ -17,21 +17,21 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by tn-ma-l30000048 on 17/8/2.
  */
 
-public class RecyclerAdapter<T> extends RecyclerView.Adapter<BaseViewHolder<T>> {
+public class RecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     private static final int HEADER_TYPE = 111;
     private static final int FOOTER_TYPE = 222;
     private static final int STATUS_TYPE = 333;
     private static final int INSERT_TYPE = 444;
 
-    private static final String TAG = "RecyclerAdapter";
+    private static final String TAG = "RecyclerAdapter ";
     public boolean isShowNoMore = false;   //停止加载
     public boolean loadMoreAble = false;   //是否可加载更多
     public TextView mNoMoreView;
@@ -39,9 +39,12 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<BaseViewHolder<T>> 
     protected View mStatusView;
     protected LinearLayout mLoadMoreView;
     int mViewCount = 0;
+    int pageNum = 5;//一页十个数据
     private boolean hasHeader = false;
     private boolean hasFooter = false;
-    private List<T> mData = new ArrayList<>();
+
+    private List<Map<String, Object>> mDataMap = new ArrayList<>();
+
     private JSONObject mHeaderJson;
     private JSONObject mFooterJson;
     private JSONObject mCellJson;
@@ -51,20 +54,11 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<BaseViewHolder<T>> 
 
     private Context mContext;
 
-
     private OnItemClickListener onItemClickListener;
 
     public RecyclerAdapter(Context context) {
         mContext = context;
         initStatusView();
-    }
-
-    public RecyclerAdapter(Context context, List<T> data) {
-        mContext = context;
-        initStatusView();
-        this.mData = data;
-        mViewCount += data.size();
-        notifyDataSetChanged();
     }
 
     public void initStatusView() {//包括正在加载和没有更多了
@@ -76,45 +70,53 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<BaseViewHolder<T>> 
     }
 
     @Override
-    public BaseViewHolder<T> onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (viewType == HEADER_TYPE) {
-            JsonRoot header = new JsonRoot(mHeaderJson, mContext, parent.getWidth(), parent.getHeight());
-            return new BaseViewHolder<>(header.getJsonView());
-        } else if (viewType == FOOTER_TYPE) {
-            JsonRoot footer = new JsonRoot(mFooterJson, mContext, parent.getWidth(), parent.getHeight());
-            return new BaseViewHolder<>(footer.getJsonView());
-        } else if (viewType == STATUS_TYPE) {
-            return new BaseViewHolder<>(mStatusView);
-        } else if (viewType == INSERT_TYPE) {
-            System.out.println("create insert holder");
-            JsonRoot insertView = new JsonRoot(mInsertJsons.get(rowsIndex++), mContext, parent.getWidth(), parent.getHeight());
-            return new BaseViewHolder<>(insertView.getJsonView());
-        } else {
-            JsonRoot cell = new JsonRoot(mCellJson, mContext, parent.getWidth(), parent.getHeight());
-            return new BaseViewHolder<>(cell.getJsonView());
-        }
+    public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+//        if (viewType == HEADER_TYPE) {
+//            JsonRoot header = new JsonRoot(mHeaderJson, mContext, parent.getWidth(), parent.getHeight());
+//            return new BaseViewHolder(header);
+//        } else if (viewType == FOOTER_TYPE) {
+//            JsonRoot footer = new JsonRoot(mFooterJson, mContext, parent.getWidth(), parent.getHeight());
+//            return new BaseViewHolder(footer);
+//        } else if (viewType == STATUS_TYPE) {
+//            return new BaseViewHolder(mStatusView);
+//        } else if (viewType == INSERT_TYPE) {
+//            JsonRoot insertView = new JsonRoot(mInsertJsons.get(rowsIndex++), mContext, parent.getWidth(), parent.getHeight());
+//            return new BaseViewHolder(insertView);
+//        } else {
+        JsonRoot cell = new JsonRoot(mCellJson, mContext, parent.getWidth(), parent.getHeight(), true);
+        return new BaseViewHolder(cell);
+//        }
     }
 
     @Override
-    public void onBindViewHolder(BaseViewHolder<T> holder, int position) {
-        System.out.println("mData.size()" + mData.size() + " pos=" + position);
-        //重点在这里 还可能要处理一些网络请求的问题
-        position = position % 8;
-        if (position == 0) {
+    public void onBindViewHolder(BaseViewHolder holder, int position) {
+        System.out.println(TAG + " onBindViewHolder  pos=" + position);
+
+        if (position == 0) {//header的位置
             if (mViewCount == 1 || hasHeader)
                 return;
-            else holder.setData(mData.get(0));
-        } else if (!hasHeader && !hasFooter && position < mData.size()) { //没有Header和Footer
-            holder.setData(mData.get(position));
+            else holder.setData(mDataMap.get(0));
+        } else if (!hasHeader && !hasFooter && position < mDataMap.size()) { //没有Header和Footer
+            holder.setData(mDataMap.get(position));
         } else if (hasHeader && !hasFooter && position > 0 && position < mViewCount - 1) { //有Header没有Footer
-            holder.setData(mData.get(position - 1));
+            holder.setData(mDataMap.get(position - 1));
         } else if (!hasHeader && position < mViewCount - 2) { //没有Header，有Footer
-            holder.setData(mData.get(position));
+            holder.setData(mDataMap.get(position));
         } else if (position > 0 && position < mViewCount - 2) { //都有
-            holder.setData(mData.get(position - 1));
+            holder.setData(mDataMap.get(position - 1));
         }
 
-        // 最后一个可见的 item 时 加载更多。
+
+        holder.setData(mDataMap.get(position));
+
+        holder.mCellRoot.getJsonView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+//         最后一个可见的 item 时 加载更多。
         int positionEnd;
         if ((hasHeader && hasFooter) || (!hasHeader && hasFooter)) {
             positionEnd = mViewCount - 3;
@@ -134,13 +136,13 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<BaseViewHolder<T>> 
         if (hasHeader && position == 0) return HEADER_TYPE;
         if (hasFooter && position == mViewCount - 2) return FOOTER_TYPE;
         if (position == mViewCount - 1) return STATUS_TYPE;
-        if (mInsertRows.get(position) != null) return INSERT_TYPE;
+//        if (mInsertRows.get(position) != null) return INSERT_TYPE;
         return super.getItemViewType(position);//普通的cell目前设为统一的
     }
 
     @Override
     public int getItemCount() {
-        return mViewCount;
+        return mDataMap.size();
     }
 
     public void showNoMore() {
@@ -154,13 +156,14 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<BaseViewHolder<T>> 
         });
     }
 
+
     public void setLoadMoreAction(Action action) {
         mLoadMoreAction = action;
     }
 
     public void clear() {
-        if (mData == null) return;
-        mData.clear();
+//        if (mData == null) return;
+//        mData.clear();
         mViewCount = 1;
         if (hasHeader)
             mViewCount++;
@@ -205,15 +208,15 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<BaseViewHolder<T>> 
         mViewCount += insertViews.size();
     }
 
-
-    public void addAll(T[] data) {
-        addAll(Arrays.asList(data));
+    public void setmDataMap(List<Map<String, Object>> mDataMap) {
+        this.mDataMap = mDataMap;
     }
 
-    public void addAll(List<T> data) {
+
+    public void addAll(List<Object> data) {
         int size = data.size();
         if (!isShowNoMore && size > 0) {
-            mData.addAll(data);
+            //mData.addAll(data);
             int positionStart;
             if (hasFooter) {
                 positionStart = mViewCount - 2;
@@ -225,7 +228,13 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<BaseViewHolder<T>> 
         }
     }
 
-    public interface OnItemClickListener {
+    public void setDataToView(List<Map<String, Object>> dataList) {
+        //重新bind
+        notifyDataSetChanged();
+    }
+
+
+    interface OnItemClickListener {
         void onItemClick(View view, int position);
 
         void onItemLongClick(View view, int position);

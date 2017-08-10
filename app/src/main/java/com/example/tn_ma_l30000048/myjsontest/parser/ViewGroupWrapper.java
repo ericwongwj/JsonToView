@@ -58,6 +58,10 @@ public class ViewGroupWrapper extends ViewWrapper {
         }
     }
 
+    public List<ViewWrapper> getmSubViewWrappers() {
+        return mSubViewWrappers;
+    }
+
     public View findViewByTagId(int tagId) {
         return findViewByTagId(tagId, null);
     }

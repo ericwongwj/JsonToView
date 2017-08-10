@@ -8,7 +8,6 @@ import android.util.Log;
 import com.example.tn_ma_l30000048.myjsontest.model.AbsoluteCalculate;
 import com.example.tn_ma_l30000048.myjsontest.utils.JasonHelper;
 import com.example.tn_ma_l30000048.myjsontest.utils.JsonUtils;
-import com.example.tn_ma_l30000048.myjsontest.view.Bean;
 import com.example.tn_ma_l30000048.myjsontest.view.MyRecyclerView;
 import com.example.tn_ma_l30000048.myjsontest.view.RecyclerAdapter;
 
@@ -33,7 +32,7 @@ public class JsonGridView {
     }
 
 
-    static void setBaseStyle(JSONObject json, MyRecyclerView rv, RecyclerAdapter<Bean> adapter) {
+    static void setBaseStyle(JSONObject json, MyRecyclerView rv, RecyclerAdapter adapter) {
         Iterator<String> keys = json.keys();
         try {
             while (keys.hasNext()) {
@@ -51,7 +50,7 @@ public class JsonGridView {
         }
     }
 
-    static void setGridStyle(JSONObject gridStyle, MyRecyclerView rv, RecyclerAdapter<Bean> adapter) {
+    static void setGridStyle(JSONObject gridStyle, MyRecyclerView rv, RecyclerAdapter adapter) {
         Iterator<String> keys = gridStyle.keys();
         try {
             while (keys.hasNext()) {

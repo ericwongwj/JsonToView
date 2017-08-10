@@ -51,12 +51,12 @@ public class JsonImageView {
                     iv.setBackground(gd);
                 }else if(key.equalsIgnoreCase("contentMode")) {
                     int contentMode = json.getInt(key);
-                    setImageScaleType(iv, contentMode);//需要确定一下
+                    setImageScaleType(iv, contentMode);//需要确定一下f
                 }else if(key.equalsIgnoreCase("imageSource")){
                     JSONObject imgSrc = json.getJSONObject(key);
                     AtomicData dataSource = JsonViewUtils.parseDataSource(imgSrc);
                     viewWrapper.setDataSource(dataSource);
-                    System.out.println(TAG + dataSource);
+//                    System.out.println(TAG + "dataSource:"+dataSource);
                 }
             }
         }catch (Exception e){

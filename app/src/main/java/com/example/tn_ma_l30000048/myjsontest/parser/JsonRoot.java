@@ -7,12 +7,10 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.tn_ma_l30000048.myjsontest.R;
-import com.example.tn_ma_l30000048.myjsontest.bean.ContactData;
 import com.example.tn_ma_l30000048.myjsontest.model.AtomicData;
 import com.example.tn_ma_l30000048.myjsontest.model.HeaderInfo;
 import com.example.tn_ma_l30000048.myjsontest.model.RequestInfo;
 import com.example.tn_ma_l30000048.myjsontest.utils.DensityUtils;
-import com.example.tn_ma_l30000048.myjsontest.view.MyRecyclerView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,13 +40,6 @@ public class JsonRoot extends ViewGroupWrapper {
 
     private Context mContext;
     private Map<String, Object> mDataMap;
-    Runnable contactListRunnable = new Runnable() {
-        @Override
-        public void run() {
-            addListData();
-
-        }
-    };
     private HeaderInfo mHeaderInfo;
     private List<RequestInfo> mRequestInfoList;
     private Handler mHandler = new Handler();
@@ -87,6 +78,41 @@ public class JsonRoot extends ViewGroupWrapper {
             }, 300);
 
             //渲染界面  主要问题在于 如果只是一个控件
+            JSONObject rootNode = jsonObject.getJSONObject("rootNode");
+            if (rootNode.getInt("nodeType") == 4 || rootNode.getInt("nodeType") == 0) {
+                ViewWrapper vw = ViewGroupFactory.build(rootNode, this, (int) containerWidth, (int) containerHeight);
+                mJsonView = vw.getJsonView();
+            } else {
+                //need to test and modify
+                ViewWrapper vw = ViewFactory.build(rootNode, this, (int) containerWidth, (int) containerHeight);
+                mJsonView = vw.getJsonView();
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public JsonRoot(JSONObject jsonObject, final Context context, int parentWidth, int parentHeight, boolean isCell) {
+        super(context);
+        System.out.println("JSON CELL ROOT " + parentWidth + " " + parentHeight);
+        mContext = context;
+        try {
+            SDKVersion = jsonObject.getString("SDKVersion");
+            ModuleVersion = jsonObject.getString("ModuleVersion");
+            if (jsonObject.has("registerProperty"))
+                registerProperty = jsonObject.getString("registerProperty");//js code
+            if (jsonObject.has("JSContext"))
+                parseJSContext(jsonObject.getJSONArray("JSContext"));
+            if (jsonObject.has("containerType"))//0:view  1:page
+                containerType = jsonObject.getInt("containerType");
+
+            parseWandH(jsonObject, parentWidth, parentHeight);
+
+            if (jsonObject.has("requestInfo")) {
+                parseRequestInfo(jsonObject.getJSONArray("requestInfo"));
+            }
+
             JSONObject rootNode = jsonObject.getJSONObject("rootNode");
             if (rootNode.getInt("nodeType") == 4 || rootNode.getInt("nodeType") == 0) {
                 ViewWrapper vw = ViewGroupFactory.build(rootNode, this, (int) containerWidth, (int) containerHeight);
@@ -213,7 +239,7 @@ public class JsonRoot extends ViewGroupWrapper {
     private void parseWandH(JSONObject jsonObject, int parentWidth, int parentHeight) throws JSONException {
         if (jsonObject.has("containerHeight")) {
             String height = jsonObject.getString("containerHeight");//in dp
-            System.out.println(TAG + "container height:" + height + " dp");
+//            System.out.println(TAG + "container height:" + height + " dp");
             if (height.substring(0, 2).equals("{{"))
                 System.out.println(TAG + "containerHeight is js code");
             else {
@@ -235,58 +261,48 @@ public class JsonRoot extends ViewGroupWrapper {
         } else containerWidth = parentWidth;
     }
 
-    private void setData() {//遍历view树来set数据
-        if (mDataMap == null) return;//这里的逻辑不完善
+    public void setData() {//遍历view树来set数据
+        if (mDataMap == null)
+            return;//这里的逻辑不完善
         for (ViewWrapper vw : mSubViewWrappers) {
             if (vw.getDataSource() != null) {
                 AtomicData dataSource = vw.getDataSource();
                 if (vw.getJsonView() instanceof TextView) {
-                    if (dataSource.getDataType() == 0)
+                    if (dataSource.getDataType() == 0) {
                         ((TextView) vw.getJsonView()).setText(dataSource.getData());
-                    else if (dataSource.getDataType() == 1) {
+                    } else if (dataSource.getDataType() == 1) {
                         List<String> keys = dataSource.getDataPaths();
                         String s = (String) getDataFromMap(mDataMap, keys);//这的做的转换尽量安全
                         ((TextView) vw.getJsonView()).setText(s);
                     }
                 } else if (vw.getJsonView() instanceof ImageView) {
                     if (dataSource.getDataType() == 0) {
-                        //如何读取本地的图片？
+                        //TODO:如何读取本地的图片？
                         ((ImageView) vw.getJsonView()).setImageResource(R.drawable.icon);
                     } else if (dataSource.getDataType() == 1) {
                         List<String> keys = dataSource.getDataPaths();
                         String url = (String) getDataFromMap(mDataMap, keys);
                         Glide.with(mContext).load(url).asBitmap().into((ImageView) vw.getJsonView());
                     }
-                } else if (vw.getJsonView() instanceof MyRecyclerView) {
+                } else if (vw instanceof CollectionViewWrapper) {
                     if (vw.getDataSource().getDataType() == 1) {
-                        List<Map<String, Object>> listData;//每一个item的数据也是一个map
+                        List<String> keys = dataSource.getDataPaths();
+                        List<Map<String, Object>> listData = (List<Map<String, Object>>) getDataFromMap(mDataMap, keys);//每一个item的数据也是一个map
+                        ((CollectionViewWrapper) vw).initRecyclerView(listData);//只负责第一的加载 后续刷新在控件内实现
                     }
-                    System.out.println(TAG + " load list");
                 }
             }
         }
     }
+
 
     public HeaderInfo getHeaderInfo() {
         return mHeaderInfo;
     }
 
 
-    //    ========test fake data============
-
     public List<RequestInfo> getRequestInfo() {
         return mRequestInfoList;
-    }
-
-    void addListData() {
-        List<ContactData> contactData = new ArrayList<>();
-        int[] picIds = {R.drawable.pic1, R.drawable.pic2, R.drawable.pic3};
-        for (int i = -0; i < 20; i++) {
-            ContactData data = new ContactData("联系人" + i, picIds[i % 3]);
-            contactData.add(data);
-        }
-        mDataMap.put("recentContactList", contactData);
-        System.out.println(mDataMap.get("recentContactList").getClass().getSimpleName());
     }
 
 

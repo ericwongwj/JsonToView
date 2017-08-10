@@ -34,7 +34,7 @@ public class ViewGroupFactory {
     }
 
     private static ViewWrapper buildFrameLayout(JSONObject body, ViewGroupWrapper jsonRoot, int parentWidth, int parentHeight) {
-        System.out.println("----buildViewGroup FrameLayout----");
+//        System.out.println("----buildViewGroup FrameLayout----");
         FrameLayout frameLayout = new FrameLayout(jsonRoot.getContext());
         ViewWrapper viewWrapper = new ViewWrapper(frameLayout);
         JsonViewUtils.setTagToWrapper(body, frameLayout, viewWrapper);
@@ -43,6 +43,7 @@ public class ViewGroupFactory {
         JsonViewUtils.setAbsoluteLayoutParams(JsonHelper.getLayout(body), frameLayout, parentWidth, parentHeight);
         setStyle(JsonHelper.getStyles(body),frameLayout);
         setSubNode(JsonHelper.getSubNodes(body), frameLayout, jsonRoot);
+//        System.out.println("===========build framelayout end============");
         return viewWrapper;
     }
 
@@ -78,7 +79,7 @@ public class ViewGroupFactory {
     private static void setSubNode(JSONArray nodes, ViewGroup viewGroup, ViewGroupWrapper jsonRoot) {
         try {
             for (int i = 0; i < nodes.length(); i++) {
-                System.out.println(TAG + "setSubNode " + i);
+//                System.out.println(TAG + "setSubNode " + i);
                 JSONObject nodeBody = nodes.getJSONObject(i);
                 ViewWrapper subViewWrapper = ViewFactory.build(nodeBody, jsonRoot, viewGroup.getLayoutParams().width, viewGroup.getLayoutParams().height);
                 //TODO 容易出空指针

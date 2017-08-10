@@ -2,57 +2,63 @@ package com.example.tn_ma_l30000048.myjsontest.view;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.example.tn_ma_l30000048.myjsontest.R;
+import com.example.tn_ma_l30000048.myjsontest.model.AtomicData;
 import com.example.tn_ma_l30000048.myjsontest.parser.JsonRoot;
+import com.example.tn_ma_l30000048.myjsontest.parser.ViewWrapper;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by tn-ma-l30000048 on 17/8/2.
  */
 
-public class BaseViewHolder<T> extends RecyclerView.ViewHolder {
+public class BaseViewHolder extends RecyclerView.ViewHolder {
 
-    View mItemView;
-    JsonRoot mViewRoot;
+    static final String TAG = BaseViewHolder.class.getSimpleName() + " ";
+
+    JsonRoot mCellRoot;
 
     public BaseViewHolder(View itemView) {
         super(itemView);
-        this.mViewRoot = null;
-        this.mItemView = itemView;
+        this.mCellRoot = null;
     }
 
     public BaseViewHolder(JsonRoot viewRoot) {
         super(viewRoot.getJsonView());
-        System.out.println("new base view holder");
-        this.mViewRoot = viewRoot;
-        this.mItemView = viewRoot.getJsonView();
+        this.mCellRoot = viewRoot;
     }
 
-    public <T extends View> T findCellViewByNodeName(String name) {
-        T subView = null;
-        if (mItemView instanceof ViewGroup) {
-//            subView = (T) mViewRoot.getRootViewWrapper().findViewByNodeName(name);
-        }
-        return subView;
-    }
-
-    //这里的设计算不上好
-    public void setOnClickListener(final T data) {
-        mItemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onItemViewClick(data);
+    //暂时不嵌套
+    //cell是从adapter中传的map中拿数据 如果header的数据在map中则同样 如果在外面 那么直接在外面拿数据
+    public void setData(Map<String, Object> map) {//遍历view树来set数据
+        for (ViewWrapper vw : mCellRoot.getmSubViewWrappers()) {
+            if (vw.getDataSource() != null) {
+                AtomicData dataSource = vw.getDataSource();
+                if (vw.getJsonView() instanceof TextView) {
+                    if (dataSource.getDataType() == 0) {
+                        ((TextView) vw.getJsonView()).setText(dataSource.getData());
+                    } else if (dataSource.getDataType() == 1) {
+                        List<String> keys = dataSource.getDataPaths();
+                        String text = (String) map.get(keys.get(0));
+                        ((TextView) vw.getJsonView()).setText(text);
+                    }
+                } else if (vw.getJsonView() instanceof ImageView) {
+                    if (dataSource.getDataType() == 0) {//如何读取本地的图片？
+                        ((ImageView) vw.getJsonView()).setImageResource(R.drawable.icon);
+                    } else if (dataSource.getDataType() == 1) {
+                        List<String> keys = dataSource.getDataPaths();//不嵌套 长度为0
+                        String url = (String) map.get(keys.get(0));
+                        Glide.with(mCellRoot.getContext()).load(url).asBitmap().into((ImageView) vw.getJsonView());
+                    }
+                }
             }
-        });
-    }
-
-    //这个要怎么实现？
-    public void setData(T data) {
-
-    }
-
-    protected void onItemViewClick(T data) {
-
+        }
     }
 
 }

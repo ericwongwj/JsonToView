@@ -15,11 +15,13 @@ import com.example.tn_ma_l30000048.myjsontest.R;
 import com.example.tn_ma_l30000048.myjsontest.parser.JsonHelper;
 import com.example.tn_ma_l30000048.myjsontest.parser.JsonRoot;
 import com.example.tn_ma_l30000048.myjsontest.view.Action;
-import com.example.tn_ma_l30000048.myjsontest.view.Bean;
 import com.example.tn_ma_l30000048.myjsontest.view.ContactListAdapter;
 import com.example.tn_ma_l30000048.myjsontest.view.MyRecyclerView;
 
 import org.json.JSONObject;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class TestMyListActivity extends AppCompatActivity {
 
@@ -106,7 +108,7 @@ public class TestMyListActivity extends AppCompatActivity {
                 if (isRefresh) {
                     page = 1;
                     mAdapter.clear();
-                    mAdapter.addAll(getVirtualData());
+                    mAdapter.addAll(null);//getVirtualData()
                     mRecyclerView.dismissSwipeRefresh();
                     mRecyclerView.getRecyclerView().scrollToPosition(0);
                 } else {
@@ -119,17 +121,16 @@ public class TestMyListActivity extends AppCompatActivity {
         }, 1500);
     }
 
-    public Bean[] getVirtualData() {
-        return new Bean[]{
-                new Bean("Demo", R.drawable.pic1),
-                new Bean("Demo", R.drawable.pic2),
-                new Bean("Demo", R.drawable.pic3),
-                new Bean("Demo", R.drawable.pic1),
-                new Bean("Demo", R.drawable.pic2),
-                new Bean("Demo", R.drawable.pic3),
-                new Bean("Demo", R.drawable.pic1),
-                new Bean("Demo", R.drawable.pic2),
-        };
+    public List<Object> getVirtualData() {
+        return Arrays.asList();
+//                new Bean("Demo", R.drawable.pic1),
+//                new Bean("Demo", R.drawable.pic2),
+//                new Bean("Demo", R.drawable.pic3),
+//                new Bean("Demo", R.drawable.pic1),
+//                new Bean("Demo", R.drawable.pic2),
+//                new Bean("Demo", R.drawable.pic3),
+//                new Bean("Demo", R.drawable.pic1),
+//                new Bean("Demo", R.drawable.pic2),
     }
 }
 

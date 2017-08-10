@@ -76,6 +76,7 @@ public class TestListActivity extends AppCompatActivity implements View.OnClickL
             @Override
             public void onItemClick(View view, int position) {
                 Toast.makeText(TestListActivity.this,"click " + position + " item", Toast.LENGTH_SHORT).show();
+                System.out.println(mRecyclerView.getChildCount());
             }
 
             @Override
@@ -84,8 +85,8 @@ public class TestListActivity extends AppCompatActivity implements View.OnClickL
             }
         });
 
-//        mRecyclerView.setAdapter(mAdapter);
-//        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setLayoutManager(mLayoutManager);
 
     }
 

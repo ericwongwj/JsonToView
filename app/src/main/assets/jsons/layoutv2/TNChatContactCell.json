@@ -2,7 +2,7 @@
   "SDKVersion": "0.0.0",
   "ModuleVersion": "0.0.0",
   "containerType": 0,
-  "containerHeight": "55",
+  "containerHeight": "155",
   "rootNode": {
     "tag": "1",
     "nodeName": "view",
