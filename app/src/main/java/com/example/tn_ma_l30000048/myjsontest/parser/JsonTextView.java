@@ -16,6 +16,7 @@ import java.util.Iterator;
  */
 
 public class JsonTextView {
+    static final String TAG = JsonTextView.class.getSimpleName();
 
     public static ViewWrapper build(JSONObject body, ViewGroupWrapper jsonRoot, int parentWidth, int parentHeight) {
         ViewWrapper viewWrapper = new ViewWrapper(jsonRoot.getContext());
@@ -29,7 +30,7 @@ public class JsonTextView {
     public static TextView buildTextView(JSONObject body, ViewWrapper viewWrapper, int parentWidth, int parentHeight) {
         TextView textView = new TextView(viewWrapper.getContext());
 //        System.out.println("----build TextView----");
-        JsonViewUtils.setAbsoluteLayoutParams(JsonHelper.getLayout(body), textView, parentWidth, parentHeight);
+        JsonViewUtils.setLayoutParams(JsonHelper.getLayout(body), textView, parentWidth, parentHeight);
         JsonViewUtils.setAction();
         setTextStyle(JsonHelper.getStyles(body), textView, viewWrapper);
         return textView;
@@ -84,6 +85,8 @@ public class JsonTextView {
                     JSONObject text=json.getJSONObject(key);
                     AtomicData dataSource = JsonViewUtils.parseDataSource(text);
                     viewWrapper.setDataSource(dataSource);
+                    if (dataSource.getDataType() == 0)
+                        tv.setText(dataSource.getData());
                 }
             }
         }catch (Exception e){

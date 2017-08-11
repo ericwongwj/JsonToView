@@ -45,8 +45,10 @@
   ],
   "chat_contact_group": "http://www.tuniu.com/corp/ui/img/icon-consult.png",
   "Foot": "this is foot",
-  "number": 123
-
+  "number": 123,
+  "pictureImage": "http://www.tuniu.com/corp/ui/img/icon-consult.png",
+  "typeName": "TYPE",
+  "desc": "这是介绍"
   //  "object": {
   //    "a": "b",
   //    "c": "d",

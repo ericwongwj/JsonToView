@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.example.tn_ma_l30000048.myjsontest.R;
 import com.example.tn_ma_l30000048.myjsontest.parser.JsonRoot;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -35,23 +34,23 @@ public class RecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     public boolean isShowNoMore = false;   //停止加载
     public boolean loadMoreAble = false;   //是否可加载更多
     public TextView mNoMoreView;
+    public int mViewCount = 0;
+    public int currentPage = 0;
     protected Action mLoadMoreAction;
     protected View mStatusView;
     protected LinearLayout mLoadMoreView;
-    int mViewCount = 0;
     int pageNum = 5;//一页十个数据
-    public int currentPage=0;
     private boolean hasHeader = false;
     private boolean hasFooter = false;
 
-    private List<Map<String, Object>> mDataMap = new ArrayList<>();
+    private Map<String, Object> rootDataMap;
+    private List<Map<String, Object>> mDataMapList = new ArrayList<>();
 
     private JSONObject mHeaderJson;
     private JSONObject mFooterJson;
     private JSONObject mCellJson;
-    private List<JSONObject> mInsertJsons;
-    private SparseArray<JSONObject> mInsertRows;
-    private int rowsIndex = 0;
+    private SparseArray<JSONObject> mInsertJsons;
+    private int insertRowsIndex = 0;
 
     private Context mContext;
 
@@ -72,21 +71,27 @@ public class RecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-//        if (viewType == HEADER_TYPE) {
-//            JsonRoot header = new JsonRoot(mHeaderJson, mContext, parent.getWidth(), parent.getHeight());
-//            return new BaseViewHolder(header);
-//        } else if (viewType == FOOTER_TYPE) {
-//            JsonRoot footer = new JsonRoot(mFooterJson, mContext, parent.getWidth(), parent.getHeight());
-//            return new BaseViewHolder(footer);
-//        } else if (viewType == STATUS_TYPE) {
-//            return new BaseViewHolder(mStatusView);
-//        } else if (viewType == INSERT_TYPE) {
-//            JsonRoot insertView = new JsonRoot(mInsertJsons.get(rowsIndex++), mContext, parent.getWidth(), parent.getHeight());
-//            return new BaseViewHolder(insertView);
-//        } else {
-        JsonRoot cell = new JsonRoot(mCellJson, mContext, parent.getWidth(), parent.getHeight(), true);
-        return new BaseViewHolder(cell);
-//        }
+        System.out.println(TAG + "onCreateViewHolder " + viewType);
+        if (viewType == HEADER_TYPE) {
+            JsonRoot header = new JsonRoot(mHeaderJson, mContext, parent.getWidth(), parent.getHeight(), true);
+            return new BaseViewHolder(header);
+        }
+        if (viewType == FOOTER_TYPE) {
+            JsonRoot footer = new JsonRoot(mFooterJson, mContext, parent.getWidth(), parent.getHeight(), true);
+            return new BaseViewHolder(footer);
+        }
+        if (viewType == STATUS_TYPE) {
+            return new BaseViewHolder(mStatusView);
+        }
+        if (viewType == INSERT_TYPE) {
+            //这里有网络请求的逻辑
+            System.out.println("insertViewType");
+            JsonRoot insertView = new JsonRoot(mInsertJsons.get(insertRowsIndex++), mContext, parent.getWidth(), parent.getHeight());
+            return new BaseViewHolder(insertView);
+        } else {
+            JsonRoot cell = new JsonRoot(mCellJson, mContext, parent.getWidth(), parent.getHeight(), true);
+            return new BaseViewHolder(cell);
+        }
     }
 
     @Override
@@ -94,28 +99,30 @@ public class RecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         System.out.println(TAG + " onBindViewHolder  pos=" + position);
 
         if (position == 0) {//header的位置
-            if (mViewCount == 1 || hasHeader)
+            if (mViewCount == 1)  // 最先加载 mStatusView 时不需要绑定数据
                 return;
-            else holder.setData(mDataMap.get(0));
-        } else if (!hasHeader && !hasFooter && position < mDataMap.size()) { //没有Header和Footer
-            holder.setData(mDataMap.get(position));
+            if (!hasHeader && !mDataMapList.isEmpty()) {
+                holder.setCellData(mDataMapList.get(0));
+            } else {
+                holder.setUniqueData(rootDataMap);
+            }
+        } else if (!hasHeader && !hasFooter && position < mDataMapList.size()) { //没有Header和Footer
+            holder.setCellData(mDataMapList.get(position));
         } else if (hasHeader && !hasFooter && position > 0 && position < mViewCount - 1) { //有Header没有Footer
-            holder.setData(mDataMap.get(position - 1));
+            holder.setCellData(mDataMapList.get(position - 1));
         } else if (!hasHeader && position < mViewCount - 2) { //没有Header，有Footer
-            holder.setData(mDataMap.get(position));
+            holder.setCellData(mDataMapList.get(position));
         } else if (position > 0 && position < mViewCount - 2) { //都有
-            holder.setData(mDataMap.get(position - 1));
+            holder.setCellData(mDataMapList.get(position - 1));
         }
 
 
-        holder.setData(mDataMap.get(position));
-
-        holder.mCellRoot.getJsonView().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+//        onItemClickListener.onItemClick();
+//        holder.mCellRoot.getJsonView().setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//            }
+//        });
 
 //         最后一个可见的 item 时 加载更多。
         int positionEnd;
@@ -137,13 +144,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         if (hasHeader && position == 0) return HEADER_TYPE;
         if (hasFooter && position == mViewCount - 2) return FOOTER_TYPE;
         if (position == mViewCount - 1) return STATUS_TYPE;
-//        if (mInsertRows.get(position) != null) return INSERT_TYPE;
+        if (mInsertJsons != null && mInsertJsons.get(position) != null) return INSERT_TYPE;
         return super.getItemViewType(position);//普通的cell目前设为统一的
     }
 
     @Override
     public int getItemCount() {
-        return mDataMap.size();
+        return mViewCount;
     }
 
     public void showNoMore() {
@@ -184,7 +191,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     public void setCell(JSONObject cell) {
         mCellJson = cell;
-        mViewCount++;
     }
 
     public void setFooter(JSONObject footer) {
@@ -193,24 +199,15 @@ public class RecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         mViewCount++;
     }
 
-    public void setInsertViews(List<JSONObject> insertViews) {
-        mInsertRows = new SparseArray<>();
+    public void setInsertViews(SparseArray<JSONObject> insertViews) {
         mInsertJsons = insertViews;
-        for (JSONObject insertView : insertViews) {
-            int row = 0;
-            try {
-                row = insertView.getInt("row");
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            mInsertRows.put(row, insertView);//这里put进去的应该是得到的insertView界面的json
-
-        }
         mViewCount += insertViews.size();
     }
 
-    public void setmDataMap(List<Map<String, Object>> mDataMap) {
-        this.mDataMap = mDataMap;
+    //只在第一次初始化的时候调用
+    public void setDataMap(List<Map<String, Object>> mDataMap) {
+        this.mDataMapList = mDataMap;
+        mViewCount += mDataMap.size();
     }
 
 
@@ -229,10 +226,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         }
     }
 
-    public void addMapList(List<Map<String,Object>> data) {
+    public void addMapList(List<Map<String, Object>> data, boolean isRefresh) {
         int size = data.size();
         if (!isShowNoMore && size > 0) {
-            mDataMap.addAll(0,data);
+            if (isRefresh)
+                mDataMapList.addAll(0, data);
+            else mDataMapList.addAll(data);
             int positionStart;
             if (hasFooter) {
                 positionStart = mViewCount - 2;

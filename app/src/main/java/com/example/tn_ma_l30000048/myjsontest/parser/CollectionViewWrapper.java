@@ -22,11 +22,14 @@ import java.util.Map;
 public class CollectionViewWrapper extends ViewWrapper {
 
     static final String TAG = CollectionViewWrapper.class.getSimpleName() + " ";
+    static int num = 0;
+    Action action;
     private RecyclerAdapter adapter;
     private JSONObject mHeadJson;
     private JSONObject mFootJson;
     private JSONObject mCellJson;
     private SparseArray<JSONObject> mInsertViewJson;
+    private Map<String, Object> mRootDataMap;
 
     public CollectionViewWrapper(Context context) {
         super(context);
@@ -35,7 +38,25 @@ public class CollectionViewWrapper extends ViewWrapper {
     void initRecyclerView(List<Map<String, Object>> dataList) {
         System.out.println(TAG + "initRecyclerView");
         MyRecyclerView myRecyclerView = (MyRecyclerView) mJsonView;
-        myRecyclerView.setBackgroundColor(0xAAAAAAAA);
+        myRecyclerView.setBackgroundColor(0xCCCCCCCC);
+
+        adapter = new RecyclerAdapter(myRecyclerView.getContext());
+        if (mCellJson != null)
+            adapter.setCell(mCellJson);//3种情形都需要测试
+        if (mHeadJson != null)
+            adapter.setHeader(mHeadJson);
+        if (mFootJson != null)
+            adapter.setFooter(mFootJson);
+        if (mInsertViewJson != null)
+            adapter.setInsertViews(mInsertViewJson);
+        adapter.setDataMap(dataList);
+
+
+        System.out.println(TAG + " view count:" + adapter.mViewCount);
+        //第一次加载数据
+        myRecyclerView.setAdapter(adapter);
+
+        //需要现有adapter
         myRecyclerView.setRefreshAction(new Action() {
             @Override
             public void onAction() {
@@ -43,18 +64,14 @@ public class CollectionViewWrapper extends ViewWrapper {
             }
         });
 
-        adapter = new RecyclerAdapter(myRecyclerView.getContext());
-        adapter.setCell(mCellJson);
-        //adapter.setHeader(mHeadJson);
-        //adapter.setFooter(mFootJson);
-        adapter.setmDataMap(dataList);
-
-
-        //第一次加载数据
-        myRecyclerView.setAdapter(adapter);
+        myRecyclerView.setLoadMoreAction(new Action() {
+            @Override
+            public void onAction() {
+                getData(false);
+            }
+        });
         myRecyclerView.dismissSwipeRefresh();
     }
-
 
     public void setCellJson(JSONObject cellJson) {
         mCellJson = cellJson;
@@ -80,11 +97,12 @@ public class CollectionViewWrapper extends ViewWrapper {
                 if (isRefresh) {
                     adapter.currentPage = 1;
                     adapter.clear();
-                    adapter.addMapList(getVirtualData());
+                    adapter.addMapList(getVirtualData(), isRefresh);
                     myRecyclerView.dismissSwipeRefresh();
                     myRecyclerView.getRecyclerView().scrollToPosition(0);
                 } else {
-                    adapter.addMapList(getVirtualData());
+                    adapter.currentPage++;
+                    adapter.addMapList(getVirtualData(), isRefresh);
                     if (adapter.currentPage >= 3) {
                         myRecyclerView.showNoMore();
                     }
@@ -97,10 +115,19 @@ public class CollectionViewWrapper extends ViewWrapper {
         List<Map<String,Object>> data=new ArrayList<>();
         for(int i=0;i<8;i++){
             Map<String,Object> map=new HashMap<>();
-            map.put("nickName","NICKNAME"+i);
+            map.put("nickName", "NICKNAME" + num++);
             map.put("avatar",Constants.ICON_URL1);
             data.add(map);
         }
         return data;
+    }
+
+    public void setAction(Action action) {
+        this.action = action;
+    }
+
+
+    public void setRootDataMap(Map<String, Object> mRootDataMap) {
+        this.mRootDataMap = mRootDataMap;
     }
 }

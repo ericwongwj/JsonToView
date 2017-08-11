@@ -12,6 +12,8 @@ import org.json.JSONObject;
  */
 
 public class ViewFactory {
+    static final String TAG = ViewGroupFactory.class.getSimpleName();
+    static int currentType;//0:absolute 1:relative
 
     public static ViewWrapper build(JSONObject body, ViewGroupWrapper jsonRoot, int parentWidth, int parentHeight) {
         if(body.has("nodeType")){
@@ -50,12 +52,12 @@ public class ViewFactory {
         if (body.has("subNode"))
             return ViewGroupFactory.build(body, jsonRoot, parentWidth, parentHeight);
 
-        System.out.println("----buildLine view-----");
+//        System.out.println("----buildLine view-----");
 
         View view = new View(jsonRoot.getContext());
         ViewWrapper viewWrapper = new ViewWrapper(view);
         JsonViewUtils.setTagToWrapper(body, view, viewWrapper);
-        JsonViewUtils.setAbsoluteLayoutParams(JsonHelper.getLayout(body), view, parentWidth, parentHeight);
+        JsonViewUtils.setLayoutParams(JsonHelper.getLayout(body), view, parentWidth, parentHeight);
         JSONObject style=JsonHelper.getStyles(body);
         String color= null;
         try {

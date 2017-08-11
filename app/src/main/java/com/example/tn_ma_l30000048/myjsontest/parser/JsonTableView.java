@@ -5,8 +5,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
 import android.util.SparseArray;
 
+import com.example.tn_ma_l30000048.myjsontest.MyDividerItemDecoration;
 import com.example.tn_ma_l30000048.myjsontest.model.AtomicData;
 import com.example.tn_ma_l30000048.myjsontest.utils.JasonHelper;
+import com.example.tn_ma_l30000048.myjsontest.view.Action;
 import com.example.tn_ma_l30000048.myjsontest.view.MyRecyclerView;
 
 import org.json.JSONArray;
@@ -36,13 +38,15 @@ public class JsonTableView {
         System.out.println("----buildViewGroup MyRecyclerView----");
         MyRecyclerView recyclerView = new MyRecyclerView(viewWrapper.getContext());
         JsonViewUtils.setTagToWrapper(body, recyclerView, new ViewWrapper());
-        JsonViewUtils.setAbsoluteLayoutParams(JsonHelper.getLayout(body), recyclerView, parentWidth, parentHeight);
+        JsonViewUtils.setLayoutParams(JsonHelper.getLayout(body), recyclerView, parentWidth, parentHeight);
         setBaseStyle(JsonHelper.getStyles(body), recyclerView, viewWrapper);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(viewWrapper.getContext(), LinearLayoutManager.VERTICAL, false));
 
         recyclerView.setSwipeRefreshColors(0xFF437845, 0xFFE44F98, 0xFF2FAC21);
         recyclerView.showSwipeRefresh();//在加载数据之后dismiss
+
+        recyclerView.getRecyclerView().addItemDecoration(new MyDividerItemDecoration(viewWrapper.getContext(), LinearLayoutManager.VERTICAL));
 
         return recyclerView;
     }
@@ -116,6 +120,13 @@ public class JsonTableView {
                 } else if (key.equalsIgnoreCase("pullDownAction")) {//不执行太多逻辑
                     String jsCode = tableStyle.getString(key);
                     //        mRecyclerView.setRefreshAction();
+                    Action action = new Action() {
+                        @Override
+                        public void onAction() {
+
+                        }
+                    };
+                    viewWrapper.setAction(action);
                 } else if (key.equalsIgnoreCase("pullUpAction")) {
                     String jsCode = tableStyle.getString(key);
                     //        mRecyclerView.setLoadMoreAction();

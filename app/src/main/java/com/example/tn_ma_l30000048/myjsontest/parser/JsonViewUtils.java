@@ -3,11 +3,14 @@ package com.example.tn_ma_l30000048.myjsontest.parser;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import com.example.tn_ma_l30000048.myjsontest.model.AbsolutePosition;
 import com.example.tn_ma_l30000048.myjsontest.model.AbsoluteSize;
 import com.example.tn_ma_l30000048.myjsontest.model.AtomicData;
 import com.example.tn_ma_l30000048.myjsontest.model.Layout;
+import com.example.tn_ma_l30000048.myjsontest.model.RelativePosition;
+import com.example.tn_ma_l30000048.myjsontest.model.RelativeSize;
 import com.example.tn_ma_l30000048.myjsontest.utils.DensityUtils;
 import com.example.tn_ma_l30000048.myjsontest.utils.JsonUtils;
 
@@ -26,11 +29,16 @@ import java.util.List;
 public class JsonViewUtils {
     static final String TAG = "JsonViewUtils";
 
-    public static void setAbsoluteLayoutParams(JSONObject json, View view, int parentWidth, int parentHeight) {
+    public static void setLayoutParams(JSONObject json, View view, int parentWidth, int parentHeight) {
         Layout layout= JsonUtils.decode(json.toString(), Layout.class);
-        AbsolutePosition position=layout.absolutePosition;
-        AbsoluteSize size=layout.absoluteSize;
+        if (layout.absolutePosition != null)
+            setAbsoluteLayoutParams(layout.absolutePosition, layout.absoluteSize, view, parentWidth, parentHeight);
+        else
+            setRelativeLayoutParams(layout.relativePosition, layout.relativeSize, view, parentWidth, parentHeight);
+    }
 
+
+    public static void setAbsoluteLayoutParams(AbsolutePosition position, AbsoluteSize size, View view, int parentWidth, int parentHeight) {
         ViewGroup.LayoutParams layoutParams=new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
         double w=0,h=0;
@@ -72,40 +80,11 @@ public class JsonViewUtils {
         view.setLayoutParams(layoutParams);
     }
 
-    public static void setRelativeLayoutParams(JSONObject json, View view, int parentWidth, int parentHeight) {
-        Layout layout= JsonUtils.decode(json.toString(), Layout.class);
-        AbsolutePosition position=layout.absolutePosition;
-        AbsoluteSize size=layout.absoluteSize;
+    public static void setRelativeLayoutParams(RelativePosition position, RelativeSize size, View view, int parentWidth, int parentHeight) {
 
-        ViewGroup.LayoutParams layoutParams=new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
         double w=0,h=0;
-
-        if(size.width.baseOption==0) {
-            w = parentWidth;
-        }else if(size.width.baseOption==1)
-            w=100;//self_width
-
-        if(size.height.baseOption==1) {
-            h = parentHeight;
-        }else if(size.height.baseOption==0)
-            h=100;//self_height
-
-        w=size.width.offset+w*size.width.persentage;
-        h=size.height.offset+h*size.height.persentage;
-        w= DensityUtils.dp2px(view.getContext(),(float)w);
-        h=DensityUtils.dp2px(view.getContext(),(float)h);
-
-        layoutParams.width=(int)w;
-        layoutParams.height=(int)h;
-
-        double x=position.x.offset+position.x.persentage*w;
-        double y=position.y.offset+position.y.persentage*h;
-        x=DensityUtils.px2dp(view.getContext(),(float)x);
-        y=DensityUtils.px2dp(view.getContext(),(float)y);
-        view.setX((float)x);
-        view.setY((float)y);
-        System.out.println(TAG+" (pixel) x:"+x+" y:"+y+" w:"+w+" h"+h);
 
         view.setLayoutParams(layoutParams);
     }

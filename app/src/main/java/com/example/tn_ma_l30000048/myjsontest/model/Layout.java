@@ -13,6 +13,10 @@ public class Layout {
     public Margin margin;
     public Margin padding;
 
+
+    public RelativePosition relativePosition;
+    public RelativeSize relativeSize;
+
     @Override
     public String toString() {
         return " "+strategy;

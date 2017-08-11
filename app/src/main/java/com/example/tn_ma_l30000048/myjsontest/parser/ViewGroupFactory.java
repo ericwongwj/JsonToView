@@ -22,14 +22,19 @@ import java.util.Iterator;
 public class ViewGroupFactory {
     static final String TAG = ViewGroupFactory.class.getSimpleName() + " ";
 
+    static int currentType;//0:absolute 1:relative
+
     //只供第一次JsonRoot调用
     public static ViewWrapper build(JSONObject body, ViewGroupWrapper jsonRoot, int parentWidth, int parentHeight) {
         Layout layout = JsonUtils.decode(body.toString(), Layout.class);
         ViewWrapper vw = null;
-        if (layout.strategy == 0)
+        if (layout.strategy == 0) {
             vw = buildFrameLayout(body, jsonRoot, parentWidth, parentHeight);
-        else if (layout.strategy == 1)
+            currentType = ViewFactory.currentType = 0;
+        } else if (layout.strategy == 1) {
             vw = buildRelativeLayout(body, jsonRoot, parentWidth, parentHeight);
+            currentType = ViewFactory.currentType = 1;
+        }
         return vw;
     }
 
@@ -40,13 +45,13 @@ public class ViewGroupFactory {
         JsonViewUtils.setTagToWrapper(body, frameLayout, viewWrapper);
 
 //        System.out.println("parent w=" + parentWidth + "   h=" + parentHeight);
-        JsonViewUtils.setAbsoluteLayoutParams(JsonHelper.getLayout(body), frameLayout, parentWidth, parentHeight);
+        JsonViewUtils.setLayoutParams(JsonHelper.getLayout(body), frameLayout, parentWidth, parentHeight);
         setStyle(JsonHelper.getStyles(body),frameLayout);
         setSubNode(JsonHelper.getSubNodes(body), frameLayout, jsonRoot);
-//        System.out.println("===========build framelayout end============");
         return viewWrapper;
     }
 
+    //TODO: 是否可以考虑讲界面属性的加载和位置大小的解析分离？
     private static ViewWrapper buildRelativeLayout(JSONObject body, ViewGroupWrapper jsonRoot, int parentWidth, int parentHeight) {
         System.out.println("----buildViewGroup RelativeLayout----");
         RelativeLayout frameLayout = new RelativeLayout(jsonRoot.getContext());
@@ -54,7 +59,7 @@ public class ViewGroupFactory {
         JsonViewUtils.setTagToWrapper(body, frameLayout, viewWrapper);
 
 //        System.out.println("parent w=" + parentWidth + "   h=" + parentHeight);
-        JsonViewUtils.setAbsoluteLayoutParams(JsonHelper.getLayout(body), frameLayout, parentWidth, parentHeight);
+        JsonViewUtils.setLayoutParams(JsonHelper.getLayout(body), frameLayout, parentWidth, parentHeight);
         setStyle(JsonHelper.getStyles(body), frameLayout);
         setSubNode(JsonHelper.getSubNodes(body), frameLayout, jsonRoot);
         return viewWrapper;

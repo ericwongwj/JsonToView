@@ -5,7 +5,7 @@
   "containerHeight": "20",
   "rootNode": {
     "tag": "0",
-    "nodeName": "headTitle",
+    "nodeName": "footTitle",
     "nodeType": 1,
     "layout": {
       "strategy": "0",
@@ -45,7 +45,7 @@
       "strickHeight": 1,
       "strickWidth": 1,
       "textAlignment": 1,
-      "backgroundColor": "#666666"
+      "backgroundColor": "#AAAAAA"
     }
   }
 }

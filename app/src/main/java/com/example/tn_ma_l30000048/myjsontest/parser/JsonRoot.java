@@ -73,7 +73,7 @@ public class JsonRoot extends ViewGroupWrapper {
                 @Override
                 public void run() {
                     constructDataMap(mDataMap, JsonHelper.readLocalDataJson(context, "testData.json"));
-                    setData();
+                    setDataToView();
                 }
             }, 300);
 
@@ -95,7 +95,7 @@ public class JsonRoot extends ViewGroupWrapper {
 
     public JsonRoot(JSONObject jsonObject, final Context context, int parentWidth, int parentHeight, boolean isCell) {
         super(context);
-        System.out.println("JSON CELL ROOT " + parentWidth + " " + parentHeight);
+        System.out.println("JSON CELL ROOT ");
         mContext = context;
         try {
             SDKVersion = jsonObject.getString("SDKVersion");
@@ -261,19 +261,22 @@ public class JsonRoot extends ViewGroupWrapper {
         } else containerWidth = parentWidth;
     }
 
-    public void setData() {//遍历view树来set数据
-        if (mDataMap == null)
+    public void setDataToView() {//遍历view树来set数据
+        if (mDataMap == null) {
+            System.out.println(TAG + " mdatamap");
             return;//这里的逻辑不完善
+        }
         for (ViewWrapper vw : mSubViewWrappers) {
             if (vw.getDataSource() != null) {
                 AtomicData dataSource = vw.getDataSource();
                 if (vw.getJsonView() instanceof TextView) {
-                    if (dataSource.getDataType() == 0) {
-                        ((TextView) vw.getJsonView()).setText(dataSource.getData());
-                    } else if (dataSource.getDataType() == 1) {
+                    TextView tv = ((TextView) vw.getJsonView());
+                    System.out.println(TAG + "x:" + tv.getX() + " y:" + tv.getY() + " w:" + tv.getWidth() + "h" + tv.getHeight() + " " + tv.isShown() + " " + tv.getText());
+                    if (dataSource.getDataType() == 1) {//另外的情况直接加载text了
                         List<String> keys = dataSource.getDataPaths();
-                        String s = (String) getDataFromMap(mDataMap, keys);//这的做的转换尽量安全
-                        ((TextView) vw.getJsonView()).setText(s);
+                        Object o = getDataFromMap(mDataMap, keys);//这的做的转换尽量安全
+                        tv.setText(o.toString());
+
                     }
                 } else if (vw.getJsonView() instanceof ImageView) {
                     if (dataSource.getDataType() == 0) {
@@ -284,11 +287,13 @@ public class JsonRoot extends ViewGroupWrapper {
                         String url = (String) getDataFromMap(mDataMap, keys);
                         Glide.with(mContext).load(url).asBitmap().into((ImageView) vw.getJsonView());
                     }
-                } else if (vw instanceof CollectionViewWrapper) {
+                } else if (vw instanceof CollectionViewWrapper) {//对于没有集合控件的来说 只需要在root中遍历一次setview即可 可是对于列表 head那些的数据可能在root的data当中
                     if (vw.getDataSource().getDataType() == 1) {
                         List<String> keys = dataSource.getDataPaths();
                         List<Map<String, Object>> listData = (List<Map<String, Object>>) getDataFromMap(mDataMap, keys);//每一个item的数据也是一个map
-                        ((CollectionViewWrapper) vw).initRecyclerView(listData);//只负责第一的加载 后续刷新在控件内实现
+                        CollectionViewWrapper cvw = ((CollectionViewWrapper) vw);
+                        cvw.setRootDataMap(mDataMap);
+                        cvw.initRecyclerView(listData);//只负责第一次的加载 后续刷新在控件内实现 那样的话 数据还会加载到rootmap当中吗
                     }
                 }
             }

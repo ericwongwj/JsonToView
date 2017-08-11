@@ -29,9 +29,9 @@ public class JsonImageView {
 
     public static ImageView buildImageView(JSONObject body, ViewWrapper viewWrapper, int parentWidth, int parentHeight) {
         ImageView imageView = new ImageView(viewWrapper.getContext());
-        System.out.println("----build ImageView----");
+//        System.out.println("----build ImageView----");
         JsonViewUtils.setTagToWrapper(body, imageView, viewWrapper);
-        JsonViewUtils.setAbsoluteLayoutParams(JsonHelper.getLayout(body), imageView, parentWidth, parentHeight);
+        JsonViewUtils.setLayoutParams(JsonHelper.getLayout(body), imageView, parentWidth, parentHeight);
         setImageStyle(JsonHelper.getStyles(body), imageView, viewWrapper);
         return imageView;
     }

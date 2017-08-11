@@ -156,7 +156,7 @@
           "text": {
             "dataType": 1,
             "data": [
-              "number"
+              "desc"
             ]
           },
           "textColor": "#051b28ff",
@@ -221,8 +221,8 @@
           },
           "absoluteSize": {
             "width": {
-              "offset": 0,
-              "persentage": 1,
+              "offset": 100,
+              "persentage": 0,
               "baseOption": 0
             },
             "height": {
@@ -236,9 +236,10 @@
           "text": {
             "dataType": 1,
             "data": [
-              "desc"
+              "number"
             ]
           },
+          "backgroundColor": "#00ff00",
           "textColor": "#a5a5a5ff",
           "textFontSize": 14,
           "numberOfLines": 1,
@@ -281,12 +282,13 @@
             "dataType": 0,
             "data": "立即查看"
           },
-          "textColor": "#2dbb55ff",
+          "backgroundColor": "#ff0000",
+          "textColor": "#0000ff",
           "textFontSize": 14,
           "numberOfLines": 1,
           "strickHeight": 1,
           "strickWidth": 1,
-          "textAlignment": 2
+          "textAlignment": 0
         }
       }
     ]

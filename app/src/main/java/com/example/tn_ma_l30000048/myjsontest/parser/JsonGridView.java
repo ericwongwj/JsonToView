@@ -65,7 +65,7 @@ public class JsonGridView {
 
                 } else if (key.equalsIgnoreCase("dataPath")) {
                     JSONArray data = gridStyle.getJSONArray(key);
-//                    setData();
+//                    setCellData();
                 } else if (key.equalsIgnoreCase("enablePullUpToLoadMore")) {
                     if (gridStyle.getInt(key) == 0)
                         rv.setLoadMoreAble(false);
