@@ -51,8 +51,6 @@ public class CollectionViewWrapper extends ViewWrapper {
             adapter.setInsertViews(mInsertViewJson);
         adapter.setDataMap(dataList);
 
-
-        System.out.println(TAG + " view count:" + adapter.mViewCount);
         //第一次加载数据
         myRecyclerView.setAdapter(adapter);
 

@@ -16,6 +16,7 @@ import org.json.JSONObject;
 
 public class JsonToViewActivity extends FragmentActivity implements View.OnClickListener {
 
+    static int y = 0;
     FrameLayout root;
     JSONObject jsonObject;
     Button btn;
@@ -46,6 +47,7 @@ public class JsonToViewActivity extends FragmentActivity implements View.OnClick
     @Override
     public void onClick(View v) {
         JsonRoot myRoot = new JsonRoot(jsonObject, JsonToViewActivity.this, root.getWidth(), root.getHeight());
+
         if (myRoot.getJsonView() != null) {
             View jsonView = myRoot.getJsonView();
             root.addView(jsonView);

@@ -25,20 +25,20 @@ public class JsonTableView {
 
     public static final String TAG = JsonTableView.class.getSimpleName() + " ";
 
-    public static ViewWrapper build(JSONObject body, ViewGroupWrapper jsonRoot, int parentWidth, int parentHeight) {
+    public static ViewWrapper build(JSONObject body, ViewGroupWrapper jsonRoot) {//, int parentWidth, int parentHeight
         CollectionViewWrapper viewWrapper = new CollectionViewWrapper(jsonRoot.getContext());
-        MyRecyclerView myRecyclerView = buildTableView(body, viewWrapper, parentWidth, parentHeight);
+        MyRecyclerView myRecyclerView = buildTableView(body, viewWrapper);
         viewWrapper.setJsonView(myRecyclerView);
         return viewWrapper;
     }
 
     //问题：1.各个cell的模板请求 2.数据的加载 3.insertView
     //网络请求成功后再setAdapter
-    public static MyRecyclerView buildTableView(JSONObject body, CollectionViewWrapper viewWrapper, int parentWidth, int parentHeight) {
+    public static MyRecyclerView buildTableView(JSONObject body, CollectionViewWrapper viewWrapper) {//, int parentWidth, int parentHeight
         System.out.println("----buildViewGroup MyRecyclerView----");
         MyRecyclerView recyclerView = new MyRecyclerView(viewWrapper.getContext());
         JsonViewUtils.setTagToWrapper(body, recyclerView, new ViewWrapper());
-        JsonViewUtils.setLayoutParams(JsonHelper.getLayout(body), recyclerView, parentWidth, parentHeight);
+//        JsonViewUtils.setLayoutParams(JsonHelper.getLayout(body), recyclerView);//, parentWidth, parentHeight
         setBaseStyle(JsonHelper.getStyles(body), recyclerView, viewWrapper);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(viewWrapper.getContext(), LinearLayoutManager.VERTICAL, false));

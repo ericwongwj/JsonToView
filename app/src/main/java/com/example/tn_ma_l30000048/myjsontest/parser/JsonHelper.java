@@ -75,7 +75,7 @@ public class JsonHelper {
         return jsonObject;
     }
 
-    static JSONObject getLayout(JSONObject json){
+    public static JSONObject getLayout(JSONObject json) {
         JSONObject layout=null;
         try {
             layout=json.getJSONObject("layout");

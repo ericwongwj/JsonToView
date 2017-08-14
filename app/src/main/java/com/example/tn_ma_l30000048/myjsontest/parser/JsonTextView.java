@@ -18,19 +18,19 @@ import java.util.Iterator;
 public class JsonTextView {
     static final String TAG = JsonTextView.class.getSimpleName();
 
-    public static ViewWrapper build(JSONObject body, ViewGroupWrapper jsonRoot, int parentWidth, int parentHeight) {
+    public static ViewWrapper build(JSONObject body, ViewGroupWrapper jsonRoot) {//, int parentWidth, int parentHeight
         ViewWrapper viewWrapper = new ViewWrapper(jsonRoot.getContext());
-        TextView textView = buildTextView(body, viewWrapper, parentWidth, parentHeight);
+        TextView textView = buildTextView(body, viewWrapper);//, parentWidth, parentHeight
         JsonViewUtils.setTagToWrapper(body, textView, viewWrapper);
         viewWrapper.setJsonView(textView);
         return viewWrapper;
     }
 
     //暂时先不判断json是否有效
-    public static TextView buildTextView(JSONObject body, ViewWrapper viewWrapper, int parentWidth, int parentHeight) {
+    public static TextView buildTextView(JSONObject body, ViewWrapper viewWrapper) {//, int parentWidth, int parentHeight
         TextView textView = new TextView(viewWrapper.getContext());
-//        System.out.println("----build TextView----");
-        JsonViewUtils.setLayoutParams(JsonHelper.getLayout(body), textView, parentWidth, parentHeight);
+        System.out.println("----build TextView----");
+//        JsonViewUtils.setLayoutParams(JsonHelper.getLayout(body), textView, parentWidth, parentHeight);
         JsonViewUtils.setAction();
         setTextStyle(JsonHelper.getStyles(body), textView, viewWrapper);
         return textView;

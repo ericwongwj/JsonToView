@@ -37,7 +37,7 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
     //用于加载头尾或者任何数据在rootDataMap中的view
     public void setUniqueData(Map<String, Object> rootDataMap) {
         System.out.println(TAG + "setUniqueData");
-        for (ViewWrapper vw : mCellRoot.getmSubViewWrappers()) {
+        for (ViewWrapper vw : mCellRoot.getSubViewWrappers()) {
             if (vw.getDataSource() != null) {
                 AtomicData dataSource = vw.getDataSource();
                 if (vw.getJsonView() instanceof TextView) {
@@ -68,7 +68,7 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
     //暂时不嵌套
     //cell是从adapter中传的map中拿数据 如果header的数据在map中则同样 如果在外面 那么直接在外面拿数据
     public void setCellData(Map<String, Object> map) {//遍历view树来set数据
-        for (ViewWrapper vw : mCellRoot.getmSubViewWrappers()) {
+        for (ViewWrapper vw : mCellRoot.getSubViewWrappers()) {
             if (vw.getDataSource() != null) {
                 AtomicData dataSource = vw.getDataSource();
                 if (vw.getJsonView() instanceof TextView) {

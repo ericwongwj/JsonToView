@@ -44,8 +44,12 @@ public class JsonRoot extends ViewGroupWrapper {
     private List<RequestInfo> mRequestInfoList;
     private Handler mHandler = new Handler();
 
+    /**
+     * 1.扫描json 若有需要则请求数据  2.初始化层次结构和各个view的基本属性 3.设置layout 4.加载数据
+     */
     public JsonRoot(JSONObject jsonObject, final Context context, int parentWidth, int parentHeight) {
         super(context);
+
         System.out.println("JSON VIEW ROOT " + parentWidth + " " + parentHeight);
         mContext = context;
         try {
@@ -77,16 +81,19 @@ public class JsonRoot extends ViewGroupWrapper {
                 }
             }, 300);
 
-            //渲染界面  主要问题在于 如果只是一个控件
-            JSONObject rootNode = jsonObject.getJSONObject("rootNode");
-            if (rootNode.getInt("nodeType") == 4 || rootNode.getInt("nodeType") == 0) {
-                ViewWrapper vw = ViewGroupFactory.build(rootNode, this, (int) containerWidth, (int) containerHeight);
+            JSONObject rootNodeJson = jsonObject.getJSONObject("rootNode");
+            if (rootNodeJson.getInt("nodeType") == 4 && rootNodeJson.getJSONArray("subNode").length() != 0 || rootNodeJson.getInt("nodeType") == 0) {
+                ViewWrapper vw = ViewGroupFactory.build(rootNodeJson, this);
+                mLayout.setWandH(parentWidth, parentHeight);
                 mJsonView = vw.getJsonView();
             } else {
-                //need to test and modify
-                ViewWrapper vw = ViewFactory.build(rootNode, this, (int) containerWidth, (int) containerHeight);
+                //need to test
+                ViewWrapper vw = ViewFactory.build(rootNodeJson, this);
                 mJsonView = vw.getJsonView();
             }
+            initViewTagMap();
+
+//            layoutViewGroup();
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -115,14 +122,18 @@ public class JsonRoot extends ViewGroupWrapper {
 
             JSONObject rootNode = jsonObject.getJSONObject("rootNode");
             if (rootNode.getInt("nodeType") == 4 || rootNode.getInt("nodeType") == 0) {
-                ViewWrapper vw = ViewGroupFactory.build(rootNode, this, (int) containerWidth, (int) containerHeight);
+                ViewWrapper vw = ViewGroupFactory.build(rootNode, this);
                 mJsonView = vw.getJsonView();
             } else {
                 //need to test and modify
-                ViewWrapper vw = ViewFactory.build(rootNode, this, (int) containerWidth, (int) containerHeight);
+                ViewWrapper vw = ViewFactory.build(rootNode, this);
                 mJsonView = vw.getJsonView();
             }
 
+            initViewTagMap();
+
+            layoutViewGroup((int) containerWidth, (int) containerHeight);
+            System.out.println("");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -263,15 +274,15 @@ public class JsonRoot extends ViewGroupWrapper {
 
     public void setDataToView() {//遍历view树来set数据
         if (mDataMap == null) {
-            System.out.println(TAG + " mdatamap");
-            return;//这里的逻辑不完善
+            System.out.println(TAG + " mdatamap is null!");
+            return;//这里的逻辑不完善 如果是的确没有的呢
         }
         for (ViewWrapper vw : mSubViewWrappers) {
             if (vw.getDataSource() != null) {
                 AtomicData dataSource = vw.getDataSource();
                 if (vw.getJsonView() instanceof TextView) {
                     TextView tv = ((TextView) vw.getJsonView());
-                    System.out.println(TAG + "x:" + tv.getX() + " y:" + tv.getY() + " w:" + tv.getWidth() + "h" + tv.getHeight() + " " + tv.isShown() + " " + tv.getText());
+//                    System.out.println(TAG + "x:" + tv.getX() + " y:" + tv.getY() + " w:" + tv.getWidth() + "h" + tv.getHeight() + " " + tv.isShown() + " " + tv.getText());
                     if (dataSource.getDataType() == 1) {//另外的情况直接加载text了
                         List<String> keys = dataSource.getDataPaths();
                         Object o = getDataFromMap(mDataMap, keys);//这的做的转换尽量安全

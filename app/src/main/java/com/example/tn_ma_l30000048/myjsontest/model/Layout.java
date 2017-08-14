@@ -12,14 +12,19 @@ public class Layout {
     public AbsoluteSize absoluteSize;
     public Margin margin;
     public Margin padding;
-
-
+    public int parentWidth;
+    public int parentHeight;
     public RelativePosition relativePosition;
     public RelativeSize relativeSize;
 
     @Override
     public String toString() {
         return " "+strategy;
+    }
+
+    public void setWandH(int pw, int ph) {
+        parentWidth = pw;
+        parentHeight = ph;
     }
 
     static class Margin{

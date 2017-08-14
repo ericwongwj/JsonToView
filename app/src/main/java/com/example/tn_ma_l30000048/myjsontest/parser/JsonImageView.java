@@ -19,19 +19,19 @@ public class JsonImageView {
 
     static final String TAG = JsonImageView.class.getSimpleName() + " ";
 
-    public static ViewWrapper build(JSONObject body, ViewGroupWrapper jsonRoot, int parentWidth, int parentHeight) {
+    public static ViewWrapper build(JSONObject body, ViewGroupWrapper jsonRoot) {//, int parentWidth, int parentHeight
         ViewWrapper viewWrapper = new ViewWrapper(jsonRoot.getContext());
-        ImageView textView = buildImageView(body, viewWrapper, parentWidth, parentHeight);
+        ImageView textView = buildImageView(body, viewWrapper);//, parentWidth, parentHeight;
         JsonViewUtils.setTagToWrapper(body, textView, viewWrapper);
         viewWrapper.setJsonView(textView);
         return viewWrapper;
     }
 
-    public static ImageView buildImageView(JSONObject body, ViewWrapper viewWrapper, int parentWidth, int parentHeight) {
+    public static ImageView buildImageView(JSONObject body, ViewWrapper viewWrapper) {//, int parentWidth, int parentHeight
         ImageView imageView = new ImageView(viewWrapper.getContext());
-//        System.out.println("----build ImageView----");
+        System.out.println("----build ImageView----");
         JsonViewUtils.setTagToWrapper(body, imageView, viewWrapper);
-        JsonViewUtils.setLayoutParams(JsonHelper.getLayout(body), imageView, parentWidth, parentHeight);
+//        JsonViewUtils.setLayoutParams(JsonHelper.getLayout(body), imageView, parentWidth, parentHeight);
         setImageStyle(JsonHelper.getStyles(body), imageView, viewWrapper);
         return imageView;
     }

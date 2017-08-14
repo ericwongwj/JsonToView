@@ -4,17 +4,21 @@ import android.content.Context;
 import android.view.View;
 
 import com.example.tn_ma_l30000048.myjsontest.model.AtomicData;
+import com.example.tn_ma_l30000048.myjsontest.model.Layout;
 
 /**
  * Created by tn-ma-l30000048 on 17/8/7.
  */
 
 public class ViewWrapper {
+    static final String TAG = ViewWrapper.class.getSimpleName() + " ";
+
     protected View mJsonView;
     protected int tagId;
     protected String nodeName;
     protected Context mContext;
     protected AtomicData dataSource;
+    protected Layout mLayout = new Layout();
 
     public ViewWrapper() {
 
@@ -34,6 +38,13 @@ public class ViewWrapper {
         tagId = tag;
         nodeName = name;
         mContext = v.getContext();
+    }
+
+    public void layoutView(int pw, int ph) {
+        System.out.println(TAG + "pw:" + pw + " ph:" + ph);
+        mLayout.parentWidth = pw;
+        mLayout.parentHeight = ph;
+        JsonViewUtils.setLayoutParams(mJsonView, mLayout);
     }
 
     public View getJsonView() {
@@ -63,5 +74,13 @@ public class ViewWrapper {
 
     public void setDataSource(AtomicData dataSource) {
         this.dataSource = dataSource;
+    }
+
+    public Layout getLayout() {
+        return mLayout;
+    }
+
+    public void setLayout(Layout layout) {
+        this.mLayout = layout;
     }
 }

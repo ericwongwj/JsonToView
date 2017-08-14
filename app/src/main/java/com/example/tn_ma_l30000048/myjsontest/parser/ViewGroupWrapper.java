@@ -30,18 +30,17 @@ public class ViewGroupWrapper extends ViewWrapper {
 
     ViewGroupWrapper(View v) {
         super(v);
-        initViewMap();
+        initViewTagMap();
     }
 
-    //recyclerview的处理？四个类型的cell？
-    //目前这个函数是一个viewgroup下所有view的信息
-    public void initViewMap() {
+    //recyclerview的处理 四个类型的cell？目前这个函数是一个viewgroup下所有view的信息
+    public void initViewTagMap() {
         if (mJsonView == null)
             return;
 
         Queue<View> queue = new LinkedList<>();
         queue.offer(mJsonView);
-//        System.out.println("initViewMap");
+//        System.out.println("initViewTagMap");
         while (!queue.isEmpty()) {
             View v = queue.poll();
             if (v.getTag() == null)
@@ -58,7 +57,18 @@ public class ViewGroupWrapper extends ViewWrapper {
         }
     }
 
-    public List<ViewWrapper> getmSubViewWrappers() {
+    protected void layoutViewGroup(int pw, int ph) {
+        System.out.println(TAG + "pw:" + pw + " ph:" + ph + " size=" + mSubViewWrappers.size());
+        layoutView(pw, ph);//可能会改变
+        for (ViewWrapper vw : mSubViewWrappers) {
+            if (vw instanceof ViewGroupWrapper)
+                ((ViewGroupWrapper) vw).layoutViewGroup(mLayout.parentWidth, mLayout.parentHeight);
+            else
+                vw.layoutView(mLayout.parentWidth, mLayout.parentHeight);
+        }
+    }
+
+    public List<ViewWrapper> getSubViewWrappers() {
         return mSubViewWrappers;
     }
 
