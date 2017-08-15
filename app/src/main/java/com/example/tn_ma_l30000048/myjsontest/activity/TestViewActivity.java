@@ -36,12 +36,15 @@ public class TestViewActivity extends AppCompatActivity implements View.OnClickL
         tv.setX(300);
         tv.setY(400);
         tv.setLines(1);
-        tv.setPadding(30,20,30,20);
+//        tv.setPadding(30,20,30,20);
         tv.setBackgroundColor(0x66000000);
         LinearLayout.LayoutParams layoutParams=
                 new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
         layoutParams.height=100;
         layoutParams.width=350;
+        layoutParams.leftMargin = 50;
+        layoutParams.topMargin = 33;
+
         tv.setLayoutParams(layoutParams);
         layout.addView(tv);
         tv.setVisibility(View.VISIBLE);

@@ -47,15 +47,11 @@
             "trailing": {
               "item": 0,
               "attribute": 3,
-              "relationship": 0,
-              "multiplier": 1,
               "offset": 15
             },
             "centerY": {
               "item": 0,
               "attribute": 5,
-              "relationship": 0,
-              "multiplier": 1,
               "offset": 0
             }
           }
@@ -83,14 +79,12 @@
               "item": 111,
               "attribute": 1,
               "relationship": 0,
-              "multiplier": 1,
               "offset": -5
             },
             "centerY": {
               "item": 0,
               "attribute": 5,
               "relationship": 0,
-              "multiplier": 1,
               "offset": 0
             }
           }

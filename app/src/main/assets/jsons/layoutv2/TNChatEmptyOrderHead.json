@@ -39,7 +39,7 @@
     },
     "subNode": [
       {
-        "tag": "0",
+        "tag": "1",
         "nodeName": "headImage",
         "nodeType": 2,
         "layout": {
@@ -78,7 +78,7 @@
         }
       },
       {
-        "tag": "0",
+        "tag": "2",
         "nodeName": "title",
         "nodeType": 1,
         "layout": {
@@ -122,7 +122,7 @@
         }
       },
       {
-        "tag": "0",
+        "tag": "3",
         "nodeName": "subTitle",
         "nodeType": 1,
         "layout": {
@@ -166,7 +166,7 @@
         }
       },
       {
-        "tag": "0",
+        "tag": "4",
         "nodeName": "askbtn",
         "nodeType": 1,
         "layout": {
@@ -214,7 +214,7 @@
         }
       },
       {
-        "tag": "0",
+        "tag": "5",
         "nodeName": "moreOrder",
         "nodeType": 1,
         "layout": {
@@ -262,7 +262,7 @@
         }
       },
       {
-        "tag": "0",
+        "tag": "6",
         "nodeName": "divideView",
         "nodeType": 4,
         "layout": {
@@ -297,7 +297,7 @@
         },
         "subNode": [
           {
-            "tag": "0",
+            "tag": "7",
             "nodeType": 2,
             "layout": {
               "strategy": "0",
@@ -335,7 +335,7 @@
             }
           },
           {
-            "tag": "0",
+            "tag": "8",
             "nodeType": 2,
             "layout": {
               "strategy": "0",
@@ -415,7 +415,7 @@
             }
           },
           {
-            "tag": "0",
+            "tag": "9",
             "nodeType": 2,
             "layout": {
               "strategy": "0",

@@ -83,23 +83,34 @@ public class JsonRoot extends ViewGroupWrapper {
 
             JSONObject rootNodeJson = jsonObject.getJSONObject("rootNode");
             if (rootNodeJson.getInt("nodeType") == 4 && rootNodeJson.getJSONArray("subNode").length() != 0 || rootNodeJson.getInt("nodeType") == 0) {
-                ViewWrapper vw = ViewGroupFactory.build(rootNodeJson, this);
-                mLayout.setWandH(parentWidth, parentHeight);
-                mJsonView = vw.getJsonView();
+                ViewGroupWrapper vgw = ViewGroupFactory.build(rootNodeJson, null, context);
+                mSubViewWrappers = vgw.getSubViewWrappers();
+                mLayout = vgw.getLayout();
+                mLayout.setWandH((int) containerWidth, (int) containerHeight);
+                mJsonView = vgw.getJsonView();
+                initViewTagMap(this);
+
+                layoutViewGroup((int) containerWidth, (int) containerHeight);//parent的宽高就是自己
+
             } else {
                 //need to test
                 ViewWrapper vw = ViewFactory.build(rootNodeJson, this);
                 mJsonView = vw.getJsonView();
+                mLayout = vw.getLayout();
+                mLayout.setWandH((int) containerWidth, (int) containerHeight);
+                initViewTagMap(this);
+                layoutView((int) containerWidth, (int) containerHeight);
             }
-            initViewTagMap();
 
-//            layoutViewGroup();
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * list view item 特供
+     */
     public JsonRoot(JSONObject jsonObject, final Context context, int parentWidth, int parentHeight, boolean isCell) {
         super(context);
         System.out.println("JSON CELL ROOT ");
@@ -120,20 +131,27 @@ public class JsonRoot extends ViewGroupWrapper {
                 parseRequestInfo(jsonObject.getJSONArray("requestInfo"));
             }
 
-            JSONObject rootNode = jsonObject.getJSONObject("rootNode");
-            if (rootNode.getInt("nodeType") == 4 || rootNode.getInt("nodeType") == 0) {
-                ViewWrapper vw = ViewGroupFactory.build(rootNode, this);
-                mJsonView = vw.getJsonView();
+            JSONObject rootNodeJson = jsonObject.getJSONObject("rootNode");
+            if (rootNodeJson.getInt("nodeType") == 4 && rootNodeJson.getJSONArray("subNode").length() != 0 || rootNodeJson.getInt("nodeType") == 0) {
+                ViewGroupWrapper vgw = ViewGroupFactory.build(rootNodeJson, null, context);
+                mSubViewWrappers = vgw.getSubViewWrappers();
+                mLayout = vgw.getLayout();
+                mLayout.setWandH((int) containerWidth, (int) containerHeight);
+                mJsonView = vgw.getJsonView();
+                initViewTagMap(this);
+
+                layoutViewGroup((int) containerWidth, (int) containerHeight);//parent的宽高就是自己
+
             } else {
-                //need to test and modify
-                ViewWrapper vw = ViewFactory.build(rootNode, this);
+                //need to test
+                ViewWrapper vw = ViewFactory.build(rootNodeJson, this);
                 mJsonView = vw.getJsonView();
+                mLayout = vw.getLayout();
+                mLayout.setWandH((int) containerWidth, (int) containerHeight);
+                initViewTagMap(this);
+                layoutView((int) containerWidth, (int) containerHeight);
             }
 
-            initViewTagMap();
-
-            layoutViewGroup((int) containerWidth, (int) containerHeight);
-            System.out.println("");
         } catch (JSONException e) {
             e.printStackTrace();
         }

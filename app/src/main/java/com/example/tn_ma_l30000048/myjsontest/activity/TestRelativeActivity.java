@@ -5,12 +5,16 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.tn_ma_l30000048.myjsontest.R;
+import com.example.tn_ma_l30000048.myjsontest.parser.JsonHelper;
+
+import org.json.JSONObject;
 
 public class TestRelativeActivity extends AppCompatActivity {
 
@@ -22,6 +26,13 @@ public class TestRelativeActivity extends AppCompatActivity {
         LinearLayout root = (LinearLayout) findViewById(R.id.root_layout);
 
         testRelativeLayout(root);
+//        testRelativeJson(root);
+    }
+
+
+    void testRelativeJson(LinearLayout root) {
+        JSONObject json = JsonHelper.readLocalUIJson(this, "Mytest1.json");
+
     }
 
 
@@ -37,6 +48,17 @@ public class TestRelativeActivity extends AppCompatActivity {
 
         root.addView(container);
         root.addView(container1);
+
+        RelativeLayout container2 = new RelativeLayout(this);
+        container2.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 400));
+        container2.setBackgroundColor(Color.MAGENTA);
+        Button btn = new Button(this);
+        btn.setX(250);
+        btn.setY(200);
+        btn.setText("btn");
+        container2.addView(btn);
+
+        root.addView(container2);
     }
 
 

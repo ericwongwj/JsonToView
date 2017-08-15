@@ -18,7 +18,8 @@ public class ViewFactory {
     static int currentType;//0:absolute 1:relative
 
     public static ViewWrapper build(JSONObject body, ViewGroupWrapper parent) {//, int parentWidth, int parentHeight
-        Layout layout = JsonUtils.decode(JsonHelper.getLayout(body), Layout.class);
+        JSONObject layoutJson = JsonHelper.getLayout(body);
+        Layout layout = JsonUtils.decode(layoutJson.toString(), Layout.class);
         ViewWrapper viewWrapper = null;
         if(body.has("nodeType")){
             try {
@@ -62,7 +63,7 @@ public class ViewFactory {
 
         //如果是一个layout
         if (body.has("subNode"))
-            return ViewGroupFactory.build(body, parent);//, parentWidth, parentHeight
+            return ViewGroupFactory.build(body, parent, parent.getContext());//, parentWidth, parentHeight
 
 //        System.out.println("----buildView view-----");
 

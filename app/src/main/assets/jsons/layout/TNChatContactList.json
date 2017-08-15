@@ -40,7 +40,7 @@
             "backgroundColor": "#ffffff00"
         },
         "subNode": [{
-            "tag": "0",
+          "tag": "1",
             "nodeName": "ContactList",
             "nodeType": 7,
             "layout": {

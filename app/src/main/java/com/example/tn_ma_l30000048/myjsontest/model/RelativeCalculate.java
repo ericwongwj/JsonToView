@@ -5,11 +5,16 @@ package com.example.tn_ma_l30000048.myjsontest.model;
  */
 
 public class RelativeCalculate {
-    int item;
-    int attribute;//0:top  1:leading  2:bottom 3:trailing 4:centerX 5:centerY
-    int relationship;// NSLayoutRelationLessThanOrEqual = -1,
+    public int item;
+    public int attribute;//0:top  1:leading  2:bottom 3:trailing 4:centerX 5:centerY
+    public int relationship;// NSLayoutRelationLessThanOrEqual = -1,
     //NSLayoutRelationEqual = 0,  NSLayoutRelationGreaterThanOrEqual = 1
-    double multiplier;
-    double offset;
+    public double multiplier;
+    public double offset;
+
+    @Override
+    public String toString() {
+        return "offset:" + offset + " attribute:" + attribute + " item:" + item + " relationship:" + relationship;
+    }
 
 }

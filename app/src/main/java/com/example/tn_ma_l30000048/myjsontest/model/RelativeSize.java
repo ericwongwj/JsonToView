@@ -5,6 +5,11 @@ package com.example.tn_ma_l30000048.myjsontest.model;
  */
 
 public class RelativeSize {
-    RelativeCalculate width;
-    RelativeCalculate height;
+    public RelativeCalculate width;
+    public RelativeCalculate height;
+
+    @Override
+    public String toString() {
+        return width.toString() + height.toString();
+    }
 }

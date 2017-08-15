@@ -3,7 +3,6 @@ package com.example.tn_ma_l30000048.myjsontest.parser;
 import android.content.Context;
 import android.util.SparseArray;
 import android.view.View;
-import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,6 +17,7 @@ import java.util.Queue;
 
 //普通界面由viewroup进行子view的数据的设置 而列表的item本身也是一个根布局
 public class ViewGroupWrapper extends ViewWrapper {
+    static final String TAG = ViewGroupWrapper.class.getSimpleName() + " ";
 
     protected Map<String, View> mViewNameMap = new HashMap<>();//nodeName到子view的map
     protected SparseArray<View> mViewTagMap = new SparseArray<>();//tag到子view的map
@@ -30,27 +30,26 @@ public class ViewGroupWrapper extends ViewWrapper {
 
     ViewGroupWrapper(View v) {
         super(v);
-        initViewTagMap();
     }
 
     //recyclerview的处理 四个类型的cell？目前这个函数是一个viewgroup下所有view的信息
-    public void initViewTagMap() {
+    //目前是所有的view的id都不相同
+    public void initViewTagMap(ViewWrapper vw) {
         if (mJsonView == null)
             return;
 
-        Queue<View> queue = new LinkedList<>();
-        queue.offer(mJsonView);
-//        System.out.println("initViewTagMap");
+        Queue<ViewWrapper> queue = new LinkedList<>();
+        queue.offer(vw);
+//        System.out.println(TAG+"initViewTagMap");
         while (!queue.isEmpty()) {
-            View v = queue.poll();
-            if (v.getTag() == null)
-                continue;
-            mViewTagMap.put(v.getId(), v);
-            mViewNameMap.put(v.getTag().toString(), v);
+            ViewWrapper v = queue.poll();
+//            System.out.println(v.getTagId());
+            mViewTagMap.put(v.getTagId(), v.getJsonView());
+            //mViewNameMap.put(v.getTag().toString(), v);
 //            System.out.println("nodeName:" + v.getTag() + " " + v.getClass().getSimpleName());
-            if (v instanceof ViewGroup) {
-                for (int i = 0; i < ((ViewGroup) v).getChildCount(); i++) {
-                    View subView = ((ViewGroup) v).getChildAt(i);
+            if (v instanceof ViewGroupWrapper) {
+                for (int i = 0; i < ((ViewGroupWrapper) v).getSubViewWrappers().size(); i++) {
+                    ViewWrapper subView = ((ViewGroupWrapper) v).getSubViewWrappers().get(i);
                     queue.offer(subView);
                 }
             }
@@ -60,11 +59,14 @@ public class ViewGroupWrapper extends ViewWrapper {
     protected void layoutViewGroup(int pw, int ph) {
         System.out.println(TAG + "pw:" + pw + " ph:" + ph + " size=" + mSubViewWrappers.size());
         layoutView(pw, ph);//可能会改变
+        int width = mJsonView.getLayoutParams().width;
+        int height = mJsonView.getLayoutParams().height;
+
         for (ViewWrapper vw : mSubViewWrappers) {
             if (vw instanceof ViewGroupWrapper)
-                ((ViewGroupWrapper) vw).layoutViewGroup(mLayout.parentWidth, mLayout.parentHeight);
+                ((ViewGroupWrapper) vw).layoutViewGroup(width, height);
             else
-                vw.layoutView(mLayout.parentWidth, mLayout.parentHeight);
+                vw.layoutView(width, height);
         }
     }
 

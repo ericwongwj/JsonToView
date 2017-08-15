@@ -41,10 +41,11 @@ public class ViewWrapper {
     }
 
     public void layoutView(int pw, int ph) {
-        System.out.println(TAG + "pw:" + pw + " ph:" + ph);
         mLayout.parentWidth = pw;
         mLayout.parentHeight = ph;
         JsonViewUtils.setLayoutParams(mJsonView, mLayout);
+//        System.out.println(TAG + "pw:" + pw + " ph:" + ph+" after set:"+mJsonView.getLayoutParams().width
+//                +" "+mJsonView.getLayoutParams().height);
     }
 
     public View getJsonView() {
@@ -58,6 +59,10 @@ public class ViewWrapper {
 
     public Context getContext() {
         return mContext;
+    }
+
+    public int getTagId() {
+        return tagId;
     }
 
     public void setTagId(int tagId) {

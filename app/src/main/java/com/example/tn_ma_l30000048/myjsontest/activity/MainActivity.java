@@ -10,8 +10,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.tn_ma_l30000048.myjsontest.R;
-import com.example.tn_ma_l30000048.myjsontest.model.AbsolutePosition;
-import com.example.tn_ma_l30000048.myjsontest.model.AbsoluteSize;
 import com.example.tn_ma_l30000048.myjsontest.model.CollectionView;
 import com.example.tn_ma_l30000048.myjsontest.model.Divider;
 import com.example.tn_ma_l30000048.myjsontest.model.Image;
@@ -78,20 +76,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         System.out.println(JsonRoot.getDataFromMap(map, Arrays.asList("nickName")));
 //        System.out.println(jsonObject);
 
-
-        JSONObject root = JsonHelper.readLocalUIJson(this, "mytest1.json");
+        JSONObject root = JsonHelper.readLocalUIJson(this, "Mytest1.json");
         JSONObject json = null;
         try {
             json = JsonHelper.getLayout(root.getJSONObject("rootNode"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        LLayout layout = JsonUtils.decode(json, LLayout.class);
-        System.out.println(json.toString());
-
     }
 
+
     String[] readLayoutAssets(List<String> list){
+
         AssetManager assetManager=getAssets();
         String[] jsonStrings=null;
         try {
@@ -268,16 +264,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    public static class LLayout {
-        public int strategy;
-        public AbsolutePosition absolutePosition;
-        public AbsoluteSize absoluteSize;
-
-        @Override
-        public String toString() {
-            return " " + strategy;
-        }
-    }
 
     static class MyTest1 {
         String name1;
