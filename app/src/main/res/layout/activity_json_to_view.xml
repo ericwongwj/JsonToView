@@ -6,15 +6,35 @@
     android:orientation="vertical"
     tools:context="com.example.tn_ma_l30000048.myjsontest.activity.JsonToViewActivity">
     <Button
+        android:id="@+id/btn_render"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_render"
         android:text="Render"/>
 
-    <FrameLayout
+    <RelativeLayout
+        android:id="@+id/root_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/root_layout">
+        android:layout_height="match_parent">
 
-    </FrameLayout>
+        <!--<Button-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:layout_marginLeft="40dp"-->
+        <!--android:id="@+id/bb"/>-->
+        <!--<Button-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/bb1"-->
+        <!--android:layout_marginTop="-20dp"-->
+        <!--android:layout_marginLeft="19dp"-->
+        <!--android:layout_toRightOf="@+id/bb"-->
+        <!--android:layout_below="@+id/bb"-->
+        <!--android:layout_alignTop="@+id/bb"-->
+        <!--android:layout_alignBottom="@+id/bb"/>-->
+
+    </RelativeLayout>
+
 </LinearLayout>

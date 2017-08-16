@@ -57,8 +57,53 @@ public class TestRelativeActivity extends AppCompatActivity {
         btn.setY(200);
         btn.setText("btn");
         container2.addView(btn);
+        // root.addView(container2);
 
-        root.addView(container2);
+        RelativeLayout container3 = new RelativeLayout(this);
+        container3.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 350));
+//        container3.setBackgroundColor(Color.MAGENTA);
+        final Button btn1 = new Button(this);
+        btn1.setText("btn1");
+        RelativeLayout.LayoutParams lp1 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        lp1.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+        lp1.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+        btn1.setLayoutParams(lp1);
+        btn1.setId(ViewGroup.generateViewId());
+
+        Button btn2 = new Button(this);
+        btn2.setText("btn2");
+        RelativeLayout.LayoutParams lp2 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        lp2.addRule(RelativeLayout.ALIGN_LEFT, btn1.getId());
+        lp2.rightMargin = 200;
+        lp2.topMargin = 130;
+        lp2.addRule(RelativeLayout.ALIGN_TOP, btn1.getId());
+        btn2.setLayoutParams(lp2);
+
+        final Button btn3 = new Button(this);
+        btn3.setText("btn3");
+        RelativeLayout.LayoutParams lp3 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        lp3.addRule(RelativeLayout.LEFT_OF, btn1.getId());
+        lp3.topMargin = 100;
+        lp3.rightMargin = 150;
+        lp3.addRule(RelativeLayout.BELOW, btn1.getId());
+        btn3.setLayoutParams(lp3);
+
+        btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RelativeLayout.LayoutParams lp3 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                lp3.addRule(RelativeLayout.LEFT_OF, btn1.getId());
+                lp3.topMargin = 150;
+                lp3.rightMargin = 300;
+                lp3.addRule(RelativeLayout.BELOW, btn1.getId());
+                btn3.setLayoutParams(lp3);
+            }
+        });
+
+        container3.addView(btn1);
+        container3.addView(btn2);
+        container3.addView(btn3);
+        root.addView(container3);
     }
 
 

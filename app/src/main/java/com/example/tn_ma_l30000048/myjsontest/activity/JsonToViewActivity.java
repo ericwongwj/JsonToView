@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 
 import com.example.tn_ma_l30000048.myjsontest.R;
 import com.example.tn_ma_l30000048.myjsontest.parser.JsonRoot;
@@ -17,7 +17,7 @@ import org.json.JSONObject;
 public class JsonToViewActivity extends FragmentActivity implements View.OnClickListener {
 
     static int y = 0;
-    FrameLayout root;
+    RelativeLayout root;
     JSONObject jsonObject;
     Button btn;
 
@@ -26,7 +26,7 @@ public class JsonToViewActivity extends FragmentActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_json_to_view);
         getJson();
-        root = (FrameLayout) findViewById(R.id.root_layout);
+        root = (RelativeLayout) findViewById(R.id.root_layout);
         btn = (Button) findViewById(R.id.btn_render);
         btn.setOnClickListener(this);
         ViewGroup.generateViewId();

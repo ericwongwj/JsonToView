@@ -32,14 +32,16 @@ public class ViewGroupFactory {
         if (parent == null) {
             if (layout.strategy == 0) {
                 currentType = ViewFactory.currentType = 0;
-                return buildRootFrameLayout(body, context);
+//                return buildRootFrameLayout(body, context);
+                return buildRootRelativeLayout(body, context);
             } else if (layout.strategy == 1) {
                 currentType = ViewFactory.currentType = 1;
                 return buildRootRelativeLayout(body, context);
             }
         }
         if (layout.strategy == 0) {
-            vw = buildFrameLayout(body, parent);//, parentWidth, parentHeight
+//            vw = buildFrameLayout(body, parent);//, parentWidth, parentHeight
+            vw = buildRelativeLayout(body, parent);
             vw.setLayout(layout);
             currentType = ViewFactory.currentType = 0;
         } else if (layout.strategy == 1) {
@@ -73,8 +75,13 @@ public class ViewGroupFactory {
         System.out.println("----buildViewGroup Root RelativeLayout----");
         JSONObject layoutJson = JsonHelper.getLayout(body);
         Layout layout = JsonUtils.decode(layoutJson.toString(), Layout.class);//这里重复加载一次
-
         RelativeLayout relativeLayout = new RelativeLayout(context);
+        if (layout.strategy == 0) {
+
+        } else if (layout.strategy == 1) {
+
+        }
+
         ViewGroupWrapper vgw = new ViewGroupWrapper(relativeLayout);
         vgw.setLayout(layout);//记得设置
 
@@ -106,7 +113,6 @@ public class ViewGroupFactory {
         System.out.println("----buildViewGroup FrameLayout----");
         RelativeLayout relativeLayout = new RelativeLayout(parent.getContext());
         JSONObject layoutJson = JsonHelper.getLayout(body);
-
         Layout layout = JsonUtils.decode(layoutJson.toString(), Layout.class);//这里重复加载一次
         ViewGroupWrapper vgw = new ViewGroupWrapper(relativeLayout);
         vgw.setLayout(layout);

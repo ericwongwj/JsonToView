@@ -3,7 +3,6 @@ package com.example.tn_ma_l30000048.myjsontest.parser;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
 import com.example.tn_ma_l30000048.myjsontest.model.AbsolutePosition;
@@ -38,7 +37,8 @@ public class JsonViewUtils {
     }
 
     public static void setAbsoluteLayoutParams(View view, Layout layout) {
-        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+//        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         AbsolutePosition position = layout.absolutePosition;
         AbsoluteSize size = layout.absoluteSize;
         int parentWidth = layout.parentWidth;
@@ -86,6 +86,7 @@ public class JsonViewUtils {
     }
 
 
+    //TODO: 需要添加parent 不然找不到对应的锚
     public static void setRelativeLayoutParams(View view, Layout layout) {
 
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -96,34 +97,63 @@ public class JsonViewUtils {
         double w=0,h=0;
 
         RelativeCalculate params;
-        if (position.top != null) {
+        if (!isRelativeCalculateNull(position.top)) {
             params = position.top;
             layoutParams.topMargin = (int) params.offset;
-            layoutParams.addRule(RelativeLayout.BELOW, params.item);
+
+            if (params.item == 0) {//相对于父容器
+                if (params.attribute == 0)//top里头只能相对于顶边 否则没有意义
+                    layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+            } else {
+                //需要去判断是否有margin 不然是相对于margin的起始位置
+
+                layoutParams.addRule(RelativeLayout.BELOW, params.item);
+
+            }
+
         }
-        if (position.leading != null) {
+        if (!isRelativeCalculateNull(position.leading)) {
             params = position.leading;
             layoutParams.leftMargin = (int) params.offset;
-            layoutParams.addRule(RelativeLayout.RIGHT_OF, params.item);
+
+            if (params.item == 0) {
+                if (params.attribute == 1) {
+                    layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+                }
+            } else {
+                layoutParams.addRule(RelativeLayout.RIGHT_OF, params.item);
+            }
 
         }
-        if (position.bottom != null) {
+        if (!isRelativeCalculateNull(position.bottom)) {
             params = position.bottom;
             layoutParams.bottomMargin = (int) params.offset;
-            layoutParams.addRule(RelativeLayout.ABOVE, params.item);
+            if (params.item == 0) {
+                if (params.attribute == 2) {
+                    layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                }
+            } else {
+                layoutParams.addRule(RelativeLayout.ABOVE, params.item);
+            }
 
         }
-        if (position.trailing != null) {
+        if (!isRelativeCalculateNull(position.trailing)) {
             params = position.trailing;
             layoutParams.rightMargin = (int) params.offset;
-            layoutParams.addRule(RelativeLayout.LEFT_OF, params.item);
+            if (params.item == 0) {
+                if (params.attribute == 3)
+                    layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+            } else {
+                layoutParams.addRule(RelativeLayout.LEFT_OF, params.item);
+            }
+
         }
-        if (position.centerX != null) {
+        if (!isRelativeCalculateNull(position.centerX)) {
 //            params=position.centerX;
             layoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
 //            layoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL,params.item);//要知道是在上还是下
         }
-        if (position.centerY != null) {
+        if (!isRelativeCalculateNull(position.centerY)) {
 //            params=position.centerY;
             layoutParams.addRule(RelativeLayout.CENTER_VERTICAL);//要知道是左还是右
         }
@@ -135,12 +165,21 @@ public class JsonViewUtils {
             w = size.width.offset;//这个宽度需要怎么定义？
             h = size.height.offset;
         }
+        w = DensityUtils.dp2px(view.getContext(), (float) w);
+        h = DensityUtils.dp2px(view.getContext(), (float) h);
         layoutParams.width = (int) w;
         layoutParams.height = (int) h;
 
+        System.out.println("parentW:" + parentWidth + " parentH:" + parentHeight);
+        System.out.println("size:" + size);
+//        System.out.println("Relative layout (pixel) "+position.top.item+" "+position.leading.item);
         view.setLayoutParams(layoutParams);
     }
 
+    private static boolean isRelativeCalculateNull(RelativeCalculate rc) {
+        //这样做不太对吧
+        return rc == null || (rc.attribute == 0 && rc.offset == 0 && rc.item == 0);
+    }
 
     public static void setTagToWrapper(JSONObject json, View v, ViewWrapper viewWrapper) {
         Iterator<String> keys = json.keys();
@@ -150,6 +189,7 @@ public class JsonViewUtils {
                 if (key.equalsIgnoreCase("tag")) {
                     String id = json.getString(key);//理论上可以作为界面中的id
                     viewWrapper.setTagId(Integer.parseInt(id));
+                    v.setId(Integer.parseInt(id));
                 } else if (key.equalsIgnoreCase("nodeName")) {
                     String name = json.getString(key);
 //                    v.setTag(name);

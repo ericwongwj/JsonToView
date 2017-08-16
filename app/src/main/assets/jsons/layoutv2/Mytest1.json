@@ -4,7 +4,7 @@
   "containerType": 0,
   "rootNode": {
     "tag": "0",
-    "nodeName": "relativeLayotTest",
+    "nodeName": "relativeLayoutTest",
     "nodeType": 4,
     "layout": {
       "strategy": 0,
@@ -27,14 +27,14 @@
           "baseOption": 0
         },
         "height": {
-          "offset": 38,
+          "offset": 138,
           "persentage": 0,
           "baseOption": 1
         }
       }
     },
     "styles": {
-      "backgroundColor": "#00000000"
+      "backgroundColor": "#ddddddff"
     },
     "subNode": [
       {
@@ -44,15 +44,27 @@
         "layout": {
           "strategy": 1,
           "relativePosition": {
-            "trailing": {
+            "top": {
               "item": 0,
-              "attribute": 3,
-              "offset": 15
+              "attribute": 0,
+              "offset": 50,
+              "baseOption": 0,
+              "persentage": 0
             },
-            "centerY": {
+            "leading": {
               "item": 0,
-              "attribute": 5,
-              "offset": 0
+              "attribute": 1,
+              "offset": 50,
+              "baseOption": 0,
+              "persentage": 0
+            }
+          },
+          "relativeSize": {
+            "width": {
+              "offset": 40
+            },
+            "height": {
+              "offset": 20
             }
           }
         },
@@ -75,17 +87,27 @@
         "layout": {
           "strategy": 1,
           "relativePosition": {
-            "trailing": {
+            "top": {
+              "item": 111,
+              "attribute": 0,
+              "offset": 80,
+              "baseOption": 0,
+              "persentage": 0
+            },
+            "leading": {
               "item": 111,
               "attribute": 1,
-              "relationship": 0,
-              "offset": -5
+              "offset": 200,
+              "baseOption": 0,
+              "persentage": 0
+            }
+          },
+          "relativeSize": {
+            "width": {
+              "offset": 50
             },
-            "centerY": {
-              "item": 0,
-              "attribute": 5,
-              "relationship": 0,
-              "offset": 0
+            "height": {
+              "offset": 50
             }
           }
         },
@@ -95,6 +117,45 @@
             "data": "tnchat_recommend_fire"
           },
           "contentMode": 1
+        }
+      },
+      {
+        "tag": 113,
+        "nodeName": "textview2",
+        "nodeType": 1,
+        "layout": {
+          "strategy": 1,
+          "relativePosition": {
+            "top": {
+              "item": 112,
+              "offset": 0,
+              "attribute": 2
+            },
+            "trailing": {
+              "item": 112,
+              "offset": 0,
+              "attribute": 3
+            }
+          },
+          "relativeSize": {
+            "width": {
+              "offset": 50
+            },
+            "height": {
+              "offset": 25
+            }
+          }
+        },
+        "styles": {
+          "text": {
+            "dataType": 1,
+            "data": [
+              "followNum"
+            ]
+          },
+          "textColor": "#a035a5",
+          "textFontSize": 15,
+          "numberOfLines": 1
         }
       }
     ]

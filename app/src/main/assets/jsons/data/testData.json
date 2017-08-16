@@ -48,7 +48,9 @@
   "number": 123,
   "pictureImage": "http://www.tuniu.com/corp/ui/img/icon-consult.png",
   "typeName": "TYPE",
-  "desc": "这是介绍"
+  "desc": "这是介绍",
+  "followNum": "3424"
+
   //  "object": {
   //    "a": "b",
   //    "c": "d",

@@ -291,8 +291,8 @@ public class JsonRoot extends ViewGroupWrapper {
     }
 
     public void setDataToView() {//遍历view树来set数据
-        if (mDataMap == null) {
-            System.out.println(TAG + " mdatamap is null!");
+        if (mDataMap == null || mDataMap.isEmpty()) {
+            System.out.println(TAG + " mdatamap is null or empty!");
             return;//这里的逻辑不完善 如果是的确没有的呢
         }
         for (ViewWrapper vw : mSubViewWrappers) {
@@ -303,8 +303,11 @@ public class JsonRoot extends ViewGroupWrapper {
 //                    System.out.println(TAG + "x:" + tv.getX() + " y:" + tv.getY() + " w:" + tv.getWidth() + "h" + tv.getHeight() + " " + tv.isShown() + " " + tv.getText());
                     if (dataSource.getDataType() == 1) {//另外的情况直接加载text了
                         List<String> keys = dataSource.getDataPaths();
+                        if (keys == null || keys.isEmpty())
+                            continue;
                         Object o = getDataFromMap(mDataMap, keys);//这的做的转换尽量安全
-                        tv.setText(o.toString());
+                        if (o != null)
+                            tv.setText(o.toString());
 
                     }
                 } else if (vw.getJsonView() instanceof ImageView) {
@@ -313,12 +316,16 @@ public class JsonRoot extends ViewGroupWrapper {
                         ((ImageView) vw.getJsonView()).setImageResource(R.drawable.icon);
                     } else if (dataSource.getDataType() == 1) {
                         List<String> keys = dataSource.getDataPaths();
+                        if (keys == null || keys.isEmpty())
+                            continue;
                         String url = (String) getDataFromMap(mDataMap, keys);
                         Glide.with(mContext).load(url).asBitmap().into((ImageView) vw.getJsonView());
                     }
                 } else if (vw instanceof CollectionViewWrapper) {//对于没有集合控件的来说 只需要在root中遍历一次setview即可 可是对于列表 head那些的数据可能在root的data当中
                     if (vw.getDataSource().getDataType() == 1) {
                         List<String> keys = dataSource.getDataPaths();
+                        if (keys == null || keys.isEmpty())
+                            continue;
                         List<Map<String, Object>> listData = (List<Map<String, Object>>) getDataFromMap(mDataMap, keys);//每一个item的数据也是一个map
                         CollectionViewWrapper cvw = ((CollectionViewWrapper) vw);
                         cvw.setRootDataMap(mDataMap);
