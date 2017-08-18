@@ -2,6 +2,7 @@ package com.example.tn_ma_l30000048.myjsontest.view;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -71,7 +72,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        System.out.println(TAG + "onCreateViewHolder " + viewType);
+        Log.d(TAG, "onCreateViewHolder " + viewType);
         if (viewType == HEADER_TYPE) {
             JsonRoot header = new JsonRoot(mHeaderJson, mContext, parent.getWidth(), parent.getHeight(), true);
             return new BaseViewHolder(header);
@@ -85,7 +86,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         }
         if (viewType == INSERT_TYPE) {
             //这里有网络请求的逻辑
-            System.out.println("insertViewType");
+            Log.d(TAG, "insertViewType");
             JsonRoot insertView = new JsonRoot(mInsertJsons.get(insertRowsIndex++), mContext, parent.getWidth(), parent.getHeight());
             return new BaseViewHolder(insertView);
         } else {
@@ -96,7 +97,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     @Override
     public void onBindViewHolder(BaseViewHolder holder, int position) {
-        System.out.println(TAG + " onBindViewHolder  pos=" + position);
+        Log.d(TAG, " onBindViewHolder  pos=" + position);
 
         if (position == 0) {//header的位置
             if (mViewCount == 1)  // 最先加载 mStatusView 时不需要绑定数据

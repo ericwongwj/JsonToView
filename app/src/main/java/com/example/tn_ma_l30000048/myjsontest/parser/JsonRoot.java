@@ -25,6 +25,7 @@ import java.util.Map;
 /**
  * Created by tn-ma-l30000048 on 17/7/28.
  * 这里对应的是一个json文件  只有一个rootNode也就是说只有一个根部局
+ * 暂时不支持只有容器作为一个根布局
  */
 
 public class JsonRoot extends ViewGroupWrapper {
@@ -151,13 +152,11 @@ public class JsonRoot extends ViewGroupWrapper {
                 initViewTagMap(this);
                 layoutView((int) containerWidth, (int) containerHeight);
             }
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
-    //对请求到的数据到model需要自己封装
     public static void constructDataMap(Map<String, Object> map, JSONObject jsonObject) {
         Iterator<String> keys = jsonObject.keys();
         try {
@@ -292,9 +291,21 @@ public class JsonRoot extends ViewGroupWrapper {
 
     public void setDataToView() {//遍历view树来set数据
         if (mDataMap == null || mDataMap.isEmpty()) {
-            System.out.println(TAG + " mdatamap is null or empty!");
+            System.out.println(TAG + " mDataMap is null or empty!");
             return;//这里的逻辑不完善 如果是的确没有的呢
         }
+//        if(mSubViewWrappers.isEmpty()){//是列表、grid
+//            //如何区分grid和list？
+//            if (getDataSource().getDataType() == 1) {
+//                System.out.println(getDataSource());
+//                List<String> keys = dataSource.getDataPaths();
+//                if (keys == null || keys.isEmpty())
+//                    return;
+//                List<Map<String, Object>> listData = (List<Map<String, Object>>) getDataFromMap(mDataMap, keys);//每一个item的数据也是一个map
+//                //暂时不支持容器控件作为根布局
+////                cvw.initRecyclerView(listData);//只负责第一次的加载 后续刷新在控件内实现 那样的话 数据还会加载到rootmap当中吗
+//            }
+//        }
         for (ViewWrapper vw : mSubViewWrappers) {
             if (vw.getDataSource() != null) {
                 AtomicData dataSource = vw.getDataSource();

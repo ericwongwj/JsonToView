@@ -13,7 +13,7 @@ public class RelativeCalculate extends AbsoluteCalculate {
 
     @Override
     public String toString() {
-        return "offset:" + offset + " attribute:" + attribute + " item:" + item;
+        return "offset:" + offset + " attr:" + attribute + " item:" + item;
     }
 
 }

@@ -45,8 +45,8 @@ public class ViewFactory {
                         break;
 //                    case Constants.TYPE_SCROLLVIEW:
 //                        System.out.println(TAG + "scroll view");
-//                    case Constants.TYPE_COLLECTIONVIEW:
-//                        viewWrapper = JsonGridView.build(body, context, parentWidth, parentHeight);
+                    case Constants.TYPE_COLLECTIONVIEW:
+                        viewWrapper = JsonGridView.build(body, parent);
                     default:
                         break;
                 }

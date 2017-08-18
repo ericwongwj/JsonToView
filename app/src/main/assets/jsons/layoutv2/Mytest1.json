@@ -27,7 +27,7 @@
           "baseOption": 0
         },
         "height": {
-          "offset": 138,
+          "offset": 238,
           "persentage": 0,
           "baseOption": 1
         }
@@ -100,6 +100,14 @@
               "offset": 200,
               "baseOption": 0,
               "persentage": 0
+            },
+            "bottom": {
+              "item": -1,
+              "offset": 50
+            },
+            "trailing": {
+              "item": -1,
+              "offset": 80
             }
           },
           "relativeSize": {
@@ -126,15 +134,15 @@
         "layout": {
           "strategy": 1,
           "relativePosition": {
-            "top": {
+            "bottom": {
               "item": 112,
-              "offset": 0,
+              "offset": 30,
               "attribute": 2
             },
             "trailing": {
               "item": 112,
-              "offset": 0,
-              "attribute": 3
+              "offset": 20,
+              "attribute": 1
             }
           },
           "relativeSize": {
@@ -153,10 +161,160 @@
               "followNum"
             ]
           },
+          "backgroundColor": "#9a7b1d",
           "textColor": "#a035a5",
           "textFontSize": 15,
           "numberOfLines": 1
         }
+      },
+      {
+        "tag": 114,
+        "nodeName": "textview3",
+        "nodeType": 1,
+        "layout": {
+          "strategy": 1,
+          "relativePosition": {
+            "top": {
+              "item": -1,
+              "offset": 0,
+              "attribute": 2
+            },
+            "leading": {
+              "item": 112,
+              "offset": 5,
+              "attribute": 3
+            },
+            "bottom": {
+              "item": 112,
+              "offset": 5,
+              "attribute": 0
+            },
+            "trailing": {
+              "item": -1,
+              "offset": 5,
+              "attribute": 1
+            }
+          },
+          "relativeSize": {
+            "width": {
+              "offset": 50
+            },
+            "height": {
+              "offset": 25
+            }
+          }
+        },
+        "styles": {
+          "text": {
+            "dataType": 1,
+            "data": [
+              "followNum"
+            ]
+          },
+          "backgroundColor": "#9abe1d",
+          "textColor": "#a035a5",
+          "textFontSize": 15,
+          "numberOfLines": 1
+        }
+      },
+      {
+        "tag": 115,
+        "nodeName": "testRelative",
+        "nodeType": 4,
+        "layout": {
+          //          "strategy": 1,
+          //          "relativePosition": {
+          //            "top": {
+          //              "item": 114,
+          //              "offset": 10,
+          //              "attribute": 0
+          //            },
+          //            "leading": {
+          //              "item": 112,
+          //              "offset": 150,
+          //              "attribute": 3
+          //            }
+          //          },
+          //          "relativeSize": {
+          //            "width": {
+          //              "offset": 150
+          //            },
+          //            "height": {
+          //              "offset": 155
+          //            }
+          //          }
+          //        },
+          "strategy": 0,
+          "absolutePosition": {
+            "x": {
+              "offset": 10,
+              "persentage": 0.5,
+              "baseOption": 0
+            },
+            "y": {
+              "offset": 3,
+              "persentage": 0,
+              "baseOption": 1
+            }
+          },
+          "absoluteSize": {
+            "width": {
+              "offset": 0,
+              "persentage": 0.4,
+              "baseOption": 0
+            },
+            "height": {
+              "offset": 188,
+              "persentage": 0,
+              "baseOption": 1
+            }
+          }
+        },
+        "styles": {
+          "backgroundColor": "#1289de"
+        },
+        "subNode": [
+          {
+            "tag": 116,
+            "nodeName": "innertextview",
+            "nodeType": 1,
+            "layout": {
+              "strategy": 1,
+              "relativePosition": {
+                "top": {
+                  "item": 0,
+                  "offset": 30,
+                  "attribute": 0
+                },
+                "leading": {
+                  "item": 0,
+                  "offset": 20,
+                  "attribute": 1
+                }
+              },
+              "relativeSize": {
+                "width": {
+                  "offset": 50
+                },
+                "height": {
+                  "offset": 25
+                }
+              }
+            },
+            "styles": {
+              "text": {
+                "dataType": 1,
+                "data": [
+                  "followNum"
+                ]
+              },
+              "backgroundColor": "#9adbbb",
+              "textColor": "#a035a5",
+              "textFontSize": 15,
+              "numberOfLines": 1
+            }
+          }
+        ]
       }
     ]
   }

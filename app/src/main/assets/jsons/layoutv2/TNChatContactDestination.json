@@ -26,23 +26,23 @@
       },
       "absoluteSize": {
         "width": {
-          "offset": 0,
+          "offset": 200,
           "persentage": 1,
           "baseOption": 0
         },
         "height": {
-          "offset": 0,
-          "persentage": 1,
+          "offset": 300,
+          "persentage": 0,
           "baseOption": 1
         }
       }
     },
     "styles": {
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#dddddd"
     },
     "subNode": [
       {
-        "tag": "0",
+        "tag": "10",
         "nodeName": "image",
         "nodeType": 2,
         "layout": {
@@ -76,14 +76,14 @@
           "imageSource": {
             "dataType": 1,
             "data": [
-              "img"
+              "bigimg"
             ]
           },
           "contentMode": 1
         }
       },
       {
-        "tag": "0",
+        "tag": "11",
         "nodeName": "title",
         "nodeType": 1,
         "layout": {
@@ -121,7 +121,7 @@
             ]
           },
           "textColor": "#ffffff",
-          "backgroundColor": "#000000",
+          "backgroundColor": "#2222ff",
           "textFontSize": 14,
           "numberOfLines": 1,
           "strickHeight": 1,

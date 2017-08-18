@@ -30,6 +30,7 @@ public class CollectionViewWrapper extends ViewWrapper {
     private JSONObject mCellJson;
     private SparseArray<JSONObject> mInsertViewJson;
     private Map<String, Object> mRootDataMap;
+    private int colunmNum = 1;
 
     public CollectionViewWrapper(Context context) {
         super(context);
@@ -101,8 +102,8 @@ public class CollectionViewWrapper extends ViewWrapper {
                 } else {
                     adapter.currentPage++;
                     adapter.addMapList(getVirtualData(), isRefresh);
-                    if (adapter.currentPage >= 3) {
-                        myRecyclerView.showNoMore();
+                    if (adapter.currentPage >= 20) {
+                        //     myRecyclerView.showNoMore();
                     }
                 }
             }
@@ -127,5 +128,13 @@ public class CollectionViewWrapper extends ViewWrapper {
 
     public void setRootDataMap(Map<String, Object> mRootDataMap) {
         this.mRootDataMap = mRootDataMap;
+    }
+
+    public int getColunmNum() {
+        return colunmNum;
+    }
+
+    public void setColunmNum(int colunmNum) {
+        this.colunmNum = colunmNum;
     }
 }

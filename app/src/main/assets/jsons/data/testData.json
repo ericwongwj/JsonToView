@@ -49,7 +49,54 @@
   "pictureImage": "http://www.tuniu.com/corp/ui/img/icon-consult.png",
   "typeName": "TYPE",
   "desc": "这是介绍",
-  "followNum": "3424"
+  "followNum": "3424",
+  "img": "http://img3.tuniucdn.com/site/images/icons/20150303/icon_home_package_580_v1.png",
+  "name": "name",
+  //"bigimg":"http://m.tuniucdn.com/fb2/t1/G2/M00/B6/E6/Cii-T1gG7CaIcfEtAAU32pppXdkAADhGAM6CcIABTfy410.jpg?width=1600&height=1066",
+  "bigimg": "https://m.tuniucdn.com/fb2/t1/G2/M00/44/2C/Cii-TFjJTaSIEp3FAAackaA5MvkAAIkywODIdgABpyp276.jpg?width=852&height=1280",
+  "insertViewData": [
+    {
+      "name": "名字1",
+      "bigimg": "http://www.tuniu.com/corp/ui/img/icon-consult.png"
+    },
+    {
+      "name": "名字2",
+      "bigimg": "http://m.tuniucdn.com/fb2/t1/G2/M00/B6/E6/Cii-T1gG7CaIcfEtAAU32pppXdkAADhGAM6CcIABTfy410.jpg?width=1600&height=1066"
+    },
+    {
+      "name": "名字3",
+      "bigimg": "http://m.tuniucdn.com/fb2/t1/G2/M00/B6/E6/Cii-T1gG7CaIcfEtAAU32pppXdkAADhGAM6CcIABTfy410.jpg?width=1600&height=1066"
+    },
+    {
+      "name": "名字4",
+      "bigimg": "https://m.tuniucdn.com/fb2/t1/G2/M00/44/2C/Cii-TFjJTaSIEp3FAAackaA5MvkAAIkywODIdgABpyp276.jpg?width=852&height=1280"
+    },
+    {
+      "name": "名字5",
+      "bigimg": "https://m.tuniucdn.com/fb2/t1/G2/M00/44/2C/Cii-TFjJTaSIEp3FAAackaA5MvkAAIkywODIdgABpyp276.jpg?width=852&height=1280"
+    },
+    {
+      "name": "名字6",
+      "bigimg": "https://m.tuniucdn.com/fb2/t1/G2/M00/44/2C/Cii-TFjJTaSIEp3FAAackaA5MvkAAIkywODIdgABpyp276.jpg?width=852&height=1280"
+    },
+    {
+      "name": "名字7",
+      "bigimg": "https://m.tuniucdn.com/fb2/t1/G2/M00/44/2C/Cii-TFjJTaSIEp3FAAackaA5MvkAAIkywODIdgABpyp276.jpg?width=852&height=1280"
+    },
+    {
+      "name": "名字8",
+      "bigimg": "https://m.tuniucdn.com/fb2/t1/G2/M00/44/2C/Cii-TFjJTaSIEp3FAAackaA5MvkAAIkywODIdgABpyp276.jpg?width=852&height=1280"
+    },
+    {
+      "name": "名字9",
+      "bigimg": "https://m.tuniucdn.com/fb2/t1/G2/M00/44/2C/Cii-TFjJTaSIEp3FAAackaA5MvkAAIkywODIdgABpyp276.jpg?width=852&height=1280"
+    },
+    {
+      "name": "名字10",
+      "bigimg": "https://m.tuniucdn.com/fb2/t1/G2/M00/44/2C/Cii-TFjJTaSIEp3FAAackaA5MvkAAIkywODIdgABpyp276.jpg?width=852&height=1280"
+    }
+  ]
+
 
   //  "object": {
   //    "a": "b",

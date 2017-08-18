@@ -38,7 +38,6 @@ public class JsonTableView {
         System.out.println("----buildViewGroup MyRecyclerView----");
         MyRecyclerView recyclerView = new MyRecyclerView(viewWrapper.getContext());
         JsonViewUtils.setTagToWrapper(body, recyclerView, new ViewWrapper());
-//        JsonViewUtils.setLayoutParams(JsonHelper.getLayout(body), recyclerView);//, parentWidth, parentHeight
         setBaseStyle(JsonHelper.getStyles(body), recyclerView, viewWrapper);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(viewWrapper.getContext(), LinearLayoutManager.VERTICAL, false));

@@ -1,5 +1,6 @@
 package com.example.tn_ma_l30000048.myjsontest.parser;
 
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,34 +82,43 @@ public class JsonViewUtils {
 //        System.out.println("parentW:"+parentWidth+" parentH:"+parentHeight);
 //        System.out.println("position:"+position);
 //        System.out.println("size:"+size);
-//        System.out.println("Absolute layout (pixel) x:" + x + " y:" + y + " w:" + w + " h" + h);
+        System.out.println("Absolute layout " + " w:" + w + " h" + h);
         view.setLayoutParams(layoutParams);
     }
 
 
-    //TODO: 需要添加parent 不然找不到对应的锚
     public static void setRelativeLayoutParams(View view, Layout layout) {
 
+        System.out.println("setRelativeLayoutParams");
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         RelativePosition position = layout.relativePosition;
         RelativeSize size = layout.relativeSize;
-        int parentWidth = layout.parentWidth;
-        int parentHeight = layout.parentHeight;
+        int parentWidth = (int) DensityUtils.px2dp(view.getContext(), layout.parentWidth);
+        int parentHeight = (int) DensityUtils.px2dp(view.getContext(), layout.parentHeight);
         double w=0,h=0;
 
+        ViewGroup parent = (ViewGroup) view.getParent();//need check
+
+        //TO SOLVE: 如果设置了上下左右 那么size会优先依赖与限制而不是这个size
         RelativeCalculate params;
         if (!isRelativeCalculateNull(position.top)) {
             params = position.top;
             layoutParams.topMargin = (int) params.offset;
 
-            if (params.item == 0) {//相对于父容器
+            if (params.item == 0) {
                 if (params.attribute == 0)//top里头只能相对于顶边 否则没有意义
                     layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
-            } else {
-                //需要去判断是否有margin 不然是相对于margin的起始位置
-
-                layoutParams.addRule(RelativeLayout.BELOW, params.item);
-
+            } else if (params.item != -1) {//-1则只设置本身的一个属性
+                if (params.attribute == 0)
+                    layoutParams.addRule(RelativeLayout.ALIGN_TOP, params.item);
+                else if (params.attribute == 2) {
+                    View pivot = parent.findViewById(params.item);
+                    RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) pivot.getLayoutParams();
+                    if (lp.bottomMargin > 0)
+                        layoutParams.topMargin -= lp.bottomMargin;
+                    layoutParams.addRule(RelativeLayout.BELOW, params.item);
+                } else
+                    Log.e(TAG, "wrong top attribute!");
             }
 
         }
@@ -120,8 +130,18 @@ public class JsonViewUtils {
                 if (params.attribute == 1) {
                     layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
                 }
-            } else {
-                layoutParams.addRule(RelativeLayout.RIGHT_OF, params.item);
+            } else if (params.item != -1) {
+                if (params.attribute == 1)
+                    layoutParams.addRule(RelativeLayout.ALIGN_LEFT, params.item);
+                else if (params.attribute == 3) {
+                    View pivot = parent.findViewById(params.item);
+                    RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) pivot.getLayoutParams();
+                    if (lp.rightMargin > 0)
+                        layoutParams.leftMargin -= lp.rightMargin;
+                    layoutParams.addRule(RelativeLayout.RIGHT_OF, params.item);
+                    System.out.println(layoutParams.leftMargin);
+                } else
+                    Log.e(TAG, "wrong leading attribute!");
             }
 
         }
@@ -132,8 +152,18 @@ public class JsonViewUtils {
                 if (params.attribute == 2) {
                     layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
                 }
-            } else {
-                layoutParams.addRule(RelativeLayout.ABOVE, params.item);
+            } else if (params.item != -1) {
+                //TODO:to test
+                if (params.attribute == 0) {
+                    View pivot = parent.findViewById(params.item);
+                    RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) pivot.getLayoutParams();
+                    if (lp.topMargin > 0)
+                        layoutParams.bottomMargin -= lp.topMargin;
+                    layoutParams.addRule(RelativeLayout.ABOVE, params.item);
+                } else if (params.attribute == 2)
+                    layoutParams.addRule(RelativeLayout.ALIGN_BOTTOM, params.item);
+                else
+                    Log.e(TAG, "wrong top attribute!");
             }
 
         }
@@ -143,8 +173,17 @@ public class JsonViewUtils {
             if (params.item == 0) {
                 if (params.attribute == 3)
                     layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-            } else {
-                layoutParams.addRule(RelativeLayout.LEFT_OF, params.item);
+            } else if (params.item != -1) {
+                if (params.attribute == 1) {
+                    View pivot = parent.findViewById(params.item);
+                    RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) pivot.getLayoutParams();
+                    if (lp.leftMargin > 0)
+                        layoutParams.rightMargin -= lp.leftMargin;
+                    layoutParams.addRule(RelativeLayout.LEFT_OF, params.item);
+                } else if (params.attribute == 3) {
+                    layoutParams.addRule(RelativeLayout.ALIGN_LEFT, params.item);
+                } else
+                    Log.e(TAG, "wrong leading attribute!");
             }
 
         }
@@ -159,10 +198,19 @@ public class JsonViewUtils {
         }
 
         if (size == null) {
-            w = parentWidth - layoutParams.leftMargin - layoutParams.rightMargin;
-            h = parentHeight - layoutParams.topMargin - layoutParams.bottomMargin;
+            w = ViewGroup.LayoutParams.WRAP_CONTENT;
+            h = ViewGroup.LayoutParams.WRAP_CONTENT;
+            Log.e(TAG, "size is null!");
+        } else if (size.height.offset == -1 && size.width.offset == -1) {
+//            w= RelativeLayout.LayoutParams.MATCH_PARENT;
+//            h=RelativeLayout.LayoutParams.MATCH_PARENT;
+            w = parentWidth;
+            h = parentHeight;
+        } else if (size.height.offset == -2 && size.width.offset == -2) {
+            w = RelativeLayout.LayoutParams.WRAP_CONTENT;
+            h = RelativeLayout.LayoutParams.WRAP_CONTENT;
         } else {
-            w = size.width.offset;//这个宽度需要怎么定义？
+            w = size.width.offset;//这个默认为warp_content
             h = size.height.offset;
         }
         w = DensityUtils.dp2px(view.getContext(), (float) w);
@@ -170,8 +218,7 @@ public class JsonViewUtils {
         layoutParams.width = (int) w;
         layoutParams.height = (int) h;
 
-        System.out.println("parentW:" + parentWidth + " parentH:" + parentHeight);
-        System.out.println("size:" + size);
+        Log.d(TAG, "pW:" + parentWidth + " pH:" + parentHeight + " w:" + w + " h:" + h);
 //        System.out.println("Relative layout (pixel) "+position.top.item+" "+position.leading.item);
         view.setLayoutParams(layoutParams);
     }

@@ -60,7 +60,6 @@ public class MyRecyclerView extends FrameLayout {
         mAdapter.loadMoreAble = loadMoreAble;
     }
 
-    //之后可以作为collectionview一起吧grid给搞了？
     public void setLayoutManager(RecyclerView.LayoutManager layoutManager) {
         mRecyclerView.setLayoutManager(layoutManager);
     }
