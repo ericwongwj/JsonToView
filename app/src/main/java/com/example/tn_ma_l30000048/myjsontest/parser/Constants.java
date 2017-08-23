@@ -24,5 +24,7 @@ public class Constants {
     public static final String BIG_URL2 = "https://m.tuniucdn.com/fb2/t1/G2/M00/44/2C/Cii-TFjJTaSIEp3FAAackaA5MvkAAIkywODIdgABpyp276.jpg?width=852&height=1280";
 
 
+    public static final String PACKAGE_NAME = "com.example.tn_ma_l30000048.myjsontest";
+
 
 }

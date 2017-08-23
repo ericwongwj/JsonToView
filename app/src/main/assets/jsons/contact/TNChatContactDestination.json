@@ -2,14 +2,13 @@
   "SDKVersion": "0.0.0",
   "ModuleVersion": "0.0.0",
   "containerType": 0,
-  "containerHeight": "65",
   "rootNode": {
     "tag": "0",
     "nodeName": "view",
     "nodeType": 4,
     "action": {
       "dataType": 0,
-      "data": "{{var generateOpenUrl=function(e){var r={rctModuleParams:{userId:e.userId},rctModuleName:'homepage'},a=JSON.stringify(r);return'tuniuapp://page?pageName=TNReactNativeViewController¶meters='+encodeURI(a)};}}"
+      "data": "https://www.baidu.com"
     },
     "layout": {
       "strategy": 0,
@@ -27,48 +26,48 @@
       },
       "absoluteSize": {
         "width": {
-          "offset": 0,
+          "offset": 200,
           "persentage": 1,
           "baseOption": 0
         },
         "height": {
-          "offset": 0,
-          "persentage": 1,
+          "offset": 300,
+          "persentage": 0,
           "baseOption": 1
         }
       }
     },
     "styles": {
-      "backgroundColor": "#ffffff00"
+      "backgroundColor": "#dddddd"
     },
     "subNode": [
       {
-        "tag": "1",
-        "nodeName": "avatar",
+        "tag": "10",
+        "nodeName": "image",
         "nodeType": 2,
         "layout": {
           "strategy": "0",
           "absolutePosition": {
             "x": {
-              "offset": 15,
+              "offset": 0,
               "persentage": 0,
               "baseOption": 0
             },
             "y": {
-              "offset": 7.5,
+              "offset": 0,
               "persentage": 0,
               "baseOption": 1
             }
           },
           "absoluteSize": {
             "width": {
-              "offset": 40,
-              "persentage": 0,
+              "offset": 0,
+              "persentage": 1,
               "baseOption": 0
             },
             "height": {
-              "offset": 40,
-              "persentage": 0,
+              "offset": 0,
+              "persentage": 1,
               "baseOption": 1
             }
           }
@@ -77,40 +76,38 @@
           "imageSource": {
             "dataType": 1,
             "data": [
-              "avatar"
+              "bigimg"
             ]
           },
-          "placeHolder": "default_avatar",
-          "cornerRadius": 20,
           "contentMode": 1
         }
       },
       {
-        "tag": "2",
-        "nodeName": "contactName",
+        "tag": "11",
+        "nodeName": "title",
         "nodeType": 1,
         "layout": {
           "strategy": "0",
           "absolutePosition": {
             "x": {
-              "offset": 70,
+              "offset": 0,
               "persentage": 0,
               "baseOption": 0
             },
             "y": {
-              "offset": 12,
-              "persentage": 0,
+              "offset": -20,
+              "persentage": 1,
               "baseOption": 1
             }
           },
           "absoluteSize": {
             "width": {
-              "offset": -70,
+              "offset": 0,
               "persentage": 1,
               "baseOption": 0
             },
             "height": {
-              "offset": 31,
+              "offset": 20,
               "persentage": 0,
               "baseOption": 1
             }
@@ -120,14 +117,16 @@
           "text": {
             "dataType": 1,
             "data": [
-              "nickName"
+              "name"
             ]
           },
-          "textColor": "#051b28",
-          "textFontSize": 17,
+          "textColor": "#ffffff",
+          "backgroundColor": "#2222ff",
+          "textFontSize": 14,
           "numberOfLines": 1,
           "strickHeight": 1,
-          "strickWidth": 1
+          "strickWidth": 1,
+          "textAlignment": 1
         }
       }
     ]

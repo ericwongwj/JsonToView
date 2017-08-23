@@ -25,14 +25,13 @@ public class ViewGroupFactory {
 
     static int currentType;//0:absolute 1:relative
 
-    public static ViewGroupWrapper build(JSONObject body, ViewGroupWrapper parent, Context context) {//, int parentWidth, int parentHeight
+    public static ViewGroupWrapper build(JSONObject body, ViewGroupWrapper parent, Context context) {
         JSONObject layoutJson = JsonHelper.getLayout(body);
         Layout layout = JsonUtils.decode(layoutJson.toString(), Layout.class);
         ViewGroupWrapper vw = null;
-        if (parent == null) {
+        if (parent == null) {//根布局
             if (layout.strategy == 0) {
                 currentType = ViewFactory.currentType = 0;
-//                return buildRootFrameLayout(body, context);
                 return buildRootRelativeLayout(body, context);
             } else if (layout.strategy == 1) {
                 currentType = ViewFactory.currentType = 1;
@@ -40,12 +39,11 @@ public class ViewGroupFactory {
             }
         }
         if (layout.strategy == 0) {
-//            vw = buildFrameLayout(body, parent);//, parentWidth, parentHeight
             vw = buildRelativeLayout(body, parent);
             vw.setLayout(layout);
             currentType = ViewFactory.currentType = 0;
         } else if (layout.strategy == 1) {
-            vw = buildRelativeLayout(body, parent);//, parentWidth, parentHeight
+            vw = buildRelativeLayout(body, parent);
             vw.setLayout(layout);
             currentType = ViewFactory.currentType = 1;
         }
@@ -55,32 +53,11 @@ public class ViewGroupFactory {
     /**
      * 1.加载layout对象 2.创建wrapper 添加layout 3.设置layout无关属性style和tagId 4.设置子view
      */
-    private static ViewGroupWrapper buildRootFrameLayout(JSONObject body, Context context) {
-        System.out.println("----buildViewGroup Root FrameLayout----");
-        JSONObject layoutJson = JsonHelper.getLayout(body);
-        Layout layout = JsonUtils.decode(layoutJson.toString(), Layout.class);//这里重复加载一次
-
-        FrameLayout frameLayout = new FrameLayout(context);
-        ViewGroupWrapper vgw = new ViewGroupWrapper(frameLayout);
-        vgw.setLayout(layout);//记得设置
-
-        JsonViewUtils.setTagToWrapper(body, frameLayout, vgw);
-        setStyle(JsonHelper.getStyles(body), frameLayout);
-
-        setSubNode(JsonHelper.getSubNodes(body), vgw);
-        return vgw;
-    }
-
     private static ViewGroupWrapper buildRootRelativeLayout(JSONObject body, Context context) {
         System.out.println("----buildViewGroup Root RelativeLayout----");
         JSONObject layoutJson = JsonHelper.getLayout(body);
         Layout layout = JsonUtils.decode(layoutJson.toString(), Layout.class);//这里重复加载一次
         RelativeLayout relativeLayout = new RelativeLayout(context);
-        if (layout.strategy == 0) {
-
-        } else if (layout.strategy == 1) {
-
-        }
 
         ViewGroupWrapper vgw = new ViewGroupWrapper(relativeLayout);
         vgw.setLayout(layout);//记得设置
@@ -92,28 +69,12 @@ public class ViewGroupFactory {
         return vgw;
     }
 
-
-    private static ViewGroupWrapper buildFrameLayout(JSONObject body, ViewGroupWrapper parent) {
-        System.out.println("----buildViewGroup FrameLayout----");
-        FrameLayout frameLayout = new FrameLayout(parent.getContext());
-        JSONObject layoutJson = JsonHelper.getLayout(body);
-
-        Layout layout = JsonUtils.decode(layoutJson.toString(), Layout.class);//这里重复加载一次
-        ViewGroupWrapper vgw = new ViewGroupWrapper(frameLayout);
-        vgw.setLayout(layout);
-
-        JsonViewUtils.setTagToWrapper(body, frameLayout, vgw);
-        setStyle(JsonHelper.getStyles(body),frameLayout);
-
-        setSubNode(JsonHelper.getSubNodes(body), vgw);
-        return vgw;
-    }
-
     private static ViewGroupWrapper buildRelativeLayout(JSONObject body, ViewGroupWrapper parent) {
         System.out.println("----buildViewGroup FrameLayout----");
         RelativeLayout relativeLayout = new RelativeLayout(parent.getContext());
         JSONObject layoutJson = JsonHelper.getLayout(body);
         Layout layout = JsonUtils.decode(layoutJson.toString(), Layout.class);//这里重复加载一次
+
         ViewGroupWrapper vgw = new ViewGroupWrapper(relativeLayout);
         vgw.setLayout(layout);
 
@@ -158,5 +119,39 @@ public class ViewGroupFactory {
             e.printStackTrace();
         }
     }
+
+    private static ViewGroupWrapper buildRootFrameLayout(JSONObject body, Context context) {
+        System.out.println("----buildViewGroup Root FrameLayout----");
+        JSONObject layoutJson = JsonHelper.getLayout(body);
+        Layout layout = JsonUtils.decode(layoutJson.toString(), Layout.class);//这里重复加载一次
+
+        FrameLayout frameLayout = new FrameLayout(context);
+        ViewGroupWrapper vgw = new ViewGroupWrapper(frameLayout);
+        vgw.setLayout(layout);//记得设置
+
+        JsonViewUtils.setTagToWrapper(body, frameLayout, vgw);
+        setStyle(JsonHelper.getStyles(body), frameLayout);
+
+        setSubNode(JsonHelper.getSubNodes(body), vgw);
+        return vgw;
+    }
+
+
+    private static ViewGroupWrapper buildFrameLayout(JSONObject body, ViewGroupWrapper parent) {
+        System.out.println("----buildViewGroup FrameLayout----");
+        FrameLayout frameLayout = new FrameLayout(parent.getContext());
+        JSONObject layoutJson = JsonHelper.getLayout(body);
+
+        Layout layout = JsonUtils.decode(layoutJson.toString(), Layout.class);//这里重复加载一次
+        ViewGroupWrapper vgw = new ViewGroupWrapper(frameLayout);
+        vgw.setLayout(layout);
+
+        JsonViewUtils.setTagToWrapper(body, frameLayout, vgw);
+        setStyle(JsonHelper.getStyles(body), frameLayout);
+
+        setSubNode(JsonHelper.getSubNodes(body), vgw);
+        return vgw;
+    }
+
 
 }

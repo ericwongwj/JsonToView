@@ -34,6 +34,8 @@
       "dataType": 0,
       "data": "chat_contact_group"
     },
+    "placeHolder": "place",
+    //new add
     "cornerRadius": 20,
     "contentMode": 1
   }

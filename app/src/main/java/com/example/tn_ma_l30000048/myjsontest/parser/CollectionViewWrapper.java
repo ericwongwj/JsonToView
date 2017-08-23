@@ -2,6 +2,7 @@ package com.example.tn_ma_l30000048.myjsontest.parser;
 
 import android.content.Context;
 import android.os.Handler;
+import android.util.Log;
 import android.util.SparseArray;
 
 import com.example.tn_ma_l30000048.myjsontest.view.Action;
@@ -21,7 +22,7 @@ import java.util.Map;
 
 public class CollectionViewWrapper extends ViewWrapper {
 
-    static final String TAG = CollectionViewWrapper.class.getSimpleName() + " ";
+    static final String TAG = CollectionViewWrapper.class.getSimpleName();
     static int num = 0;
     Action action;
     private RecyclerAdapter adapter;
@@ -36,8 +37,13 @@ public class CollectionViewWrapper extends ViewWrapper {
         super(context);
     }
 
+    /**
+     * 调用此函数 setAdapter
+     *
+     * @param dataList cell的数据
+     */
     void initRecyclerView(List<Map<String, Object>> dataList) {
-        System.out.println(TAG + "initRecyclerView");
+        Log.d(TAG, "initRecyclerView");
         MyRecyclerView myRecyclerView = (MyRecyclerView) mJsonView;
         myRecyclerView.setBackgroundColor(0xCCCCCCCC);
 
@@ -48,7 +54,7 @@ public class CollectionViewWrapper extends ViewWrapper {
             adapter.setHeader(mHeadJson);
         if (mFootJson != null)
             adapter.setFooter(mFootJson);
-        if (mInsertViewJson != null)
+        if (mInsertViewJson != null)//insertView 显示的时候再
             adapter.setInsertViews(mInsertViewJson);
         adapter.setDataMap(dataList);
 

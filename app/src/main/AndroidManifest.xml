@@ -27,7 +27,16 @@
         <activity android:name=".activity.ShowJsonActivity" />
         <activity android:name=".activity.TestMyListActivity" />
         <activity android:name=".activity.TestGridActivity" />
-        <activity android:name=".activity.TestRelativeActivity"></activity>
+        <activity android:name=".activity.TestRelativeActivity" />
+
+        <receiver
+            android:name=".receiver.MyReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="ELITOR_CLOCK" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

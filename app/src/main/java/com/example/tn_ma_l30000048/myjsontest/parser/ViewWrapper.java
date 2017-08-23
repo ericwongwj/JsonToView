@@ -14,7 +14,7 @@ public class ViewWrapper {
     static final String TAG = ViewWrapper.class.getSimpleName() + " ";
 
     protected View mJsonView;
-    protected int tagId;
+    protected int tagId;//似乎看起来没用？
     protected String nodeName;
     protected Context mContext;
     protected AtomicData dataSource;

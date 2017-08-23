@@ -1,0 +1,106 @@
+{
+  "SDKVersion": "0.0.0",
+  "ModuleVersion": "0.0.0",
+  "containerType": 0,
+  "registerProperty": "{{var $page=1;}}",
+  "rootNode": {
+    "tag": "0",
+    "nodeName": "root",
+    "nodeType": 4,
+    "layout": {
+      "strategy": 0,
+      "absolutePosition": {
+        "x": {
+          "offset": 0,
+          "persentage": 0,
+          "baseOption": 0
+        },
+        "y": {
+          "offset": 4,
+          "persentage": 0,
+          "baseOption": 1
+        }
+      },
+      "absoluteSize": {
+        "width": {
+          "offset": 0,
+          "persentage": 1,
+          "baseOption": 0
+        },
+        "height": {
+          "offset": 0,
+          "persentage": 1,
+          "baseOption": 1
+        }
+      }
+    },
+    "styles": {
+      "backgroundColor": "#ffffff00"
+    },
+    "subNode": [
+      {
+        "tag": "1",
+        "nodeName": "ContactList",
+        "nodeType": 7,
+        "layout": {
+          "strategy": 0,
+          "absolutePosition": {
+            "x": {
+              "offset": 0,
+              "persentage": 0,
+              "baseOption": 0
+            },
+            "y": {
+              "offset": 0,
+              "persentage": 0,
+              "baseOption": 1
+            }
+          },
+          "absoluteSize": {
+            "width": {
+              "offset": 0,
+              "persentage": 1,
+              "baseOption": 0
+            },
+            "height": {
+              "offset": 0,
+              "persentage": 1,
+              "baseOption": 1
+            }
+          }
+        },
+        "styles": {
+          "backgroundColor": "#ffffff",
+          "tableStyle": {
+            "dataPath": [
+              "recentContactList"
+            ],
+            "cellTemplateName": "TNChatContactCell",
+            "enablePullUpToLoadMore": 1,
+            "enablePullDownToRefresh": 1,
+            "pullDownAction": "{{$page=1;}}",
+            //page对应下面的参数page
+            "pullUpAction": "{{$page++;}}",
+            "headView": "TNChatContactHead",
+            "footView": "TNChatContactFoot"
+          }
+        }
+      }
+    ]
+  },
+  "headerInfo": {
+    "hasBackButton": 1,
+    "headTitle": "联系人"
+  },
+  "requestInfo": [
+    {
+      "baseUrl": "https://chat.tuniu.com/api/",
+      "path": "chat/recentcontact/list",
+      "parameters": {
+        "sessionId": "3872cc4c730130c1031b15a71a1e9300_",
+        "page": "10",
+        "count": "1"
+      }
+    }
+  ]
+}

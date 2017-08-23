@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
     }
 
 
@@ -91,12 +92,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         AssetManager assetManager=getAssets();
         String[] jsonStrings=null;
         try {
-            String[] fn = assetManager.list("jsons/layoutv2");
+            String[] fn = assetManager.list("jsons/contact");
             jsonStrings=new String[fn.length];
             int i=0;
             for(String name:fn){
                 list.add(name);
-                InputStream is = assetManager.open("jsons/layoutv2/" + name);
+                InputStream is = assetManager.open("jsons/contact/" + name);
                 int size = is.available();
                 byte[] buffer = new byte[size];
                 is.read(buffer);

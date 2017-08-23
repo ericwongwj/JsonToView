@@ -23,13 +23,13 @@ import java.util.Iterator;
 
 public class JsonTableView {
 
-    public static final String TAG = JsonTableView.class.getSimpleName() + " ";
+    public static final String TAG = JsonTableView.class.getSimpleName();
 
-    public static ViewWrapper build(JSONObject body, ViewGroupWrapper jsonRoot) {//, int parentWidth, int parentHeight
-        CollectionViewWrapper viewWrapper = new CollectionViewWrapper(jsonRoot.getContext());
-        MyRecyclerView myRecyclerView = buildTableView(body, viewWrapper);
-        viewWrapper.setJsonView(myRecyclerView);
-        return viewWrapper;
+    public static ViewWrapper build(JSONObject body, Context context) {//, int parentWidth, int parentHeight
+        CollectionViewWrapper cvw = new CollectionViewWrapper(context);
+        MyRecyclerView myRecyclerView = buildTableView(body, cvw);
+        cvw.setJsonView(myRecyclerView);
+        return cvw;
     }
 
     //问题：1.各个cell的模板请求 2.数据的加载 3.insertView

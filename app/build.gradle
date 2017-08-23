@@ -37,5 +37,6 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.2.0'
     compile 'com.squareup.retrofit2:converter-gson:2.2.0'
     compile 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
+    compile 'com.airbnb.android:lottie:1.0.3'
     testCompile 'junit:junit:4.12'
 }

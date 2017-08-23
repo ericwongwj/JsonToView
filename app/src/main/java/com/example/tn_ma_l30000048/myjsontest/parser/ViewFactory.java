@@ -1,5 +1,6 @@
 package com.example.tn_ma_l30000048.myjsontest.parser;
 
+import android.util.Log;
 import android.view.View;
 
 import com.example.tn_ma_l30000048.myjsontest.model.Layout;
@@ -26,28 +27,31 @@ public class ViewFactory {
                 Integer type=(Integer) body.get("nodeType");
                 switch (type){
                     case Constants.TYPE_TEXTVIEW:
-                        viewWrapper = JsonTextView.build(body, parent);//, parentWidth, parentHeight
+                        viewWrapper = JsonTextView.build(body, parent.getContext());
                         break;
                     case Constants.TYPE_IMAGE:
-                        viewWrapper = JsonImageView.build(body, parent);//, parentWidth, parentHeight
+                        viewWrapper = JsonImageView.build(body, parent.getContext());
                         break;
                     case Constants.TYPE_VIEW:
-                        viewWrapper = buildView(body, parent);//, parentWidth, parentHeight
+                        viewWrapper = buildView(body, parent);
                         break;
-//                    case Constants.TYPE_INDICATOR:
+                    case Constants.TYPE_INDICATOR:
 //                        viewWrapper = JsonLoadingView.build(body, context, parentWidth, parentHeight);
-//                    break;
-//                    case Constants.TYPE_RICHTEXT:
-//                        viewWrapper = JsonTextView.buildTextView(body, context, parentWidth, parentHeight);
-//                    break;
-                    case Constants.TYPE_TABLEVIEW:
-                        viewWrapper = JsonTableView.build(body, parent);//, parentWidth, parentHeight
                         break;
-//                    case Constants.TYPE_SCROLLVIEW:
+                    case Constants.TYPE_RICHTEXT:
+//                        viewWrapper = JsonTextView.buildTextView(body, context, parentWidth, parentHeight);
+                        break;
+                    case Constants.TYPE_TABLEVIEW:
+                        viewWrapper = JsonTableView.build(body, parent.getContext());
+                        break;
+                    case Constants.TYPE_SCROLLVIEW:
 //                        System.out.println(TAG + "scroll view");
+                        break;
                     case Constants.TYPE_COLLECTIONVIEW:
                         viewWrapper = JsonGridView.build(body, parent);
+                        break;
                     default:
+                        Log.e(TAG, " node Type is invalid!");
                         break;
                 }
             } catch (JSONException e) {
@@ -63,14 +67,13 @@ public class ViewFactory {
 
         //如果是一个layout
         if (body.has("subNode"))
-            return ViewGroupFactory.build(body, parent, parent.getContext());//, parentWidth, parentHeight
+            return ViewGroupFactory.build(body, parent, parent.getContext());
 
 //        System.out.println("----buildView view-----");
 
         View view = new View(parent.getContext());
         ViewWrapper viewWrapper = new ViewWrapper(view);
         JsonViewUtils.setTagToWrapper(body, view, viewWrapper);
-        //JsonViewUtils.setLayoutParams(JsonHelper.getLayout(body), view);//, parentWidth, parentHeight
         JSONObject style=JsonHelper.getStyles(body);
         String color= null;
         try {

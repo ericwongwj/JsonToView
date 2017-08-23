@@ -17,11 +17,6 @@ public class Layout {
     public RelativePosition relativePosition;
     public RelativeSize relativeSize;
 
-    @Override
-    public String toString() {
-        return " "+strategy;
-    }
-
     public void setWandH(int pw, int ph) {
         parentWidth = pw;
         parentHeight = ph;

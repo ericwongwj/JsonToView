@@ -32,8 +32,7 @@ public class ViewGroupWrapper extends ViewWrapper {
         super(v);
     }
 
-    //recyclerview的处理 四个类型的cell？目前这个函数是一个viewgroup下所有view的信息
-    //目前是所有的view的id都不相同
+    //目前是所有的view的id都不相同 列表的处理？
     public void initViewTagMap(ViewWrapper vw) {
         if (mJsonView == null)
             return;

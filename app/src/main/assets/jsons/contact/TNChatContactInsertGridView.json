@@ -1,0 +1,129 @@
+{
+  "SDKVersion": "0.0.0",
+  "ModuleVersion": "0.0.0",
+  "containerType": 0,
+  "containerHeight": "400",
+  "registerProperty": "{{var $page=1;}}",
+  "rootNode": {
+    "tag": "0",
+    "nodeName": "insertview",
+    "nodeType": 4,
+    "layout": {
+      "strategy": 0,
+      "absolutePosition": {
+        "x": {
+          "offset": 0,
+          "persentage": 0,
+          "baseOption": 0
+        },
+        "y": {
+          "offset": 6,
+          "persentage": 0,
+          "baseOption": 1
+        }
+      },
+      "absoluteSize": {
+        "width": {
+          "offset": 0,
+          "persentage": 1,
+          "baseOption": 0
+        },
+        "height": {
+          "offset": 0,
+          "persentage": 1,
+          "baseOption": 1
+        }
+      }
+    },
+    "styles": {
+      "backgroundColor": "#ffffff00"
+    },
+    "subNode": [
+      {
+        "tag": "0",
+        "nodeName": "gridview",
+        "nodeType": 9,
+        "layout": {
+          "strategy": 1,
+          "relativePosition": {
+            "top": {
+              "item": 0,
+              "attribute": 0,
+              "relationship": 0,
+              "multiplier": 1,
+              "offset": 20
+            },
+            "leading": {
+              "item": 0,
+              "attribute": 1,
+              "relationship": 0,
+              "multiplier": 1,
+              "offset": 20
+            },
+            "trailing": {
+              "item": 0,
+              "attribute": 3,
+              "relationship": 0,
+              "multiplier": 1,
+              "offset": 20
+            },
+            "bottom": {
+              "item": 0,
+              "attribute": 2,
+              "relationship": 0,
+              "multiplier": 1,
+              "offset": 20
+            }
+          },
+          "relativeSize": {
+            "width": {
+              "offset": -1
+            },
+            "height": {
+              "offset": -1
+            }
+          }
+        },
+        "styles": {
+          "backgroundColor": "#dddddd",
+          "collectionStyle": {
+            "cellTemplateName": "TNChatContactDestination",
+            "scrollDirection": 1,
+            "dataPath": [
+              "insertViewData"
+            ],
+            "enablePullDownToRefresh": 1,
+            "enablePullUpToLoadMore": 1,
+            "pullDownAction": "{{$page=1;}}",
+            "pullUpAction": "{{$page++;}}",
+            "itemSize": {
+              "width": {
+                "offset": 0,
+                "persentage": 0.3,
+                "baseOption": 0
+              },
+              "height": {
+                "offset": 0,
+                "persentage": 0.3,
+                "baseOption": 1
+              }
+            },
+            "minimumInteritemSpacing": 10,
+            "minimumLineSpacing": 10
+          }
+        }
+      }
+    ]
+  },
+  "requestInfo": [
+    {
+      "baseUrl": "https://m.tuniu.com/api/",
+      "path": "guide/guideHome/audioList",
+      "parameters": {
+        "poiId": "{{var getSessionId=function(){return 37555};}}",
+        "page": "{{var getPage=function(e){return $page};}}",
+        "limit": "{{var getCount=function(e){return 20};}}"
+      }
+    }
+  ]
+}

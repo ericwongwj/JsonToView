@@ -1,0 +1,51 @@
+{
+  "SDKVersion": "0.0.0",
+  "ModuleVersion": "0.0.0",
+  "containerType": 0,
+  "containerHeight": "20",
+  "rootNode": {
+    "tag": "0",
+    "nodeName": "footTitle",
+    "nodeType": 1,
+    "layout": {
+      "strategy": "0",
+      "absolutePosition": {
+        "x": {
+          "offset": 0,
+          "persentage": 0,
+          "baseOption": 0
+        },
+        "y": {
+          "offset": 0,
+          "persentage": 0,
+          "baseOption": 1
+        }
+      },
+      "absoluteSize": {
+        "width": {
+          "offset": 0,
+          "persentage": 1,
+          "baseOption": 0
+        },
+        "height": {
+          "offset": 0,
+          "persentage": 1,
+          "baseOption": 1
+        }
+      }
+    },
+    "styles": {
+      "text": {
+        "dataType": 0,
+        "data": "Foot"
+      },
+      "textColor": "#051b28",
+      "textFontSize": 17,
+      "numberOfLines": 1,
+      "strickHeight": 1,
+      "strickWidth": 1,
+      "textAlignment": 1,
+      "backgroundColor": "#AAAAAA"
+    }
+  }
+}

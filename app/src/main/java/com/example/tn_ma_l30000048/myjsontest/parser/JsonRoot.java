@@ -2,11 +2,11 @@ package com.example.tn_ma_l30000048.myjsontest.parser;
 
 import android.content.Context;
 import android.os.Handler;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.tn_ma_l30000048.myjsontest.R;
 import com.example.tn_ma_l30000048.myjsontest.model.AtomicData;
 import com.example.tn_ma_l30000048.myjsontest.model.HeaderInfo;
 import com.example.tn_ma_l30000048.myjsontest.model.RequestInfo;
@@ -48,43 +48,34 @@ public class JsonRoot extends ViewGroupWrapper {
     /**
      * 1.扫描json 若有需要则请求数据  2.初始化层次结构和各个view的基本属性 3.设置layout 4.加载数据
      */
-    public JsonRoot(JSONObject jsonObject, final Context context, int parentWidth, int parentHeight) {
+    public JsonRoot(JSONObject json, final Context context, int parentWidth, int parentHeight) {
         super(context);
 
         System.out.println("JSON VIEW ROOT " + parentWidth + " " + parentHeight);
         mContext = context;
         try {
-            SDKVersion=jsonObject.getString("SDKVersion");
-            ModuleVersion=jsonObject.getString("ModuleVersion");
-            if (jsonObject.has("registerProperty"))
-                registerProperty = jsonObject.getString("registerProperty");//js code
-            if (jsonObject.has("JSContext"))
-                parseJSContext(jsonObject.getJSONArray("JSContext"));
-            if (jsonObject.has("containerType"))//0:view  1:page
-                containerType = jsonObject.getInt("containerType");
+            SDKVersion = json.getString("SDKVersion");
+            ModuleVersion = json.getString("ModuleVersion");
+            if (json.has("registerProperty"))
+                registerProperty = json.getString("registerProperty");//js code
+            if (json.has("JSContext"))
+                parseJSContext(json.getJSONArray("JSContext"));
+            if (json.has("containerType"))//0:view  1:page
+                containerType = json.getInt("containerType");
 
-            parseWandH(jsonObject, parentWidth, parentHeight);
+            parseWandH(json, parentWidth, parentHeight);
 
-            if (jsonObject.has("headerInfo")) {
-                parseHeaderInfo(jsonObject.getJSONObject("headerInfo"));
+            if (json.has("headerInfo")) {
+                parseHeaderInfo(json.getJSONObject("headerInfo"));
                 System.out.println(TAG + "headerInfo:" + mHeaderInfo.toString());
             }
-            if (jsonObject.has("requestInfo")) {
-                parseRequestInfo(jsonObject.getJSONArray("requestInfo"));
+            if (json.has("requestInfo")) {
+                parseRequestInfo(json.getJSONArray("requestInfo"));
             }
 
-            mDataMap = new HashMap<>();
-            mHandler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    constructDataMap(mDataMap, JsonHelper.readLocalDataJson(context, "testData.json"));
-                    setDataToView();
-                }
-            }, 300);
-
-            JSONObject rootNodeJson = jsonObject.getJSONObject("rootNode");
+            JSONObject rootNodeJson = json.getJSONObject("rootNode");
             if (rootNodeJson.getInt("nodeType") == 4 && rootNodeJson.getJSONArray("subNode").length() != 0 || rootNodeJson.getInt("nodeType") == 0) {
-                ViewGroupWrapper vgw = ViewGroupFactory.build(rootNodeJson, null, context);
+                ViewGroupWrapper vgw = ViewGroupFactory.build(rootNodeJson, null, context);//相当于生成一个父类的对象然后赋值给自己
                 mSubViewWrappers = vgw.getSubViewWrappers();
                 mLayout = vgw.getLayout();
                 mLayout.setWandH((int) containerWidth, (int) containerHeight);
@@ -94,7 +85,7 @@ public class JsonRoot extends ViewGroupWrapper {
                 layoutViewGroup((int) containerWidth, (int) containerHeight);//parent的宽高就是自己
 
             } else {
-                //need to test
+                //尽量避免 尤其单独列表
                 ViewWrapper vw = ViewFactory.build(rootNodeJson, this);
                 mJsonView = vw.getJsonView();
                 mLayout = vw.getLayout();
@@ -103,6 +94,15 @@ public class JsonRoot extends ViewGroupWrapper {
                 layoutView((int) containerWidth, (int) containerHeight);
             }
 
+            mDataMap = new HashMap<>();
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    //应该作为回调
+                    constructDataMap(mDataMap, JsonHelper.readLocalDataJson(context, "testData.json"));
+                    setDataToView();
+                }
+            }, 300);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -323,8 +323,9 @@ public class JsonRoot extends ViewGroupWrapper {
                     }
                 } else if (vw.getJsonView() instanceof ImageView) {
                     if (dataSource.getDataType() == 0) {
-                        //TODO:如何读取本地的图片？
-                        ((ImageView) vw.getJsonView()).setImageResource(R.drawable.icon);
+                        int resId = mContext.getResources().getIdentifier(dataSource.getData(), "drawable", Constants.PACKAGE_NAME);
+                        Log.d(TAG, "resId:" + resId);
+                        ((ImageView) vw.getJsonView()).setImageResource(resId);
                     } else if (dataSource.getDataType() == 1) {
                         List<String> keys = dataSource.getDataPaths();
                         if (keys == null || keys.isEmpty())
@@ -340,6 +341,7 @@ public class JsonRoot extends ViewGroupWrapper {
                         List<Map<String, Object>> listData = (List<Map<String, Object>>) getDataFromMap(mDataMap, keys);//每一个item的数据也是一个map
                         CollectionViewWrapper cvw = ((CollectionViewWrapper) vw);
                         cvw.setRootDataMap(mDataMap);
+
                         cvw.initRecyclerView(listData);//只负责第一次的加载 后续刷新在控件内实现 那样的话 数据还会加载到rootmap当中吗
                     }
                 }

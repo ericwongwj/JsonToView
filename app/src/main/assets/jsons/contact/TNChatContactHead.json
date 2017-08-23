@@ -1,0 +1,250 @@
+{
+  "SDKVersion": "0.0.0",
+  "ModuleVersion": "0.0.0",
+  "containerType": 0,
+  "containerHeight": "85",
+  "rootNode": {
+    "tag": "0",
+    "nodeName": "headTitle",
+    "nodeType": 4,
+    "action": {
+      "dataType": 0,
+      "data": "tuniuapp://page?pageName=TNChatGroupsViewController"
+    },
+    "layout": {
+      "strategy": "0",
+      "absolutePosition": {
+        "x": {
+          "offset": 0,
+          "persentage": 0,
+          "baseOption": 0
+        },
+        "y": {
+          "offset": 0,
+          "persentage": 0,
+          "baseOption": 1
+        }
+      },
+      "absoluteSize": {
+        "width": {
+          "offset": 0,
+          "persentage": 1,
+          "baseOption": 0
+        },
+        "height": {
+          "offset": 0,
+          "persentage": 1,
+          "baseOption": 1
+        }
+      }
+    },
+    "styles": {
+      "backgroundColor": "#ffffff"
+    },
+    "subNode": [
+      {
+        "tag": "1",
+        "nodeName": "divideLine",
+        "nodeType": 4,
+        "layout": {
+          "strategy": "0",
+          "absolutePosition": {
+            "x": {
+              "offset": 0,
+              "persentage": 0,
+              "baseOption": 0
+            },
+            "y": {
+              "offset": 0,
+              "persentage": 0,
+              "baseOption": 1
+            }
+          },
+          "absoluteSize": {
+            "width": {
+              "offset": 0,
+              "persentage": 1,
+              "baseOption": 0
+            },
+            "height": {
+              "offset": 0.5,
+              "persentage": 0,
+              "baseOption": 1
+            }
+          }
+        },
+        "styles": {
+          "backgroundColor": "#e4e4e4ff"
+        }
+      },
+      {
+        "tag": "2",
+        "nodeName": "avatar",
+        "nodeType": 2,
+        "layout": {
+          "strategy": "0",
+          "absolutePosition": {
+            "x": {
+              "offset": 15,
+              "persentage": 0,
+              "baseOption": 0
+            },
+            "y": {
+              "offset": 7,
+              "persentage": 0,
+              "baseOption": 1
+            }
+          },
+          "absoluteSize": {
+            "width": {
+              "offset": 40,
+              "persentage": 0,
+              "baseOption": 0
+            },
+            "height": {
+              "offset": 40,
+              "persentage": 0,
+              "baseOption": 1
+            }
+          }
+        },
+        "styles": {
+          "imageSource": {
+            "dataType": 1,
+            "data": [
+              "chat_contact_group"
+            ]
+          },
+          "cornerRadius": 20,
+          "contentMode": 1
+        }
+      },
+      {
+        "tag": "3",
+        "nodeName": "contactName",
+        "nodeType": 1,
+        "layout": {
+          "strategy": "0",
+          "absolutePosition": {
+            "x": {
+              "offset": 70,
+              "persentage": 0,
+              "baseOption": 0
+            },
+            "y": {
+              "offset": 12,
+              "persentage": 0,
+              "baseOption": 1
+            }
+          },
+          "absoluteSize": {
+            "width": {
+              "offset": -70,
+              "persentage": 1,
+              "baseOption": 0
+            },
+            "height": {
+              "offset": 31,
+              "persentage": 0,
+              "baseOption": 1
+            }
+          }
+        },
+        "styles": {
+          "text": {
+            "dataType": 0,
+            "data": "群组"
+          },
+          "textColor": "#051b28",
+          "textFontSize": 17,
+          "numberOfLines": 1,
+          "strickHeight": 1,
+          "strickWidth": 1,
+          "isHide": "{{var setHidden=function(e){return 0}}}"
+        }
+      },
+      {
+        "tag": "4",
+        "nodeName": "textWrap",
+        "nodeType": 4,
+        "layout": {
+          "strategy": "0",
+          "absolutePosition": {
+            "x": {
+              "offset": 0,
+              "persentage": 0,
+              "baseOption": 0
+            },
+            "y": {
+              "offset": 55,
+              "persentage": 0,
+              "baseOption": 1
+            }
+          },
+          "absoluteSize": {
+            "width": {
+              "offset": 0,
+              "persentage": 1,
+              "baseOption": 0
+            },
+            "height": {
+              "offset": 30,
+              "persentage": 0,
+              "baseOption": 1
+            }
+          }
+        },
+        "styles": {
+          "backgroundColor": "#f2f3f8"
+        },
+        "subNode": [
+          {
+            "tag": "5",
+            "nodeName": "headTitle",
+            "nodeType": 1,
+            "layout": {
+              "strategy": "0",
+              "absolutePosition": {
+                "x": {
+                  "offset": 20,
+                  "persentage": 0,
+                  "baseOption": 0
+                },
+                "y": {
+                  "offset": 0,
+                  "persentage": 0,
+                  "baseOption": 1
+                }
+              },
+              "absoluteSize": {
+                "width": {
+                  "offset": 0,
+                  "persentage": 1,
+                  "baseOption": 0
+                },
+                "height": {
+                  "offset": 0,
+                  "persentage": 1,
+                  "baseOption": 1
+                }
+              }
+            },
+            "styles": {
+              "text": {
+                "dataType": 0,
+                "data": "最近联系人"
+              },
+              "textColor": "#a5a5a5",
+              "textFontSize": 14,
+              "numberOfLines": 1,
+              "strickHeight": 1,
+              "strickWidth": 1,
+              "textAlignment": 0,
+              "backgroundColor": "#f2f3f8"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

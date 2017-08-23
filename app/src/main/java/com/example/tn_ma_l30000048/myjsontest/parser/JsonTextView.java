@@ -1,6 +1,6 @@
 package com.example.tn_ma_l30000048.myjsontest.parser;
 
-import android.util.Log;
+import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
 
@@ -18,21 +18,21 @@ import java.util.Iterator;
 public class JsonTextView {
     static final String TAG = JsonTextView.class.getSimpleName();
 
-    public static ViewWrapper build(JSONObject body, ViewGroupWrapper jsonRoot) {//, int parentWidth, int parentHeight
-        ViewWrapper viewWrapper = new ViewWrapper(jsonRoot.getContext());
-        TextView textView = buildTextView(body, viewWrapper);//, parentWidth, parentHeight
-        JsonViewUtils.setTagToWrapper(body, textView, viewWrapper);
-        viewWrapper.setJsonView(textView);
-        return viewWrapper;
+    public static ViewWrapper build(JSONObject body, Context context) {
+        ViewWrapper vw = new ViewWrapper(context);
+        TextView textView = buildTextView(body, vw);
+        JsonViewUtils.setTagToWrapper(body, textView, vw);
+        vw.setJsonView(textView);
+        return vw;
     }
 
-    //暂时先不判断json是否有效
     public static TextView buildTextView(JSONObject body, ViewWrapper viewWrapper) {//, int parentWidth, int parentHeight
         TextView textView = new TextView(viewWrapper.getContext());
         System.out.println("----build TextView----");
-//        JsonViewUtils.setLayoutParams(JsonHelper.getLayout(body), textView, parentWidth, parentHeight);
-        JsonViewUtils.setAction();
-        setTextStyle(JsonHelper.getStyles(body), textView, viewWrapper);
+        if (JsonViewUtils.isJsonValid(body, Constants.TYPE_TEXTVIEW)) {
+            JsonViewUtils.setAction();
+            setTextStyle(JsonHelper.getStyles(body), textView, viewWrapper);
+        }
         return textView;
     }
 
@@ -90,7 +90,7 @@ public class JsonTextView {
                 }
             }
         }catch (Exception e){
-            Log.e(e.getClass().getSimpleName(),e.getMessage());
+            e.printStackTrace();
         }
 
     }

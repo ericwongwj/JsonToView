@@ -228,6 +228,7 @@ public class JsonViewUtils {
         return rc == null || (rc.attribute == 0 && rc.offset == 0 && rc.item == 0);
     }
 
+    //设置控件自身的id和自身wrapper的id
     public static void setTagToWrapper(JSONObject json, View v, ViewWrapper viewWrapper) {
         Iterator<String> keys = json.keys();
         try {
@@ -300,5 +301,17 @@ public class JsonViewUtils {
         dataSource.setDataType(1);
         dataSource.setDataPaths(paths);
         return dataSource;
+    }
+
+    public static boolean isJsonValid(JSONObject jsonObject, int type) {
+        switch (type) {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+        }
+        return true;
     }
 }

@@ -1,5 +1,6 @@
 package com.example.tn_ma_l30000048.myjsontest.parser;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.util.Log;
@@ -17,22 +18,23 @@ import java.util.Iterator;
 
 public class JsonImageView {
 
-    static final String TAG = JsonImageView.class.getSimpleName() + " ";
+    static final String TAG = JsonImageView.class.getSimpleName();
 
-    public static ViewWrapper build(JSONObject body, ViewGroupWrapper jsonRoot) {//, int parentWidth, int parentHeight
-        ViewWrapper viewWrapper = new ViewWrapper(jsonRoot.getContext());
-        ImageView textView = buildImageView(body, viewWrapper);//, parentWidth, parentHeight;
-        JsonViewUtils.setTagToWrapper(body, textView, viewWrapper);
-        viewWrapper.setJsonView(textView);
+    public static ViewWrapper build(JSONObject body, Context context) {
+        ViewWrapper viewWrapper = new ViewWrapper(context);
+        ImageView imageView = buildImageView(body, viewWrapper);
+        JsonViewUtils.setTagToWrapper(body, imageView, viewWrapper);
+        viewWrapper.setJsonView(imageView);
         return viewWrapper;
     }
 
-    public static ImageView buildImageView(JSONObject body, ViewWrapper viewWrapper) {//, int parentWidth, int parentHeight
+    public static ImageView buildImageView(JSONObject body, ViewWrapper viewWrapper) {
         ImageView imageView = new ImageView(viewWrapper.getContext());
         System.out.println("----build ImageView----");
-        JsonViewUtils.setTagToWrapper(body, imageView, viewWrapper);
-//        JsonViewUtils.setLayoutParams(JsonHelper.getLayout(body), imageView, parentWidth, parentHeight);
-        setImageStyle(JsonHelper.getStyles(body), imageView, viewWrapper);
+        if (JsonViewUtils.isJsonValid(body, Constants.TYPE_TEXTVIEW)) {
+            JsonViewUtils.setAction();
+            setImageStyle(JsonHelper.getStyles(body), imageView, viewWrapper);
+        }
         return imageView;
     }
 
@@ -56,7 +58,10 @@ public class JsonImageView {
                     JSONObject imgSrc = json.getJSONObject(key);
                     AtomicData dataSource = JsonViewUtils.parseDataSource(imgSrc);
                     viewWrapper.setDataSource(dataSource);
-//                    System.out.println(TAG + "dataSource:"+dataSource);
+                } else if (key.equalsIgnoreCase("placeHolder")) {
+                    String placeHolder = json.getString(key);
+                    int resId = iv.getContext().getResources().getIdentifier(placeHolder, "drawable", Constants.PACKAGE_NAME);
+                    iv.setImageResource(resId);
                 }
             }
         }catch (Exception e){

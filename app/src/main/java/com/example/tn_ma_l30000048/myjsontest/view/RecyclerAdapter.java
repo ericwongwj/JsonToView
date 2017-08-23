@@ -117,14 +117,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             holder.setCellData(mDataMapList.get(position - 1));
         }
 
-
-//        onItemClickListener.onItemClick();
-//        holder.mCellRoot.getJsonView().setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//            }
-//        });
-
 //         最后一个可见的 item 时 加载更多。
         int positionEnd;
         if ((hasHeader && hasFooter) || (!hasHeader && hasFooter)) {
@@ -203,6 +195,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     public void setInsertViews(SparseArray<JSONObject> insertViews) {
         mInsertJsons = insertViews;
         mViewCount += insertViews.size();
+        //TODO：何时请求数据？
     }
 
     //只在第一次初始化的时候调用
